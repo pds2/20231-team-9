@@ -1,6 +1,6 @@
 # 20231-team-9
 
-GRUPO:
+GRUPO 9:
 -Arthur Buzelin
 -Cecília Junqueira
 -Felipe Gomide
