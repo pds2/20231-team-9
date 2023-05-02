@@ -13,6 +13,7 @@ Participante da Edição do Jogo:
 - Ele pode ganhar utensílios (comidas, remédio, água...) e armas de patrocinadores e/ou dos organizadores do Jogo. Se usar um dos utensílios/armas, ele será retirado da coleção.
 - Ele será capaz de “brigar” com participantes de distritos inimigos. O vencedor da briga é definido como aquele que tem as armas mais poderosas. Ao fim da briga, o perdedor morre e o vencedor tem sua energia reduzida pela diferença do poder da sua arma com a do adversário.
 - Se o campo “_energia” ou o “_hidratacao” estiverem iguais a zero, o participante está morto. Se ele bebe água, “_hidratacao” volta a 100.
+
 Patrocinador:
 - Pode mandar comidas, remédios, armas, etc, aos participantes que ele apoia.
 - Cada patrocinador deverá ser capaz de dar uma nota a cada participante.
