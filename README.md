@@ -1,10 +1,10 @@
 # 20231-team-9
 
 GRUPO
-Arthur Buzelin
-Cecília Junqueira
-Felipe Gomide
-Lucas Junqueira
+-Arthur Buzelin
+-Cecília Junqueira
+-Felipe Gomide
+-Lucas Junqueira
 
 USER STORIES
 
