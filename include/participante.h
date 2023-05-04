@@ -1,6 +1,7 @@
 #ifndef PDS2_PARTICIPANTE_H
 #define PDS2_PARTICIPANTE_H
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include <map>
@@ -21,15 +22,19 @@ class Participante {
         float _hidratacao;
         float _ferido;
         //os dois maps ligam a arma/o utensílio à quantidade que o jogador tem de cada uma
-        map<Arma, int> _armas;
+        vector<Arma> _armas;
         map<Utensilio, int> _utensilios;
 
     public:
         Participante(string nome, int idade, int distrito);
         string get_nome() const;
         int get_distrito() const;
+        void morreu();
         void adicionar_arma(Arma arma);
         void adicionar_utensilio(Utensilio utensilio);
+
+        Arma escolher_arma();
+        void batalha(Participante p);
 
 };
 
