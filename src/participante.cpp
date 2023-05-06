@@ -18,10 +18,6 @@ int Participante::get_distrito() const {
     return _distrito;
 }
 
-void Participante::morreu() {
-    _vivo = false;
-}
-
 void Participante::adicionar_arma(Arma arma) {
     for(Arma this_arma : _armas) {
         if(this_arma.get_tipo() == arma.get_tipo()) {
@@ -73,11 +69,21 @@ Arma Participante::escolher_arma() {
 }
 
 void Participante::batalha(Participante p) {
+    std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " atacou o jogador " << p.get_nome() << " do distrito " << p.get_distrito() << std::endl;
     Arma arma_escolhida_atacante = escolher_arma();
     Arma arma_escolhida_defesa = p.escolher_arma();
 
     if(arma_escolhida_atacante.get_poder() > arma_escolhida_defesa.get_poder()) {
-        p.morreu();
+        p._vivo = false;
+        std::cout << "O jogador " << p.get_nome() << " do distrito " << p.get_distrito() << " foi morto" << std::endl;
         //faltar adicionar chamadas que mudarão os campos "_energia" e "_ferido"
-    }
+        _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
+        _ferido *= (1 + 0.1*arma_escolhida_atacante.get_poder());
+
+    } else if(arma_escolhida_atacante.get_poder() < arma_escolhida_defesa.get_poder()) {
+        _vivo = false;
+        std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " foi morto" << std::endl;
+        p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
+        p._ferido *= (1 + 0.1*arma_escolhida_defesa.get_poder());
+    } 
 }
