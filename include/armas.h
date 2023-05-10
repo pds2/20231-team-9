@@ -12,6 +12,7 @@ class Arma {
     public:
         Arma(armas tipo, int poder);
         armas get_tipo() const;
+        int get_poder() const;
 };
 
 #endif

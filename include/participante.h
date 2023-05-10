@@ -1,6 +1,7 @@
 #ifndef PDS2_PARTICIPANTE_H
 #define PDS2_PARTICIPANTE_H
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include <map>
@@ -24,17 +25,32 @@ class Participante {
         float _ferido;
         regioes _atual;
         //os dois maps ligam a arma/o utensílio à quantidade que o jogador tem de cada uma
-        map<Arma, int> _armas;
+        vector<Arma> _armas;
         map<Utensilio, int> _utensilios;
 
     public:
+        /*
+         * @brief um participante, inicializando os dados
+         */
         Participante(string nome, int idade, int distrito);
+
+        /*
+         * @brief retornam o nome e o distrito, respectivamente, do participante
+         */
         string get_nome() const;
         int get_distrito() const;
-        regioes get_atual();
-        void muda_regiao_atual(regioes destino);
         void adicionar_arma(Arma arma);
         void adicionar_utensilio(Utensilio utensilio);
+
+        /*
+         * @brief retorna uma arma do vector _armas
+         */
+        Arma escolher_arma();
+
+        /*
+         * @brief simula a batalha entre o participante corrente com um outro participante p
+         */
+        void batalha(Participante p);
 
 };
 

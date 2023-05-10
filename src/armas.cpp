@@ -8,3 +8,7 @@ Arma::Arma(armas tipo, int poder) {
 armas Arma::get_tipo() const {
     return _tipo;
 }
+
+int Arma::get_poder() const {
+    return _poder;
+}
