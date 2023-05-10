@@ -39,8 +39,10 @@ class Participante {
          */
         string get_nome() const;
         int get_distrito() const;
+        regioes get_atual();
         void adicionar_arma(Arma arma);
         void adicionar_utensilio(Utensilio utensilio);
+        void muda_regiao_atual(regioes destino);
 
         /*
          * @brief retorna uma arma do vector _armas

@@ -8,6 +8,7 @@ Participante::Participante(string nome, int idade, int distrito) {
     _energia = 100;
     _hidratacao = 100;
     _ferido = 0;
+    _atual = centro;
 }
 
 string Participante::get_nome() const {
