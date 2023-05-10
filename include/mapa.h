@@ -4,8 +4,6 @@
 #include "participante.h"
 #include "regiao.h"
 
-enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas};
-
 class Mapa {
     private:
     map<string,Participante> _vivos;
@@ -31,6 +29,7 @@ class Mapa {
     Regiao get_ruinas();
     void criar_participante(string nome,int idade, int destrito);
     void inicio();
+    void morrer(Participante* fulano);
     void mover_do_centro(regioes destino, Participante* fulano);
     void mover_da_floresta(regioes destino, Participante* fulano);
     void mover_do_deserto(regioes destino, Participante* fulano);

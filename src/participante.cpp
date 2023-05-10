@@ -18,6 +18,14 @@ int Participante::get_distrito() const {
     return _distrito;
 }
 
+regioes Participante::get_atual() {
+    return _atual;
+}
+
+void Participante::muda_regiao_atual(regioes destino) {
+    _atual = destino;
+}
+
 void Participante::adicionar_arma(Arma arma) {
     auto pair = _armas.begin();
     while(pair != _armas.end()) {

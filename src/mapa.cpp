@@ -37,6 +37,39 @@ void Mapa::inicio() {
     }
 }
 
+void Mapa::morrer(Participante* fulano) {
+    switch (fulano->get_atual()) {
+        case centro:
+        _centro.remover_participante(fulano);
+        break;
+    
+        case floresta:
+        _floresta.remover_participante(fulano);
+        break;
+
+        case deserto:
+        _deserto.remover_participante(fulano);
+        break;
+
+        case pantano:
+        _pantano.remover_participante(fulano);
+        break;
+
+        case campo:
+        _campo.remover_participante(fulano);
+        break;
+
+        case montanhas:
+        _montanhas.remover_participante(fulano);
+        break;
+
+        case ruinas:
+        _ruinas.remover_participante(fulano);
+        break;
+    }
+    _vivos.erase(fulano->get_nome());
+}
+
 void Mapa::mover_do_centro(regioes destino, Participante* fulano) {
     switch (destino) {
         case floresta:
@@ -63,6 +96,7 @@ void Mapa::mover_do_centro(regioes destino, Participante* fulano) {
         _ruinas.inserir_participante(fulano);
         break;
     }
+    fulano->muda_regiao_atual(destino);
     _centro.remover_participante(fulano);
 }
 
@@ -80,6 +114,7 @@ void Mapa::mover_da_floresta(regioes destino, Participante* fulano) {
         _campo.inserir_participante(fulano);
         break;
     }
+    fulano->muda_regiao_atual(destino);
     _floresta.remover_participante(fulano);
 }
 
@@ -97,6 +132,7 @@ void Mapa::mover_do_deserto(regioes destino, Participante* fulano) {
         _montanhas.inserir_participante(fulano);
         break;
     }
+    fulano->muda_regiao_atual(destino);
     _deserto.remover_participante(fulano);
 }
 
@@ -114,6 +150,7 @@ void Mapa::mover_do_pantano(regioes destino, Participante* fulano) {
         _montanhas.inserir_participante(fulano);
         break;
     }
+    fulano->muda_regiao_atual(destino);
     _pantano.remover_participante(fulano);
 }
 
@@ -131,6 +168,7 @@ void Mapa::mover_do_campo(regioes destino, Participante* fulano) {
         _ruinas.inserir_participante(fulano);
         break;
     }
+    fulano->muda_regiao_atual(destino);
     _campo.remover_participante(fulano);
 }
 
@@ -148,6 +186,7 @@ void Mapa::mover_das_montanhas(regioes destino, Participante* fulano) {
         _deserto.inserir_participante(fulano);
         break;
     }
+    fulano->muda_regiao_atual(destino);
     _montanhas.remover_participante(fulano);
 }
 
@@ -165,5 +204,6 @@ void Mapa::mover_das_ruinas(regioes destino, Participante* fulano) {
         _campo.inserir_participante(fulano);
         break;
     }
+    fulano->muda_regiao_atual(destino);
     _ruinas.remover_participante(fulano);
 }
