@@ -10,6 +10,8 @@
 
 ### Participante da Edição do Jogo:
 
+-> Como Participante da Edição do Jogo, quero poder decidir se quero batalhar com outro participante rival ou decidir fugir para outra região do mapa do jogo. Ainda, quero ser capaz de ganhar e usar armas para me defender nas batalhas e de consumir alimentos/líquidos que ganhei de patrocinadores. Com isso, tenho como objetivo me manter vivo, para ganhar o jogo.
+
 - Ao ser criado, o participante deverá receber uma porcentagem de energia e uma taxa de hidratação (é a mesma para todos os jogadores).
 - Ele pode ganhar utensílios (comidas, remédio, água...) e armas de patrocinadores e/ou dos organizadores do Jogo. Se usar um dos utensílios/armas, ele será retirado da coleção.
 - Ele será capaz de “brigar” com participantes de distritos inimigos. O vencedor da briga é definido como aquele que tem as armas mais poderosas. Ao fim da briga, o perdedor morre e o vencedor tem sua energia reduzida pela diferença do poder da sua arma com a do adversário.
@@ -17,12 +19,16 @@
 
 ### Patrocinador
 
+-> Como Patrocinador, quero poder adicionar armas e alimentos nas respectivas coleções dos participantes que escolher, a fim de melhor o nível deles de hidratação e energia e de equipá-los, para que eles sejam mais capazes de vencer as batalhas e, com isso, o jogo também.
+
 - Pode mandar comidas, remédios, armas, etc, aos participantes que ele apoia.
 - Cada patrocinador deverá ser capaz de dar uma nota a cada participante.
 - O patrocinador deverá ser capaz de visualizar o nível de hidratação e de machucado de cada participante do jogo.
 - O patrocinador deve ser capaz de adicionar utensílios e armas aos respectivos containers dos participantes que ele escolher.
   
 ### Batalhas
+
+-> O jogador, ao acionar "Batalha", deve ser capaz de escolher um adversário com quem batalhar e ambos devem poder escolher suas armas. Com isso, busca reduzir o número de jogadores, para encontrar um vencedor.
 
 - O jogador deverá ser capaz de calcular a distância para os inimigos e escolher aquele mais perto para atacá-lo.
 - O jogador deverá poder escolher a arma que ele quer usar (de acordo com a arma do adversário, comparando o poder de cada uma). Se a arma dele for menos poderosa, ele morre. Caso contrário, ele permanece vivo, mas tem seu saldo de energia reduzido.
