@@ -15,6 +15,8 @@
 - Como usuário, quero poder criar uma partida apenas de BOTs, para acompanhar a criação de uma história lendo os logs de cada dia.
 - Como usuário, quero poder criar uma partida com BOTs e jogadores, para poder jogar uma partida com adversários gerados e controlados pela máquina.
 
+# Planejamento do Sistema
+Aqui expusemos algumas das principais ideias para o desenvolvimento do nosso jogo:
 ### Participante da Edição do Jogo:
 
 - Ao ser criado, o participante deverá receber uma porcentagem de energia e uma taxa de hidratação (é a mesma para todos os jogadores).
