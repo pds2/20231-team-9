@@ -67,12 +67,20 @@ Arma Participante::escolher_arma() {
     int index;
     while(1) {
         std::cin >> index;
-        try {
+        if(index < _armas.size()) {
             return _armas[index];
 
-        } catch(std::out_of_range &e) {
+        } else {
             std::cout << "Digite um número válido" << std::endl;
         }
+
+        //não se está certo se fizer assim
+        // try {
+        //     return _armas[index];
+
+        // } catch(std::out_of_range &e) {
+        //     std::cout << "Digite um número válido" << std::endl;
+        // }
     }
 
 }

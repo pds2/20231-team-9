@@ -4,6 +4,10 @@
 #include "participante.h"
 #include "regiao.h"
 
+class participante_ja_existe_e {};
+class idade_invalido_e {};
+class distrito_invalido_e {};
+
 class Mapa {
     private:
     map<string,Participante> _vivos;

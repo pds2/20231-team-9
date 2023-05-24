@@ -25,8 +25,21 @@ Regiao Mapa::get_montanhas() {return _montanhas;}
 
 Regiao Mapa::get_ruinas() {return _ruinas;}
 
-void Mapa::criar_participante(string nome,int idade, int destrito) {
-    _vivos[nome] = Participante(nome,idade,destrito);
+void Mapa::criar_participante(string nome,int idade, int distrito) {
+    auto pair = _vivos.begin();
+    while(pair != _vivos.end()) {
+        if(nome == pair->first) {
+            throw participante_ja_existe_e();
+        }
+    }
+    if(idade <= 15) {
+        throw idade_invalido_e();
+    }
+    if(distrito > 12 || distrito < 1) {
+        throw distrito_invalido_e();
+    }
+
+    _vivos[nome] = Participante(nome,idade,distrito);
 }
 
 void Mapa::inicio() {

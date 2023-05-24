@@ -8,6 +8,8 @@
 
 #include "armas.h"
 #include "utensilios.h"
+#include "regiao.h"
+#include "mapa.h"
 
 using namespace std;
 
@@ -27,6 +29,8 @@ class Participante {
         //os dois maps ligam a arma/o utensílio à quantidade que o jogador tem de cada uma
         vector<Arma> _armas;
         map<Utensilio, int> _utensilios;
+
+        Regiao _regiao;
 
     public:
         /*
@@ -53,6 +57,7 @@ class Participante {
          * @brief simula a batalha entre o participante corrente com um outro participante p
          */
         void batalha(Participante p);
+
 
 };
 

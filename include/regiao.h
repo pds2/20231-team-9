@@ -14,32 +14,32 @@ class Regiao{
 
     public:
     /*
-    * @brief Construtor Padrao
-    */
+     * @brief Construtor Padrao
+     */
     Regiao();
     /*
-    * @brief Construtor
-    */
+     * @brief Construtor
+     */
     Regiao(int chance_agua, int chance_comida, int chance_arma);
     /*
-    * @brief Retorna chance de agua
-    */
+     * @brief Retorna chance de agua
+     */
     int get_chance_agua();
     /*
-    * @brief Retorna chance de comida
-    */
+     * @brief Retorna chance de comida
+     */
     int get_chance_comida();
     /*
-    * @brief Retorna chance de arma
-    */
+     * @brief Retorna chance de arma
+     */
     int get_chance_arma();
     /*
-    * @brief Insere participante na regiao
-    */
+     * @brief Insere participante na regiao
+     */
     void inserir_participante(Participante *fulano);
     /*
-    * @brief Remove participante da regiao
-    */
+     * @brief Remove participante da regiao
+     */
     void remover_participante(Participante *fulano);
 
 };
