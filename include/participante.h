@@ -20,7 +20,6 @@ class Participante {
         int _id;
         string _nome;
         int _idade;
-        bool _vivo;
         int _distrito;
         float _energia;
         float _hidratacao;

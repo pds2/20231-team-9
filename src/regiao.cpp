@@ -18,11 +18,29 @@ int Regiao::get_chance_comida() {return _chance_comida;}
 
 int Regiao::get_chance_arma() {return _chance_arma;}
 
+map<string,Participante*> Regiao::get_participantes() {
+    return _regiao;
+}
+
 void Regiao::inserir_participante(Participante *fulano) {
     _regiao[fulano->get_nome()] = fulano;
 }
 
+bool Regiao::conferir_participante(string nome) {
+    auto pair = _regiao.begin();
+    while( pair != _regiao.end() ) {
+        if(pair->first == nome) {
+            return true;
+        }
+        pair = next(pair);
+    }
+    return false;
+}
+
 void Regiao::remover_participante(Participante *fulano) {
+    if(conferir_participante(fulano->get_nome()) == false) {
+        throw participante_nao_esta_aq_e();
+    }
     string nome = fulano->get_nome();
     _regiao.erase(nome);
 }

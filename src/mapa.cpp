@@ -25,12 +25,55 @@ Regiao Mapa::get_montanhas() {return _montanhas;}
 
 Regiao Mapa::get_ruinas() {return _ruinas;}
 
+vector<string> Mapa::get_vivos() {
+    vector<string> v;
+    auto pair = _vivos.begin();
+    while(pair != _vivos.end()) {
+        v.push_back(pair->first);
+        pair = next(pair);
+    }
+    return v;
+}
+
+map<string,Participante*> Mapa::get_participantes_centro(){
+    return _centro.get_participantes();
+}
+
+map<string,Participante*> Mapa::get_participantes_floresta(){
+    return _floresta.get_participantes();
+}
+
+map<string,Participante*> Mapa::get_participantes_deserto(){
+    return _deserto.get_participantes();
+}
+
+map<string,Participante*> Mapa::get_participantes_pantano(){
+    return _pantano.get_participantes();
+}
+
+map<string,Participante*> Mapa::get_participantes_campo(){
+    return _campo.get_participantes();
+}
+
+map<string,Participante*> Mapa::get_participantes_montanhas(){
+    return _montanhas.get_participantes();
+}
+
+map<string,Participante*> Mapa::get_participantes_ruinas(){
+    return _ruinas.get_participantes();
+}
+
+vector<string> Mapa::get_mortos() {
+    return _mortos;
+} 
+
 void Mapa::criar_participante(string nome,int idade, int distrito) {
     auto pair = _vivos.begin();
     while(pair != _vivos.end()) {
         if(nome == pair->first) {
             throw participante_ja_existe_e();
         }
+        pair = next(pair);
     }
     if(idade <= 15) {
         throw idade_invalido_e();
@@ -80,6 +123,7 @@ void Mapa::morrer(Participante* fulano) {
         _ruinas.remover_participante(fulano);
         break;
     }
+    _mortos.push_back(fulano->get_nome());
     _vivos.erase(fulano->get_nome());
 }
 
@@ -114,6 +158,9 @@ void Mapa::mover_do_centro(regioes destino, Participante* fulano) {
 }
 
 void Mapa::mover_da_floresta(regioes destino, Participante* fulano) {
+    if((destino != centro) && (destino != pantano) && (destino != campo)) {
+        throw destino_invalido_e();
+    }
     switch (destino) {
         case centro:
         _centro.inserir_participante(fulano);
@@ -132,6 +179,9 @@ void Mapa::mover_da_floresta(regioes destino, Participante* fulano) {
 }
 
 void Mapa::mover_do_deserto(regioes destino, Participante* fulano) {
+    if((destino != centro) && (destino != ruinas) && (destino != montanhas)) {
+        throw destino_invalido_e();
+    }
     switch (destino) {
         case centro:
         _centro.inserir_participante(fulano);
@@ -150,6 +200,9 @@ void Mapa::mover_do_deserto(regioes destino, Participante* fulano) {
 }
 
 void Mapa::mover_do_pantano(regioes destino, Participante* fulano) {
+    if((destino != centro) && (destino != floresta) && (destino != montanhas)) {
+        throw destino_invalido_e();
+    }
     switch (destino) {
         case centro:
         _centro.inserir_participante(fulano);
@@ -168,6 +221,9 @@ void Mapa::mover_do_pantano(regioes destino, Participante* fulano) {
 }
 
 void Mapa::mover_do_campo(regioes destino, Participante* fulano) {
+    if((destino != centro) && (destino != floresta) && (destino != ruinas)) {
+        throw destino_invalido_e();
+    }
     switch (destino) {
         case centro:
         _centro.inserir_participante(fulano);
@@ -186,6 +242,9 @@ void Mapa::mover_do_campo(regioes destino, Participante* fulano) {
 }
 
 void Mapa::mover_das_montanhas(regioes destino, Participante* fulano) {
+    if((destino != centro) && (destino != pantano) && (destino != deserto)) {
+        throw destino_invalido_e();
+    }
     switch (destino) {
         case centro:
         _centro.inserir_participante(fulano);
@@ -204,6 +263,9 @@ void Mapa::mover_das_montanhas(regioes destino, Participante* fulano) {
 }
 
 void Mapa::mover_das_ruinas(regioes destino, Participante* fulano) {
+    if((destino != centro) && (destino != deserto) && (destino != campo)) {
+        throw destino_invalido_e();
+    }
     switch (destino) {
         case centro:
         _centro.inserir_participante(fulano);
