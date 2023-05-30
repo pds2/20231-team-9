@@ -1,5 +1,7 @@
 #include "../include/participante.h"
 
+Participante::Participante() {}
+
 Participante::Participante(string nome, int idade, int distrito) {
     _nome = nome;
     _idade = idade;
@@ -21,6 +23,16 @@ int Participante::get_distrito() const {
 
 regioes Participante::get_atual() {
     return _atual;
+}
+
+float Participante::get_energia() {
+    return _energia;
+}
+float Participante::get_hidratacao() {
+    return _hidratacao;
+}
+float Participante::get_ferido() {
+    return _ferido;
 }
 
 void Participante::muda_regiao_atual(regioes destino) {
@@ -66,6 +78,7 @@ Arma Participante::escolher_arma() {
 
     int index;
     while(1) {
+        std::cout << "Qual arma você quer usar? " << std::endl;
         std::cin >> index;
         if(index < _armas.size()) {
             return _armas[index];

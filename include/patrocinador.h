@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include "participante.h"
+#include "mapa.h"
 
 class Patrocinador {
     private:
@@ -12,6 +13,7 @@ class Patrocinador {
     public:
         Patrocinador();
         void dar_notas_participantes();
+        Participante selecionar_participante();
         void dar_utensilios(Utensilio u, Participante p);
         void dar_armas(Arma a, Participante p);
 };

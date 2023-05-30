@@ -26,6 +26,7 @@ class Mapa {
     * @brief Construtor
     */
     Mapa();
+    map<string, Participante> get_map_vivos();
     Regiao get_centro();
     Regiao get_floresta();
     Regiao get_deserto();

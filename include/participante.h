@@ -36,6 +36,7 @@ class Participante {
         /*
          * @brief um participante, inicializando os dados
          */
+        Participante();
         Participante(string nome, int idade, int distrito);
 
         /*
@@ -44,6 +45,9 @@ class Participante {
         string get_nome() const;
         int get_distrito() const;
         regioes get_atual();
+        float get_energia();
+        float get_hidratacao();
+        float get_ferido();
         void adicionar_arma(Arma arma);
         void adicionar_utensilio(Utensilio utensilio);
         void muda_regiao_atual(regioes destino);

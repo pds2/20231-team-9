@@ -11,6 +11,10 @@ Mapa::Mapa() {
     _ruinas = Regiao(0,0,0);
 }
 
+map<string, Participante> Mapa::get_map_vivos() {
+    return _vivos;
+}
+
 Regiao Mapa::get_centro() {return _centro;}
 
 Regiao Mapa::get_floresta() {return _floresta;}
