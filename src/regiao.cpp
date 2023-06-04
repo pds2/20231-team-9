@@ -6,7 +6,7 @@ Regiao::Regiao() {
     _chance_arma = 0;
 }
 
-Regiao::Regiao(int chance_agua, int chance_comida, int chance_arma) {
+Regiao::Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_remedio) {
     _chance_agua = chance_agua;
     _chance_comida = chance_comida;
     _chance_arma = chance_arma;

@@ -2,9 +2,8 @@
 
 Participante::Participante() {}
 
-Participante::Participante(string nome, int idade, int distrito) {
+Participante::Participante(string nome, int distrito) {
     _nome = nome;
-    _idade = idade;
     _distrito = distrito;
     _vivo = true;
     _energia = 100;

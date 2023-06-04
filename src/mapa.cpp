@@ -2,13 +2,13 @@
 
 //O Construtor define os atributos de cada regiao
 Mapa::Mapa() {
-    _centro = Regiao(0,0,0);
-    _floresta = Regiao(0,0,0);
-    _deserto = Regiao(0,0,0);
-    _pantano = Regiao(0,0,0);
-    _campo = Regiao(0,0,0);
-    _montanhas = Regiao(0,0,0);
-    _ruinas = Regiao(0,0,0);
+    _centro = Regiao(0,0,9,9);
+    _floresta = Regiao(8,7,2,0);
+    _deserto = Regiao(2,5,5,0);
+    _pantano = Regiao(10,3,1,0);
+    _campo = Regiao(6,8,2,0);
+    _montanhas = Regiao(4,3,5,0);
+    _ruinas = Regiao(0,2,5,4);
 }
 
 map<string, Participante> Mapa::get_map_vivos() {
@@ -71,7 +71,7 @@ vector<string> Mapa::get_mortos() {
     return _mortos;
 } 
 
-void Mapa::criar_participante(string nome,int idade, int distrito) {
+void Mapa::criar_participante(string nome, int distrito) {
     auto pair = _vivos.begin();
     while(pair != _vivos.end()) {
         if(nome == pair->first) {
@@ -79,14 +79,12 @@ void Mapa::criar_participante(string nome,int idade, int distrito) {
         }
         pair = next(pair);
     }
-    if(idade <= 15) {
-        throw idade_invalido_e();
-    }
+    
     if(distrito > 12 || distrito < 1) {
         throw distrito_invalido_e();
     }
 
-    _vivos[nome] = Participante(nome,idade,distrito);
+    _vivos[nome] = Participante(nome,distrito);
 }
 
 void Mapa::inicio() {

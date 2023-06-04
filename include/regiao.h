@@ -21,7 +21,7 @@ class Regiao{
     /*
      * @brief Construtor
      */
-    Regiao(int chance_agua, int chance_comida, int chance_arma);
+    Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_remedio);
     /*
      * @brief Retorna chance de agua
      */

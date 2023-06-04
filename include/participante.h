@@ -19,7 +19,6 @@ class Participante {
     private:
         int _id;
         string _nome;
-        int _idade;
         bool _vivo;
         int _distrito;
         float _energia;
@@ -37,7 +36,7 @@ class Participante {
          * @brief um participante, inicializando os dados
          */
         Participante();
-        Participante(string nome, int idade, int distrito);
+        Participante(string nome, int distrito);
 
         /*
          * @brief retornam o nome e o distrito, respectivamente, do participante

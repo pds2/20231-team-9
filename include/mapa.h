@@ -76,7 +76,7 @@ class Mapa {
     * @throws Lança uma excessão se destrito > 12
     * @throws Lança uma excessão se o participante ja existe
     */
-    void criar_participante(string nome,int idade, int destrito);
+    void criar_participante(string nome, int destrito);
     /*
     * @brief Inicia o Jogo colocando os participantes no Centro
     */
