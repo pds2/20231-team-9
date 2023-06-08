@@ -17,7 +17,7 @@ int main() {
             cin >> nome >> idade >> distrito;
 
             try{
-                jogo.criar_participante(nome, idade, distrito);
+                jogo.criar_participante(nome, distrito);
             } catch(participante_ja_existe_e &e) {
                 cout << "Participante já existe." << endl;
             } catch(idade_invalido_e &e) {
@@ -28,6 +28,5 @@ int main() {
         }
     }
 
-    jogo.inicio();
 
 }

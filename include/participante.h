@@ -9,7 +9,6 @@
 #include "armas.h"
 #include "utensilios.h"
 #include "regiao.h"
-#include "mapa.h"
 
 using namespace std;
 
@@ -24,7 +23,7 @@ class Participante {
         float _energia;
         float _hidratacao;
         float _ferido;
-        regioes _atual;
+        Regiao _atual;
         //os dois maps ligam a arma/o utensílio à quantidade que o jogador tem de cada uma
         vector<Arma> _armas;
         map<Utensilio, int> _utensilios;

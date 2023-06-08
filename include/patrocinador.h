@@ -4,7 +4,6 @@
 #include <iostream>
 #include <map>
 #include "participante.h"
-#include "mapa.h"
 
 class Patrocinador {
     private:
