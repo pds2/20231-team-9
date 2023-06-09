@@ -37,10 +37,6 @@ float Participante::get_ferido() {
     return _ferido;
 }
 
-void Participante::muda_regiao_atual(Regiao destino) {
-    _atual = destino;
-}
-
 void Participante::adicionar_arma(Arma arma) {
     for(Arma this_arma : _armas) {
         if(this_arma.get_tipo() == arma.get_tipo()) {

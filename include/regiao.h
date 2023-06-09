@@ -42,7 +42,7 @@ class Regiao{
     /*
      * @brief Retorna o enum com o nome da regiao
      */
-    regioes Regiao::get_nome();
+    regioes get_nome();
 
 };
 

@@ -13,8 +13,6 @@
 
 using namespace std;
 
-enum regioes {centro, floresta, deserto, pantano, campo, montanhas, ruinas};
-
 // class utensilio_nao_listado_e {};
 class Participante {
     private:
