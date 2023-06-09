@@ -13,7 +13,7 @@
 
 using namespace std;
 
-enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas};
+enum regioes {centro, floresta, deserto, pantano, campo, montanhas, ruinas};
 
 // class utensilio_nao_listado_e {};
 class Participante {
@@ -29,8 +29,6 @@ class Participante {
         //os dois maps ligam a arma/o utensílio à quantidade que o jogador tem de cada uma
         vector<Arma> _armas;
         map<Utensilio, int> _utensilios;
-
-        Regiao _regiao;
 
     public:
         /*

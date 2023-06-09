@@ -11,13 +11,13 @@ class destino_invalido_e{};
 
 class Mapa {
     private:
-    vector<string> _centro;
-    vector<string> _floresta;
-    vector<string> _deserto;
-    vector<string> _pantano;
-    vector<string> _campo;
-    vector<string> _montanhas;
-    vector<string> _ruinas;
+        vector<string> _centro;
+        vector<string> _floresta;
+        vector<string> _deserto;
+        vector<string> _pantano;
+        vector<string> _campo;
+        vector<string> _montanhas;
+        vector<string> _ruinas;
 
     public:
     /*

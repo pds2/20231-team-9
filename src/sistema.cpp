@@ -1,6 +1,12 @@
 #include "sistema.h"
 
-void Sistema::criar_participante(string nome, int destrito) {
+void Sistema::criar_participante(string nome, int distrito) {
+    //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
+    // for(Participante& this_one : _vivos) {
+    //     if(nome == this_one.get_nome()) {
+    //         throw participante_ja_existe_e();
+    //     }
+    // }
     auto pair = _vivos.begin();
     while(pair != _vivos.end()) {
         if(nome == pair->first) {
@@ -9,11 +15,12 @@ void Sistema::criar_participante(string nome, int destrito) {
         pair = next(pair);
     }
     
-    if(destrito > 12 || destrito < 1) {
+    if(distrito > 12 || distrito < 1) {
         throw distrito_invalido_e();
     }
 
-    _vivos[nome] = Participante(nome,destrito);
+    _vivos[nome] = Participante(nome,distrito);
+    // _vivos.push_back(Participante(nome, distrito));
 }
 
 void Sistema::morrer(Participante &fulano) {
@@ -27,6 +34,6 @@ void Sistema::morrer(Participante &fulano) {
     }
 }
 
-map<string, Participante> Sistema::get_vivos() {
+map<string,Participante> Sistema::get_vivos() {
     return _vivos;
 }

@@ -1,12 +1,12 @@
 #include "mapa.h"
 
-Regiao Centro(0,0,9,9,centro);
-Regiao Floresta(8,7,2,0,floresta);
-Regiao Deserto(2,5,5,0,deserto);
-Regiao Pantano(10,3,1,0,pantano);
-Regiao Campo(6,8,2,0,campo);
-Regiao Montanhas(4,3,5,0,montanhas);
-Regiao Ruinas(0,2,5,4,ruinas);
+Regiao Centro(0,0,9,9,regioes::centro);
+Regiao Floresta(8,7,2,0,regioes::floresta);
+Regiao Deserto(2,5,5,0,regioes::deserto);
+Regiao Pantano(10,3,1,0,regioes::pantano);
+Regiao Campo(6,8,2,0,regioes::campo);
+Regiao Montanhas(4,3,5,0,regioes::montanhas);
+Regiao Ruinas(0,2,5,4,regioes::ruinas);
 
 Mapa::Mapa() {}
 

@@ -19,7 +19,7 @@ class Sistema{
      * @throws Lança uma excessão se destrito > 12
      * @throws Lança uma excessão se o participante ja existe
      */
-    void criar_participante(string nome, int destrito);
+    void criar_participante(string nome, int distrito);
     /*
      * @brief Remove o participante do map de vivos e insere ele
              no vetor com os nomes dos mortos
@@ -28,7 +28,7 @@ class Sistema{
     /*
      * @brief retorna o mapa com os participantes vivos
      */
-    map<string, Participante> get_vivos();
+    map<string,Participante> get_vivos();
 };
 
 #endif

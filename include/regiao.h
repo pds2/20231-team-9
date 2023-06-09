@@ -8,7 +8,7 @@ enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas};
 
 class Regiao{
     private:
-    enum regioes _nome;
+    regioes _nome;
     int _chance_agua;
     int _chance_comida;
     int _chance_arma;
@@ -22,7 +22,7 @@ class Regiao{
     /*
      * @brief Construtor
      */
-    Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_remedio, regioes regiao);
+    Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_remedio, regioes _nome);
     /*
      * @brief Retorna chance de agua
      */
