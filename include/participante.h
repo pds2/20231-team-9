@@ -57,11 +57,11 @@ class Participante {
          */
         Arma escolher_arma();
 
-        virtual void definir_acao();
+        virtual void definir_acao() = 0;
         /*
          * @brief simula a batalha entre o participante corrente com um outro participante p
          */
-        void batalha(Participante p);
+        void batalha(Participante& p);
 
         void consumir_utensilios();
 

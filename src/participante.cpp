@@ -82,7 +82,7 @@ void Participante::muda_regiao_atual(Regiao destino) {
     _atual = destino;
 }
 
-void Participante::batalha(Participante p) {
+void Participante::batalha(Participante& p) {
     std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " atacou o jogador " << p.get_nome() << " do distrito " << p.get_distrito() << std::endl;
     Arma arma_escolhida_atacante = escolher_arma();
     Arma arma_escolhida_defesa = p.escolher_arma();
