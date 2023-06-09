@@ -11,29 +11,19 @@ class destino_invalido_e{};
 
 class Mapa {
     private:
-    map<string,Participante> _vivos;
-    vector<string> _mortos;
-    Regiao _centro;
-    Regiao _floresta;
-    Regiao _deserto;
-    Regiao _pantano;
-    Regiao _campo;
-    Regiao _montanhas;
-    Regiao _ruinas;
+    vector<string> _centro;
+    vector<string> _floresta;
+    vector<string> _deserto;
+    vector<string> _pantano;
+    vector<string> _campo;
+    vector<string> _montanhas;
+    vector<string> _ruinas;
 
     public:
     /*
     * @brief Construtor
     */
     Mapa();
-    map<string, Participante> get_map_vivos();
-    Regiao get_centro();
-    Regiao get_floresta();
-    Regiao get_deserto();
-    Regiao get_pantano();
-    Regiao get_campo();
-    Regiao get_montanhas();
-    Regiao get_ruinas();
     /*
     * @brief retorna um vetor com o nome dos participantes vivos 
     */
@@ -41,42 +31,31 @@ class Mapa {
     /*
     * @brief retorna um map com os participantes no centro
     */
-    map<string,Participante*> get_participantes_centro();
+    vector<string> get_participantes_centro();
     /*
     * @brief retorna um map com os participantes na floresta
     */
-    map<string,Participante*> get_participantes_floresta();
+    vector<string> get_participantes_floresta();
     /*
     * @brief retorna um map com os participantes no deserto
     */
-    map<string,Participante*> get_participantes_deserto();
+    vector<string> get_participantes_deserto();
     /*
     * @brief retorna um map com os participantes no pantano
     */
-    map<string,Participante*> get_participantes_pantano();
+    vector<string> get_participantes_pantano();
     /*
     * @brief retorna um map com os participantes no campo
     */
-    map<string,Participante*> get_participantes_campo();
+    vector<string> get_participantes_campo();
     /*
     * @brief retorna um map com os participantes nas montanhas
     */
-    map<string,Participante*> get_participantes_montanhas();
+    vector<string> get_participantes_montanhas();
     /*
     * @brief retorna um map com os participantes nas ruínas
     */
-    map<string,Participante*> get_participantes_ruinas();
-    /*
-    * @brief Retorna um vetor com o nome dos participantes mortos
-    */
-    vector<string> get_mortos();
-    /*
-    * @brief Cria um participante recebendo nome, idade e destrito
-    * @throws Lança uma excessão se a idade <= 15
-    * @throws Lança uma excessão se destrito > 12
-    * @throws Lança uma excessão se o participante ja existe
-    */
-    void criar_participante(string nome, int destrito);
+    vector<string> get_participantes_ruinas();
     /*
     * @brief Inicia o Jogo colocando os participantes no Centro
     */

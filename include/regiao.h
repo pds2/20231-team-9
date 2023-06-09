@@ -4,14 +4,15 @@
 #include <map>
 #include "participante.h"
 
-class participante_nao_esta_aq_e{};
+enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas};
 
 class Regiao{
     private:
-    map<string,Participante*> _regiao;
+    enum regioes _nome;
     int _chance_agua;
     int _chance_comida;
     int _chance_arma;
+    int _chance_remedio;
 
     public:
     /*
@@ -21,7 +22,7 @@ class Regiao{
     /*
      * @brief Construtor
      */
-    Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_remedio);
+    Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_remedio, regioes regiao);
     /*
      * @brief Retorna chance de agua
      */
@@ -35,23 +36,13 @@ class Regiao{
      */
     int get_chance_arma();
     /*
-    * @brief Retorna um map com os participantes na região
+    * @brief Retorna chance de remedio
     */
-    map<string,Participante*> get_participantes();
+    int get_chance_remedio();
     /*
-     * @brief Insere participante na regiao
+     * @brief Retorna o enum com o nome da regiao
      */
-    void inserir_participante(Participante *fulano);
-    /*
-    * @brief Confere se o participante está nessa região
-    */
-    bool conferir_participante(string nome);
-    /*
-     * @brief Remove participante da regiao
-     * @throws Lança uma exceção se o participante não
-     *         está nessa região
-     */
-    void remover_participante(Participante *fulano);
+    regioes Regiao::get_nome();
 
 };
 

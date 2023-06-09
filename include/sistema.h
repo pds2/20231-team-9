@@ -2,9 +2,14 @@
 #define PDS2_SISTEMA_H
 
 #include "participante.h"
+#include "mapa.h"
+
+class participante_ja_existe_e {};
+class distrito_invalido_e {};
 
 class Sistema{
     private:
+    Mapa _mapa;
     map<string,Participante> _vivos;
     vector<string> _mortos;
 
@@ -19,7 +24,7 @@ class Sistema{
      * @brief Remove o participante do map de vivos e insere ele
              no vetor com os nomes dos mortos
      */
-    void morrer(Participante fulano);
+    void morrer(Participante &fulano);
     /*
      * @brief retorna o mapa com os participantes vivos
      */

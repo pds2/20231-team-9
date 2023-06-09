@@ -9,7 +9,7 @@ Participante::Participante(string nome, int distrito) {
     _energia = 100;
     _hidratacao = 100;
     _ferido = 0;
-    _atual = centro;
+    _atual = Regiao(0,0,0,0,centro);
 }
 
 string Participante::get_nome() const {
@@ -20,7 +20,7 @@ int Participante::get_distrito() const {
     return _distrito;
 }
 
-regioes Participante::get_atual() {
+Regiao Participante::get_atual() {
     return _atual;
 }
 
@@ -34,8 +34,8 @@ float Participante::get_ferido() {
     return _ferido;
 }
 
-void Participante::muda_regiao_atual(regioes destino) {
-    _atual = destino;
+void Participante::muda_regiao_atual(int chance_agua, int chance_comida, int chance_arma, int chance_remedio) {
+    _atual = Regiao(chance_agua,chance_comida,chance_arma,chance_remedio);
 }
 
 void Participante::adicionar_arma(Arma arma) {
@@ -116,3 +116,7 @@ void Participante::batalha(Participante p) {
         p._ferido *= (1 + 0.1*arma_escolhida_defesa.get_poder());
     } 
 }
+
+ regioes Participante::get_regiao_atual() {
+    return _atual.get_nome();
+ }
