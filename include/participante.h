@@ -2,6 +2,7 @@
 #define PDS2_PARTICIPANTE_H
 
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include <vector>
 #include <map>
@@ -14,6 +15,7 @@ using namespace std;
 
 enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas};
 
+// class utensilio_nao_listado_e {};
 class Participante {
     private:
         int _id;
@@ -42,24 +44,26 @@ class Participante {
          */
         string get_nome() const;
         int get_distrito() const;
-        regioes get_atual();
+        Regiao get_atual();
         float get_energia();
         float get_hidratacao();
         float get_ferido();
         void adicionar_arma(Arma arma);
         void adicionar_utensilio(Utensilio utensilio);
-        void muda_regiao_atual(regioes destino);
+        void muda_regiao_atual(Regiao destino);
 
         /*
          * @brief retorna uma arma do vector _armas
          */
         Arma escolher_arma();
 
+        virtual void definir_acao();
         /*
          * @brief simula a batalha entre o participante corrente com um outro participante p
          */
         void batalha(Participante p);
 
+        void consumir_utensilios();
 
 };
 

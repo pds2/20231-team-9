@@ -12,6 +12,7 @@ class Regiao{
     int _chance_agua;
     int _chance_comida;
     int _chance_arma;
+    int _chance_remedio;
 
     public:
     /*
