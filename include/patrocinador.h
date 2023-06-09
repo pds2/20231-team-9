@@ -13,8 +13,8 @@ class Patrocinador {
         Patrocinador();
         void dar_notas_participantes();
         Participante selecionar_participante();
-        void dar_utensilios(Utensilio u, Participante p);
-        void dar_armas(Arma a, Participante p);
+        void dar_utensilios(Utensilio u, Participante& p);
+        void dar_armas(Arma a, Participante& p);
 };
 
 #endif
