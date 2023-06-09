@@ -1,5 +1,7 @@
 #include "../include/participante.h"
 
+#define stringify( name ) # name
+
 Participante::Participante() {}
 
 Participante::Participante(string nome, int distrito) {
@@ -10,6 +12,8 @@ Participante::Participante(string nome, int distrito) {
     _hidratacao = 100;
     _ferido = 0;
     _atual = Regiao(0,0,0,0,centro);
+    _atual = Regiao();
+    // _atual = centro;
 }
 
 string Participante::get_nome() const {
@@ -46,15 +50,6 @@ void Participante::adicionar_arma(Arma arma) {
         }
     }
     _armas.push_back(arma);
-    // auto pair = _armas.begin();
-    // while(pair != _armas.end()) {
-    //     if((pair->first).get_tipo() == arma.get_tipo()) {
-    //         pair->second +=1;
-    //         return ;
-    //     }
-    // }
-    // _armas[arma] = 1;
-    // _armas.insert(pair<Arma, int>(arma, 1));
 }
 
 void Participante::adicionar_utensilio(Utensilio utensilio) {
@@ -66,7 +61,6 @@ void Participante::adicionar_utensilio(Utensilio utensilio) {
         }
     }
     _utensilios[utensilio] = 1;
-    // _armas.insert(pair<Arma, int>(arma, 1));
 }
 
 
@@ -85,19 +79,15 @@ Arma Participante::escolher_arma() {
         } else {
             std::cout << "Digite um número válido" << std::endl;
         }
-
-        //não se está certo se fizer assim
-        // try {
-        //     return _armas[index];
-
-        // } catch(std::out_of_range &e) {
-        //     std::cout << "Digite um número válido" << std::endl;
-        // }
     }
 
 }
 
-void Participante::batalha(Participante p) {
+void Participante::muda_regiao_atual(Regiao destino) {
+    _atual = destino;
+}
+
+void Participante::batalha(Participante& p) {
     std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " atacou o jogador " << p.get_nome() << " do distrito " << p.get_distrito() << std::endl;
     Arma arma_escolhida_atacante = escolher_arma();
     Arma arma_escolhida_defesa = p.escolher_arma();
@@ -120,3 +110,27 @@ void Participante::batalha(Participante p) {
  regioes Participante::get_regiao_atual() {
     return _atual.get_nome();
  }
+void Participante::consumir_utensilios() {
+    auto pair = _utensilios.begin();
+    std::cout << "O jogador " << get_nome() << " possui os seguintes utensílios:" << std::endl;
+    while(pair != _utensilios.end()) {
+        std::cout << "* " << stringify(pair->first.get_tipo()) << ": " << pair->second << "unidades" << std::endl;
+        pair = next(pair);
+    }
+
+    while(1) {
+        std::string a_consumir;
+        std::cout << "Digite o nome do utensílio que você deseja consumir nessa rodada: ";
+        std::cin >> a_consumir;
+
+        transform(a_consumir.begin(), a_consumir.end(), a_consumir.begin(), ::tolower);
+        pair = _utensilios.begin();
+        while(pair != _utensilios.end()) {
+            if(stringify(pair->first.get_tipo()) == a_consumir) {
+                _utensilios[pair->first] -= 1;
+                return ;
+            }
+        }
+    }
+
+}
