@@ -36,10 +36,10 @@ Participante Patrocinador::selecionar_participante() {
     }
 
 }
-void Patrocinador::dar_utensilios(Utensilio u, Participante p) {
+void Patrocinador::dar_utensilios(Utensilio u, Participante& p) {
     p.adicionar_utensilio(u);
 }
 
-void Patrocinador::dar_armas(Arma a, Participante p) {
+void Patrocinador::dar_armas(Arma a, Participante& p) {
     p.adicionar_arma(a);
 }
