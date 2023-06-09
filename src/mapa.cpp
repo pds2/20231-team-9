@@ -1,5 +1,13 @@
 #include "mapa.h"
 
+Regiao Centro(0,0,9,9,centro);
+Regiao Floresta(8,7,2,0,floresta);
+Regiao Deserto(2,5,5,0,deserto);
+Regiao Pantano(10,3,1,0,pantano);
+Regiao Campo(6,8,2,0,campo);
+Regiao Montanhas(4,3,5,0,montanhas);
+Regiao Ruinas(0,2,5,4,ruinas);
+
 Mapa::Mapa() {}
 
 vector<string> Mapa::get_participantes_centro(){
@@ -66,29 +74,34 @@ void Mapa::mover_do_centro(regioes destino, Participante* fulano) {
     switch (destino) {
         case floresta:
         _floresta.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Floresta);
         break;
 
         case deserto:
         _deserto.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Deserto);
         break;
 
         case pantano:
         _pantano.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Pantano);
         break;
 
         case campo:
         _campo.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Campo);
         break;
 
         case montanhas:
         _montanhas.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Montanhas);
         break;
 
         case ruinas:
         _ruinas.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Ruinas);
         break;
     }
-    fulano->muda_regiao_atual(0,0,9,9);
     for(auto it = _centro.begin();it != _centro.end();++it) {
         if(*(it) == fulano->get_nome()) {
             _centro.erase(it);
@@ -104,17 +117,20 @@ void Mapa::mover_da_floresta(regioes destino, Participante* fulano) {
     switch (destino) {
         case centro:
         _centro.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Centro);
         break;
 
         case pantano:
         _pantano.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Pantano);
         break;
 
         case campo:
         _campo.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Campo);
         break;
     }
-    fulano->muda_regiao_atual(8,7,2,0);
+
     for(auto it = _floresta.begin();it != _floresta.end();++it) {
         if(*(it) == fulano->get_nome()) {
             _floresta.erase(it);
@@ -129,17 +145,20 @@ void Mapa::mover_do_deserto(regioes destino, Participante* fulano) {
     switch (destino) {
         case centro:
         _centro.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Centro);
         break;
 
         case ruinas:
         _ruinas.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Ruinas);
         break;
 
         case montanhas:
         _montanhas.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Montanhas);
         break;
     }
-    fulano->muda_regiao_atual(2,5,5,0);
+
     for(auto it = _deserto.begin();it != _deserto.end();++it) {
         if(*(it) == fulano->get_nome()) {
             _deserto.erase(it);
@@ -154,17 +173,19 @@ void Mapa::mover_do_pantano(regioes destino, Participante* fulano) {
     switch (destino) {
         case centro:
         _centro.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Centro);
         break;
 
         case floresta:
         _floresta.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Floresta);
         break;
 
         case montanhas:
         _montanhas.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Montanhas);
         break;
     }
-    fulano->muda_regiao_atual(10,3,1,0);
     for(auto it = _deserto.begin();it != _deserto.end();++it) {
         if(*(it) == fulano->get_nome()) {
             _deserto.erase(it);
@@ -179,17 +200,19 @@ void Mapa::mover_do_campo(regioes destino, Participante* fulano) {
     switch (destino) {
         case centro:
         _centro.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Centro);
         break;
 
         case floresta:
         _floresta.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Floresta);
         break;
 
         case ruinas:
         _ruinas.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Ruinas);
         break;
     }
-    fulano->muda_regiao_atual(6,8,2,0);
     for(auto it = _campo.begin();it != _campo.end();++it) {
         if(*(it) == fulano->get_nome()) {
             _campo.erase(it);
@@ -204,17 +227,20 @@ void Mapa::mover_das_montanhas(regioes destino, Participante* fulano) {
     switch (destino) {
         case centro:
         _centro.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Centro);
         break;
 
         case pantano:
         _pantano.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Pantano);
         break;
 
         case deserto:
         _deserto.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Deserto);
         break;
     }
-    fulano->muda_regiao_atual(4,3,5,0);
+    
     for(auto it = _montanhas.begin();it != _montanhas.end();++it) {
         if(*(it) == fulano->get_nome()) {
             _montanhas.erase(it);
@@ -229,17 +255,20 @@ void Mapa::mover_das_ruinas(regioes destino, Participante* fulano) {
     switch (destino) {
         case centro:
         _centro.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Centro);
         break;
 
         case deserto:
         _deserto.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Deserto);
         break;
 
         case campo:
         _campo.push_back(fulano->get_nome());
+        fulano->muda_regiao_atual(Campo);
         break;
     }
-    fulano->muda_regiao_atual(0,2,5,4);
+    
     for(auto it = _ruinas.begin();it != _ruinas.end();++it) {
         if(*(it) == fulano->get_nome()) {
             _ruinas.erase(it);

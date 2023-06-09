@@ -5,6 +5,7 @@ Regiao::Regiao() {
     _chance_comida = 0;
     _chance_arma = 9;
     _chance_remedio = 9;
+    _nome = centro;
 }
 
 Regiao::Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_remedio, regioes regiao) {
@@ -12,6 +13,7 @@ Regiao::Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_r
     _chance_comida = chance_comida;
     _chance_arma = chance_arma;
     _chance_remedio = chance_remedio;
+    _nome = regiao;
 }
 
 int Regiao::get_chance_agua() {return _chance_agua;}

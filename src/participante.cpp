@@ -38,8 +38,8 @@ float Participante::get_ferido() {
     return _ferido;
 }
 
-void Participante::muda_regiao_atual(int chance_agua, int chance_comida, int chance_arma, int chance_remedio) {
-    _atual = Regiao(chance_agua,chance_comida,chance_arma,chance_remedio);
+void Participante::muda_regiao_atual(Regiao destino) {
+    _atual = destino;
 }
 
 void Participante::adicionar_arma(Arma arma) {
