@@ -9,7 +9,13 @@ class Utensilio {
     private:
         utensilios _utensilio;
     public:
+        /*
+        * @brief Construtor
+        */
         Utensilio(utensilios utensilio);
+        /*
+        * @brief Retorna o tipo
+        */
         utensilios get_tipo() const;
 };
 

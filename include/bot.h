@@ -9,7 +9,13 @@ using namespace std;
 
 class Bot : public Participante {
     public:
+        /*
+        * @brief Construtor
+        */
         Bot(string nome, int distrito);
+        /*
+        * @brief
+        */
         void definir_acao() override;
 };
 

@@ -9,7 +9,13 @@ using namespace std;
 
 class Jogador : public Participante {
     public:
+        /*
+        * @brief Construtor
+        */
         Jogador(string nome, int distrito);
+        /*
+        * @brief Movimenta o jogador
+        */
         void definir_acao() override;
 };
 
