@@ -66,6 +66,8 @@ class Participante {
 
         void consumir_utensilios();
 
+        void buscar_na_regiao();
+
 };
 
 #endif

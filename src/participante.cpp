@@ -12,7 +12,6 @@ Participante::Participante(string nome, int distrito) {
     _hidratacao = 100;
     _ferido = 0;
     _atual = Regiao();
-    // _regiao = centro;
 }
 
 string Participante::get_nome() const {
@@ -102,9 +101,10 @@ void Participante::batalha(Participante& p) {
     } 
 }
 
- regioes Participante::get_regiao_atual() {
+regioes Participante::get_regiao_atual() {
     return _atual.get_nome();
- }
+}
+
 void Participante::consumir_utensilios() {
     auto pair = _utensilios.begin();
     std::cout << "O jogador " << get_nome() << " possui os seguintes utensílios:" << std::endl;
@@ -128,4 +128,44 @@ void Participante::consumir_utensilios() {
         }
     }
 
+}
+
+void Participante::buscar_na_regiao() {
+    float chance_agua = rand() % 11;
+    float chance_comida = rand() % 11;
+    float chance_remedio = rand() % 11;
+
+    if(chance_agua > _atual.get_chance_agua()) {
+        auto aux = _utensilios.begin();
+        while(aux != _utensilios.end()) {
+            if(aux->first.get_tipo() == utensilios::agua) {
+                aux->second++;
+                return ;
+            }
+            aux = next(aux);
+        }
+        _utensilios[utensilios::agua] = 1;
+    }
+    if(chance_remedio > _atual.get_chance_remedio()) {
+        auto aux = _utensilios.begin();
+        while(aux != _utensilios.end()) {
+            if(aux->first.get_tipo() == utensilios::remedio) {
+                aux->second++;
+                return ;
+            }
+            aux = next(aux);
+        }
+        _utensilios[utensilios::remedio] = 1;
+    }
+    if(chance_comida > _atual.get_chance_comida()) {
+        auto aux = _utensilios.begin();
+        while(aux != _utensilios.end()) {
+            if(aux->first.get_tipo() == utensilios::comida) {
+                aux->second++;
+                return ;
+            }
+            aux = next(aux);
+        }
+        _utensilios[utensilios::comida] = 1;
+    }
 }
