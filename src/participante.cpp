@@ -134,8 +134,9 @@ void Participante::buscar_na_regiao() {
     float chance_agua = rand() % 11;
     float chance_comida = rand() % 11;
     float chance_remedio = rand() % 11;
+    float chance_arma = rand() % 11;
 
-    if(chance_agua > _atual.get_chance_agua()) {
+    if(chance_agua < _atual.get_chance_agua()) {
         auto aux = _utensilios.begin();
         while(aux != _utensilios.end()) {
             if(aux->first.get_tipo() == utensilios::agua) {
@@ -146,7 +147,7 @@ void Participante::buscar_na_regiao() {
         }
         _utensilios[utensilios::agua] = 1;
     }
-    if(chance_remedio > _atual.get_chance_remedio()) {
+    if(chance_remedio < _atual.get_chance_remedio()) {
         auto aux = _utensilios.begin();
         while(aux != _utensilios.end()) {
             if(aux->first.get_tipo() == utensilios::remedio) {
@@ -157,7 +158,7 @@ void Participante::buscar_na_regiao() {
         }
         _utensilios[utensilios::remedio] = 1;
     }
-    if(chance_comida > _atual.get_chance_comida()) {
+    if(chance_comida < _atual.get_chance_comida()) {
         auto aux = _utensilios.begin();
         while(aux != _utensilios.end()) {
             if(aux->first.get_tipo() == utensilios::comida) {
@@ -167,5 +168,10 @@ void Participante::buscar_na_regiao() {
             aux = next(aux);
         }
         _utensilios[utensilios::comida] = 1;
+    }
+    if(chance_arma > _atual.get_chance_arma()) {
+        // for(Arma arma : _armas) {
+        //     if(arma == )
+        // }
     }
 }
