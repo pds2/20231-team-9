@@ -10,7 +10,6 @@ Participante::Participante(string nome, int distrito) {
     _vivo = true;
     _energia = 100;
     _hidratacao = 100;
-    _ferido = 0;
     _atual = Regiao();
 }
 
@@ -32,18 +31,11 @@ float Participante::get_energia() {
 float Participante::get_hidratacao() {
     return _hidratacao;
 }
-float Participante::get_ferido() {
-    return _ferido;
-}
 
 void Participante::adicionar_arma(Arma arma) {
-    for(Arma this_arma : _armas) {
-        if(this_arma.get_tipo() == arma.get_tipo()) {
-            std::cout << "Você já tem essa arma" << std::endl;
-            return ;
-        }
+    if(arma.get_poder() > _arma->get_poder()) {
+        *_arma = arma;
     }
-    _armas.push_back(arma);
 }
 
 void Participante::adicionar_utensilio(Utensilio utensilio) {
@@ -57,48 +49,29 @@ void Participante::adicionar_utensilio(Utensilio utensilio) {
     _utensilios[utensilio] = 1;
 }
 
-
-Arma Participante::escolher_arma() {
-    for(int i = 0; i < _armas.size(); i++) {
-        std::cout << i << ") " << _armas[i].get_tipo() << std::endl;
-    }
-
-    int index;
-    while(1) {
-        std::cout << "Qual arma você quer usar? " << std::endl;
-        std::cin >> index;
-        if(index < _armas.size()) {
-            return _armas[index];
-
-        } else {
-            std::cout << "Digite um número válido" << std::endl;
-        }
-    }
-
-}
-
 void Participante::muda_regiao_atual(Regiao destino) {
     _atual = destino;
 }
 
 void Participante::batalha(Participante& p) {
     std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " atacou o jogador " << p.get_nome() << " do distrito " << p.get_distrito() << std::endl;
-    Arma arma_escolhida_atacante = escolher_arma();
-    Arma arma_escolhida_defesa = p.escolher_arma();
+    Arma *arma_escolhida_atacante = _arma;
+    Arma *arma_escolhida_defesa = p._arma;
 
-    if(arma_escolhida_atacante.get_poder() > arma_escolhida_defesa.get_poder()) {
+    if(arma_escolhida_atacante->get_poder() > arma_escolhida_defesa->get_poder()) {
         p._vivo = false;
         std::cout << "O jogador " << p.get_nome() << " do distrito " << p.get_distrito() << " foi morto" << std::endl;
         //faltar adicionar chamadas que mudarão os campos "_energia" e "_ferido"
-        _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
-        _ferido *= (1 + 0.1*arma_escolhida_atacante.get_poder());
+        _energia *= (1 - 0.1*arma_escolhida_atacante->get_poder());
 
-    } else if(arma_escolhida_atacante.get_poder() < arma_escolhida_defesa.get_poder()) {
+    } else if(arma_escolhida_atacante->get_poder() < arma_escolhida_defesa->get_poder()) {
         _vivo = false;
         std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " foi morto" << std::endl;
-        p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
-        p._ferido *= (1 + 0.1*arma_escolhida_defesa.get_poder());
-    } 
+        p._energia *= (1 - 0.1*arma_escolhida_defesa->get_poder());
+    } else {
+        _energia *= (1 - 0.1*arma_escolhida_atacante->get_poder());
+        p._energia *= (1 - 0.1*arma_escolhida_defesa->get_poder());
+    }
 }
 
 regioes Participante::get_regiao_atual() {
@@ -131,10 +104,10 @@ void Participante::consumir_utensilios() {
 }
 
 void Participante::buscar_na_regiao() {
-    float chance_agua = rand() % 11;
-    float chance_comida = rand() % 11;
-    float chance_remedio = rand() % 11;
-    float chance_arma = rand() % 11;
+    float chance_agua = rand() % 10 + 1;
+    float chance_comida = rand() % 10 + 1;
+    float chance_remedio = rand() % 10 + 1;
+    float chance_arma = rand() % 10 + 1;
 
     if(chance_agua < _atual.get_chance_agua()) {
         auto aux = _utensilios.begin();
@@ -170,8 +143,19 @@ void Participante::buscar_na_regiao() {
         _utensilios[utensilios::comida] = 1;
     }
     if(chance_arma > _atual.get_chance_arma()) {
-        // for(Arma arma : _armas) {
-        //     if(arma == )
-        // }
+        int qual_arma = rand() % 10 + 1;
+        if(qual_arma <= 4) {
+            Arma _faca(faca, 2);
+            adicionar_arma(_faca);
+        } else if(qual_arma <= 7) {
+            Arma _arco(arco, 3);
+            adicionar_arma(_arco);
+        } else if(qual_arma <= 8) {
+            Arma _espada(espada, 4);
+            adicionar_arma(_espada);
+        } else if(qual_arma == 10) {
+            Arma _machado(machado, 5);
+            adicionar_arma(_machado);
+        }
     }
 }

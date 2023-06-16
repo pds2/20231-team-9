@@ -2,7 +2,7 @@
 #define PDS2_ARMAS_H
 
 enum armas {
-    faca, arco, espada, escudo,
+    desarmado, faca, arco, espada, machado
 };
 
 class Arma {

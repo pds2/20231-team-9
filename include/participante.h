@@ -22,10 +22,10 @@ class Participante {
         int _distrito;
         float _energia;
         float _hidratacao;
-        float _ferido;
         Regiao _atual;
         //os dois maps ligam a arma/o utensílio à quantidade que o jogador tem de cada uma
-        vector<Arma> _armas;
+        // vector<Arma> _armas;
+        Arma *_arma;
         map<Utensilio, int> _utensilios;
 
     public:
@@ -43,15 +43,9 @@ class Participante {
         Regiao get_atual();
         float get_energia();
         float get_hidratacao();
-        float get_ferido();
         void adicionar_arma(Arma arma);
         void adicionar_utensilio(Utensilio utensilio);
         void muda_regiao_atual(Regiao destino);
-
-        /*
-         * @brief retorna uma arma do vector _armas
-         */
-        Arma escolher_arma();
 
         virtual void definir_acao() = 0;
         /*
