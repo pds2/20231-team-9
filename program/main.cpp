@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "./include/participante.h"
+#include "../include/sistema.h"
 
 int main() {
     int n_participantes;
@@ -9,7 +9,9 @@ int main() {
 
     vector<Participante *> participantes;
 
-    Mapa jogo;
+    Sistema jogo;
+    Mapa mapa;
+    
     for(int i = 0; i < n_participantes; i++) {
         while(1) {
             string nome;

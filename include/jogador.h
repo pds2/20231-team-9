@@ -14,7 +14,7 @@ class Jogador : public Participante {
         */
         Jogador(string nome, int distrito);
         /*
-        * @brief Movimenta o jogador
+        * @brief Lê do usuário um comando para definir a ação do respectivo participante
         */
         void definir_acao() override;
 };

@@ -4,8 +4,8 @@
 #include "participante.h"
 #include "mapa.h"
 
-class participante_ja_existe_e {};
-class distrito_invalido_e {};
+//class participante_ja_existe_e {};   A classe mapa.h já possui esses erros, a redefinição gera problema no compilador
+//class distrito_invalido_e {};
 
 class Sistema{
     private:

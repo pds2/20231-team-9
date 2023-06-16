@@ -16,7 +16,7 @@ class Arma {
         */
         Arma(armas tipo, int poder);
         /*
-        * @brief Retorna o tipo da arma
+        * @brief Retorna o tipo da arma (enum armas)
         */
         armas get_tipo() const;
         /*

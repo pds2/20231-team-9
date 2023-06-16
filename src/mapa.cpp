@@ -1,4 +1,4 @@
-#include "mapa.h"
+#include "../include/mapa.h"
 
 Regiao Centro(0,0,9,9,regioes::centro);
 Regiao Floresta(8,7,2,0,regioes::floresta);

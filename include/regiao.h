@@ -2,7 +2,7 @@
 #define PDS2_REGIAO_H
 
 #include <map>
-#include "participante.h"
+//#include "participante.h" Essa inclusão cria um loop de includes, e não é utilizado nesse arquivo
 
 enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas};
 

@@ -1,4 +1,4 @@
-#include "sistema.h"
+#include "../include/sistema.h"
 
 void Sistema::criar_participante(string nome, int distrito) {
     //IDEIA DE CÓDIGO SE _vivos FOR VECTOR

@@ -14,7 +14,7 @@ class Bot : public Participante {
         */
         Bot(string nome, int distrito);
         /*
-        * @brief
+        * @brief Define a ação do bot a partir de parâmetros pré-definidos
         */
         void definir_acao() override;
 };
