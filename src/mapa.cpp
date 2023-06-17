@@ -1,5 +1,8 @@
 #include "../include/mapa.h"
 
+#include <algorithm>
+#include <random>
+
 Regiao Centro(0,0,9,9,regioes::centro);
 Regiao Floresta(8,7,2,0,regioes::floresta);
 Regiao Deserto(2,5,5,0,regioes::deserto);
@@ -10,32 +13,108 @@ Regiao Ruinas(0,2,5,4,regioes::ruinas);
 
 Mapa::Mapa() {}
 
+vector<string> Mapa::get_td_mundo() {
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    vector<string> vetor = _td_mundo;
+    shuffle(vetor.begin(), vetor.end(), g);
+
+    return vetor;
+}
+
 vector<string> Mapa::get_participantes_centro(){
-    return _centro;
+
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    vector<string> vetor = _centro;
+    shuffle(vetor.begin(), vetor.end(), g);
+
+    return vetor;
 }
 
 vector<string> Mapa::get_participantes_floresta(){
-    return _floresta;
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    vector<string> vetor = _floresta;
+    shuffle(vetor.begin(), vetor.end(), g);
+
+    return vetor;
 }
 
 vector<string> Mapa::get_participantes_deserto(){
-    return _deserto;
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    vector<string> vetor = _deserto;
+    shuffle(vetor.begin(), vetor.end(), g);
+
+    return vetor;
 }
 
 vector<string> Mapa::get_participantes_pantano(){
-    return _pantano;
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    vector<string> vetor = _pantano;
+    shuffle(vetor.begin(), vetor.end(), g);
+
+    return vetor;
 }
 
 vector<string> Mapa::get_participantes_campo(){
-    return _campo;
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    vector<string> vetor = _campo;
+    shuffle(vetor.begin(), vetor.end(), g);
+
+    return vetor;
 }
 
 vector<string> Mapa::get_participantes_montanhas(){
-    return _montanhas;
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    vector<string> vetor = _montanhas;
+    shuffle(vetor.begin(), vetor.end(), g);
+
+    return vetor;
 }
 
 vector<string> Mapa::get_participantes_ruinas(){
-    return _ruinas;
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    vector<string> vetor = _ruinas;
+    shuffle(vetor.begin(), vetor.end(), g);
+
+    return vetor;
+}
+
+void Mapa::inicio(map<string,Participante&> vivos) {
+    for(Participante p : vivos) {
+        _centro.push_back(p.get_nome()); // coloca os jogadores no centro
+        _td_mundo.push_back(p.get_nome()); // coloca os jogadores no vetor td_mundo
+    }
 }
 
 void Mapa::morrer(Participante* fulano) {

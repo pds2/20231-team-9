@@ -20,6 +20,10 @@ class Sistema{
      * @throws Lança uma excessão se o participante ja existe
      */
     void criar_participante(string nome, int distrito);
+    /**
+     * @brief Inicia o jogo, colocanto todos no centro 
+    */
+   void inicio();
     /*
      * @brief Remove o participante do map de vivos e insere ele
              no vetor com os nomes dos mortos
@@ -29,6 +33,10 @@ class Sistema{
      * @brief retorna o mapa com os participantes vivos
      */
     map<string,Participante> get_vivos();
+    /**
+     * @brief Realiza uma rodada com os jogadores vivos
+    */
+   void Rodada();
 };
 
 #endif

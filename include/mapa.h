@@ -11,6 +11,7 @@ class destino_invalido_e{};
 
 class Mapa {
     private:
+        vector <string> _td_mundo;
         vector<string> _centro;
         vector<string> _floresta;
         vector<string> _deserto;
@@ -24,42 +25,42 @@ class Mapa {
     * @brief Construtor
     */
     Mapa();
-    /*
-    * @brief retorna um vetor com o nome dos participantes vivos 
+    /**
+     * @brief retorna um vetor embaralhado com todo mundo
     */
-    vector<string> get_vivos();
+   vector<string> get_td_mundo();
     /*
-    * @brief retorna um map com os participantes no centro
+    * @brief retorna um vetor embaralhado com os participantes no centro
     */
     vector<string> get_participantes_centro();
     /*
-    * @brief retorna um map com os participantes na floresta
+    * @brief retorna um vetor embaralhado com os participantes na floresta
     */
     vector<string> get_participantes_floresta();
     /*
-    * @brief retorna um map com os participantes no deserto
+    * @brief retorna um vetor embaralhado com os participantes no deserto
     */
     vector<string> get_participantes_deserto();
     /*
-    * @brief retorna um map com os participantes no pantano
+    * @brief retorna um vetor embaralhado com os participantes no pantano
     */
     vector<string> get_participantes_pantano();
     /*
-    * @brief retorna um map com os participantes no campo
+    * @brief retorna um vetor embaralhado com os participantes no campo
     */
     vector<string> get_participantes_campo();
     /*
-    * @brief retorna um map com os participantes nas montanhas
+    * @brief retorna um vetor embaralhado com os participantes nas montanhas
     */
     vector<string> get_participantes_montanhas();
     /*
-    * @brief retorna um map com os participantes nas ruínas
+    * @brief retorna um vetor embaralhado com os participantes nas ruínas
     */
     vector<string> get_participantes_ruinas();
     /*
     * @brief Inicia o Jogo colocando os participantes no Centro
     */
-    void inicio();
+    void inicio(map<string,Participante&> vivos);
     /*
     * @brief Remove o participante do map de vivos e insere ele
              no vetor com os nomes dos mortos
