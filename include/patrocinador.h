@@ -2,12 +2,13 @@
 #define PDS2_PATROCINADOR_H
 
 #include <iostream>
-#include <map>
+#include <vector>
 #include "participante.h"
 
 class Patrocinador {
     private:
-        std::map<Participante, int> _participantes;
+        std::vector<Participante *> _participantes;
+        // std::map<Participante, int> _participantes;
 
     public:
         /*
@@ -15,13 +16,9 @@ class Patrocinador {
         */
         Patrocinador();
         /*
-        * @brief Da a nota aos participantes utilizando um while com cin
-        */
-        void dar_notas_participantes();
-        /*
         * @brief Seleciona um participante aleatorio que esteja mal de status
         */
-        Participante selecionar_participante();
+        Participante *selecionar_participante();
         /*
         * @brief adiciona utenzilho a tal participante
         */

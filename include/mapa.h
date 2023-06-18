@@ -11,7 +11,7 @@ class destino_invalido_e{};
 
 class Mapa {
     private:
-        vector <string> _td_mundo;
+        vector<string> _td_mundo;
         vector<string> _centro;
         vector<string> _floresta;
         vector<string> _deserto;

@@ -10,7 +10,9 @@
 class Sistema{
     private:
     Mapa _mapa;
-    map<string,Participante> _vivos;
+    //pensei em colocar Participante como ponteiro
+    map<string, Participante> _vivos;
+    //map<string, Participante*> _vivos;
     vector<string> _mortos;
 
     public:
