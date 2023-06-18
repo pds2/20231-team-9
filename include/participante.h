@@ -40,9 +40,11 @@ class Participante {
          */
         string get_nome() const;
         int get_distrito() const;
+        bool get_vivo() const;
         Regiao get_atual();
         float get_energia();
         float get_hidratacao();
+        Arma get_arma();
         void adicionar_arma(Arma arma);
         void adicionar_utensilio(Utensilio utensilio);
         void muda_regiao_atual(Regiao destino);

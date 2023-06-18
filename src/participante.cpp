@@ -11,6 +11,7 @@ Participante::Participante(string nome, int distrito) {
     _energia = 100;
     _hidratacao = 100;
     _atual = Regiao();
+    *_arma = Arma(armas::desarmado, 1);
 }
 
 string Participante::get_nome() const {
@@ -19,6 +20,10 @@ string Participante::get_nome() const {
 
 int Participante::get_distrito() const {
     return _distrito;
+}
+
+bool Participante::get_vivo() const {
+    return _vivo;
 }
 
 Regiao Participante::get_atual() {
@@ -30,6 +35,10 @@ float Participante::get_energia() {
 }
 float Participante::get_hidratacao() {
     return _hidratacao;
+}
+
+Arma Participante::get_arma() {
+    return *_arma;
 }
 
 void Participante::adicionar_arma(Arma arma) {
