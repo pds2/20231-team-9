@@ -11,7 +11,7 @@ Participante::Participante(string nome, int distrito) {
     _energia = 100;
     _hidratacao = 100;
     _atual = Regiao();
-    *_arma = Arma(armas::desarmado, 1);
+    *_arma = Arma(armas::desarmado);
 }
 
 string Participante::get_nome() const {
@@ -154,16 +154,16 @@ void Participante::buscar_na_regiao() {
     if(chance_arma > _atual.get_chance_arma()) {
         int qual_arma = rand() % 10 + 1;
         if(qual_arma <= 4) {
-            Arma _faca(faca, 2);
+            Arma _faca(faca);
             adicionar_arma(_faca);
         } else if(qual_arma <= 7) {
-            Arma _arco(arco, 3);
+            Arma _arco(arco);
             adicionar_arma(_arco);
         } else if(qual_arma <= 8) {
-            Arma _espada(espada, 4);
+            Arma _espada(espada);
             adicionar_arma(_espada);
         } else if(qual_arma == 10) {
-            Arma _machado(machado, 5);
+            Arma _machado(machado);
             adicionar_arma(_machado);
         }
     }

@@ -4,6 +4,14 @@
 enum armas {
     desarmado, faca, arco, espada, machado
 };
+//poder de cada arma:
+/*
+ * desarmado: 1
+ * faca: 2
+ * arco: 3
+ * espada: 4
+ * machado: 5
+ */
 
 class Arma {
     private:
@@ -14,7 +22,7 @@ class Arma {
         /*
         * @brief Construtor
         */
-        Arma(armas tipo, int poder);
+        Arma(armas tipo);
         /*
         * @brief Retorna o tipo da arma (enum armas)
         */

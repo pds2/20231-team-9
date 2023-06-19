@@ -7,7 +7,7 @@
 
 class Patrocinador {
     private:
-        std::vector<Participante *> _participantes;
+        // std::vector<Participante *> _participantes;
         // std::map<Participante, int> _participantes;
 
     public:
