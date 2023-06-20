@@ -12,6 +12,9 @@ Participante::Participante(string nome, int distrito) {
     _hidratacao = 100;
     _atual = Regiao();
     *_arma = Arma(armas::desarmado);
+    qntd_agua = 0;
+    qntd_comida = 0;
+    qntd_remedio = 0;
 }
 
 string Participante::get_nome() const {
@@ -47,16 +50,42 @@ void Participante::adicionar_arma(Arma arma) {
     }
 }
 
-void Participante::adicionar_utensilio(Utensilio utensilio) {
-    auto pair = _utensilios.begin();
-    while(pair != _utensilios.end()) {
-        if((pair->first).get_tipo() == utensilio.get_tipo()) {
-            pair->second +=1;
-            return ;
-        }
+void Participante::adicionar_utensilio() {
+    std::cout << "1) " << to_string(qntd_agua) << std::endl;
+    std::cout << "2) " << to_string(qntd_comida) << std::endl;
+    std::cout << "3) " << to_string(qntd_remedio) << std::endl;
+
+    int a_consumir;
+    std::cout << "Digite o nome do utensílio que você deseja adicionar nessa rodada: ";
+    std::cin >> a_consumir;
+
+    switch (a_consumir) {
+    case 1:
+        qntd_agua++;
+        break;
+    case 2:
+        qntd_comida++;
+        break;
+    case 3:
+        qntd_remedio++;
+        break;
+    
+    default:
+        break;
     }
-    _utensilios[utensilio] = 1;
 }
+
+//FUNÇÃO ANTIGA
+// void Participante::adicionar_utensilio(Utensilio utensilio) {
+//     auto pair = _utensilios.begin();
+//     while(pair != _utensilios.end()) {
+//         if((pair->first).get_tipo() == utensilio.get_tipo()) {
+//             pair->second +=1;
+//             return ;
+//         }
+//     }
+//     _utensilios[utensilio] = 1;
+// }
 
 void Participante::muda_regiao_atual(Regiao destino) {
     _atual = destino;
@@ -88,27 +117,51 @@ regioes Participante::get_regiao_atual() {
 }
 
 void Participante::consumir_utensilios() {
-    auto pair = _utensilios.begin();
-    std::cout << "O jogador " << get_nome() << " possui os seguintes utensílios:" << std::endl;
-    while(pair != _utensilios.end()) {
-        std::cout << "* " << stringify(pair->first.get_tipo()) << ": " << pair->second << "unidades" << std::endl;
-        pair = next(pair);
+    std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
+    std::cout << "1) " << to_string(qntd_agua) << "água(s)" << std::endl;
+    std::cout << "2) " << to_string(qntd_comida) << "comida(s)" << std::endl;
+    std::cout << "3) " << to_string(qntd_remedio) << "remédio(s)" << std::endl;
+
+    int a_consumir;
+    std::cout << "Digite o nome do utensílio que você deseja consumir nessa rodada: ";
+    std::cin >> a_consumir;
+
+    switch (a_consumir) {
+    case 1:
+        qntd_agua--;
+        break;
+    case 2:
+        qntd_comida--;
+        break;
+    case 3:
+        qntd_remedio--;
+        break;
+    
+    default:
+        break;
     }
 
-    while(1) {
-        std::string a_consumir;
-        std::cout << "Digite o nome do utensílio que você deseja consumir nessa rodada: ";
-        std::cin >> a_consumir;
+    // auto pair = _utensilios.begin();
+    // std::cout << "O jogador " << get_nome() << " possui os seguintes utensílios:" << std::endl;
+    // while(pair != _utensilios.end()) {
+    //     std::cout << "* " << stringify(pair->first.get_tipo()) << ": " << pair->second << "unidades" << std::endl;
+    //     pair = next(pair);
+    // }
 
-        transform(a_consumir.begin(), a_consumir.end(), a_consumir.begin(), ::tolower);
-        pair = _utensilios.begin();
-        while(pair != _utensilios.end()) {
-            if(stringify(pair->first.get_tipo()) == a_consumir) {
-                _utensilios[pair->first] -= 1;
-                return ;
-            }
-        }
-    }
+    // while(1) {
+    //     std::string a_consumir;
+    //     std::cout << "Digite o nome do utensílio que você deseja consumir nessa rodada: ";
+    //     std::cin >> a_consumir;
+
+    //     transform(a_consumir.begin(), a_consumir.end(), a_consumir.begin(), ::tolower);
+    //     pair = _utensilios.begin();
+    //     while(pair != _utensilios.end()) {
+    //         if(stringify(pair->first.get_tipo()) == a_consumir) {
+    //             _utensilios[pair->first] -= 1;
+    //             return ;
+    //         }
+    //     }
+    // }
 
 }
 
@@ -119,41 +172,44 @@ void Participante::buscar_na_regiao() {
     float chance_arma = rand() % 10 + 1;
 
     if(chance_agua < _atual.get_chance_agua()) {
-        auto aux = _utensilios.begin();
-        while(aux != _utensilios.end()) {
-            if(aux->first.get_tipo() == utensilios::agua) {
-                aux->second++;
-                return ;
-            }
-            aux = next(aux);
-        }
-        _utensilios[utensilios::agua] = 1;
+        qntd_agua++;
+        // auto aux = _utensilios.begin();
+        // while(aux != _utensilios.end()) {
+        //     if(aux->first.get_tipo() == utensilios::agua) {
+        //         aux->second++;
+        //         return ;
+        //     }
+        //     aux = next(aux);
+        // }
+        // _utensilios[utensilios::agua] = 1;
     }
 
     //ESSA PARTE ESTAVA FALHANDO
     if(chance_remedio < _atual.get_chance_remedio()) {
-        auto aux = _utensilios.begin();
-        while(aux != _utensilios.end()) {
-            if(aux->first.get_tipo() == utensilios::remedio) {
-                aux->second++;
-                return ;
-            }
-            aux = next(aux);
-        }
-        _utensilios[utensilios::remedio] = 1;
+        qntd_remedio++;
+        // auto aux = _utensilios.begin();
+        // while(aux != _utensilios.end()) {
+        //     if(aux->first.get_tipo() == utensilios::remedio) {
+        //         aux->second++;
+        //         return ;
+        //     }
+        //     aux = next(aux);
+        // }
+        // _utensilios[utensilios::remedio] = 1;
     }
     //FIM DA PARTE QUE ESTAVA FALHANDO
 
     if(chance_comida < _atual.get_chance_comida()) {
-        auto aux = _utensilios.begin();
-        while(aux != _utensilios.end()) {
-            if(aux->first.get_tipo() == utensilios::comida) {
-                aux->second++;
-                return ;
-            }
-            aux = next(aux);
-        }
-        _utensilios[utensilios::comida] = 1;
+        qntd_comida++;
+        // auto aux = _utensilios.begin();
+        // while(aux != _utensilios.end()) {
+        //     if(aux->first.get_tipo() == utensilios::comida) {
+        //         aux->second++;
+        //         return ;
+        //     }
+        //     aux = next(aux);
+        // }
+        // _utensilios[utensilios::comida] = 1;
     }
     if(chance_arma > _atual.get_chance_arma()) {
         int qual_arma = rand() % 10 + 1;
