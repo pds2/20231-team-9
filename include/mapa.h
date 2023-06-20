@@ -2,6 +2,8 @@
 #define PDS2_MAPA_H
 
 #include "participante.h"
+#include "jogador.h"
+#include "bot.h"
 #include "regiao.h"
 
 class participante_ja_existe_e {};
@@ -60,7 +62,7 @@ class Mapa {
     /*
     * @brief Inicia o Jogo colocando os participantes no Centro
     */
-    void inicio(map<string,Participante&> vivos);
+    void inicio(map<string,Participante*> vivos);
     /*
     * @brief Remove o participante do map de vivos e insere ele
              no vetor com os nomes dos mortos
