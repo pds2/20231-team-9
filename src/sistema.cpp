@@ -101,7 +101,7 @@ void Sistema::Rodada() {
         default:
             break;
         }
-    }
+        }
     }
 
 }
