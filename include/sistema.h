@@ -3,6 +3,7 @@
 
 #include "participante.h"
 #include "jogador.h"
+#include "bot.h"
 #include "mapa.h"
 
 //class participante_ja_existe_e {};   A classe mapa.h já possui esses erros, a redefinição gera problema no compilador
@@ -12,17 +13,21 @@ class Sistema{
     private:
     Mapa _mapa;
     //pensei em colocar Participante como ponteiro
-    map<string, Participante> _vivos;
+    map<string, Participante*> _vivos;
     //map<string, Participante*> _vivos;
     vector<string> _mortos;
 
     public:
     /*
-     * @brief Cria um participante recebendo nome, idade e destrito
+     * @brief Cria um jogador recebendo nome, idade e destrito
      * @throws Lança uma excessão se destrito > 12
      * @throws Lança uma excessão se o participante ja existe
      */
-    void criar_participante(string nome, int distrito);
+    void criar_jogador(string nome, int distrito);
+    /*
+     * @brief Cria um bot
+     */
+    void criar_bot(string nome, int distrito);
     /**
      * @brief Inicia o jogo, colocanto todos no centro 
     */
@@ -35,7 +40,7 @@ class Sistema{
     /*
      * @brief retorna o mapa com os participantes vivos
      */
-    map<string,Participante> get_vivos();
+    map<string,Participante*> get_vivos();
     /**
      * @brief Realiza uma rodada com os jogadores vivos
     */

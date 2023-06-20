@@ -8,7 +8,7 @@ Patrocinador::Patrocinador() {
 
 Participante *Patrocinador::selecionar_participante() {
     Sistema s;
-    map<string, Participante> map_vivos = s.get_vivos();
+    map<string, Participante*> map_vivos = s.get_vivos();
 
 
    //acho que aqui dá para usar polimorfismo 
@@ -22,7 +22,7 @@ Participante *Patrocinador::selecionar_participante() {
 
         while(get_index_random >= 0) {
             if(get_index_random == 0) {
-                *partic_escolhido = pair->second;
+                partic_escolhido = pair->second;
             }
             pair = next(pair);
         }

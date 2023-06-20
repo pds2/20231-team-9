@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void Sistema::criar_participante(string nome, int distrito) {
+void Sistema::criar_jogador(string nome, int distrito) {
     //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
     // for(Participante& this_one : _vivos) {
     //     if(nome == this_one.get_nome()) {
@@ -21,10 +21,27 @@ void Sistema::criar_participante(string nome, int distrito) {
         throw distrito_invalido_e();
     }
 
-    Participante *novo_participante = new Jogador(nome, distrito);
-    _vivos[nome] = *novo_participante;
+    Jogador *novo_jogador = new Jogador(nome, distrito);
+    _vivos[nome] = novo_jogador;
     // _vivos[nome] = Participante(nome,distrito);
     // _vivos.push_back(Participante(nome, distrito));
+}
+
+void Sistema::criar_bot(string nome, int distrito) {
+    auto pair = _vivos.begin();
+    while(pair != _vivos.end()) {
+        if(nome == pair->first) {
+            throw participante_ja_existe_e();
+        }
+        pair = next(pair);
+    }
+    
+    if(distrito > 12 || distrito < 1) {
+        throw distrito_invalido_e();
+    }
+
+    Bot *novo_bot = new Bot(nome, distrito);
+    _vivos[nome] = novo_bot;
 }
 
 // void Sistema::inicio() {
@@ -51,7 +68,7 @@ void Sistema::morrer(Participante &fulano) {
     }
 }
 
-map<string, Participante> Sistema::get_vivos() {
+map<string, Participante*> Sistema::get_vivos() {
     return _vivos;
 }
 
