@@ -22,7 +22,7 @@ class Patrocinador {
         /*
         * @brief adiciona utenzilho a tal participante
         */
-        void dar_utensilios(Utensilio u, Participante& p);
+        void dar_utensilios(Participante& p);
         /*
         * @brief Adiciona arma a tal participante
         */
