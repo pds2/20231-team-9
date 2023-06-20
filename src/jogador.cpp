@@ -7,7 +7,7 @@ using namespace std;
 
 Jogador::Jogador(string nome, int distrito) : Participante(nome, distrito) { }
 
-void Jogador::definir_acao(){
+void Jogador::definir_acao() {
     char comando;
     cin >> comando;
     switch (comando){

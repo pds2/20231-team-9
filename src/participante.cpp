@@ -131,17 +131,19 @@ void Participante::buscar_na_regiao() {
     }
 
     //ESSA PARTE ESTAVA FALHANDO
-    // if(chance_remedio < _atual.get_chance_remedio()) {
-    //     auto aux = _utensilios.begin();
-    //     while(aux != _utensilios.end()) {
-    //         if(aux->first.get_tipo() == utensilios::remedio) {
-    //             aux->second++;
-    //             return ;
-    //         }
-    //         aux = next(aux);
-    //     }
-    //     _utensilios[utensilios::remedio] = 1;
-    // }
+    if(chance_remedio < _atual.get_chance_remedio()) {
+        auto aux = _utensilios.begin();
+        while(aux != _utensilios.end()) {
+            if(aux->first.get_tipo() == utensilios::remedio) {
+                aux->second++;
+                return ;
+            }
+            aux = next(aux);
+        }
+        _utensilios[utensilios::remedio] = 1;
+    }
+    //FIM DA PARTE QUE ESTAVA FALHANDO
+
     if(chance_comida < _atual.get_chance_comida()) {
         auto aux = _utensilios.begin();
         while(aux != _utensilios.end()) {

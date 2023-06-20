@@ -18,7 +18,7 @@ class Utensilio {
         */
         utensilios get_tipo() const;
 
-         auto operator<=>(const Utensilio&) const = default;
+        auto operator<=>(const Utensilio&) const = default;
 };
 
 #endif 

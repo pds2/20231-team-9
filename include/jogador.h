@@ -16,7 +16,7 @@ class Jogador : public Participante {
         /*
         * @brief Lê do usuário um comando para definir a ação do respectivo participante
         */
-        
+        void definir_acao() override;
 };
 
 #endif

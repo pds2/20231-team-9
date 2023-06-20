@@ -21,7 +21,7 @@ void Sistema::criar_participante(string nome, int distrito) {
         throw distrito_invalido_e();
     }
 
-    Participante *novo_participante = new Participante(nome, distrito);
+    Participante *novo_participante = new Jogador(nome, distrito);
     _vivos[nome] = *novo_participante;
     // _vivos[nome] = Participante(nome,distrito);
     // _vivos.push_back(Participante(nome, distrito));
@@ -51,7 +51,7 @@ void Sistema::morrer(Participante &fulano) {
     }
 }
 
-map<string,Participante> Sistema::get_vivos() {
+map<string, Participante> Sistema::get_vivos() {
     return _vivos;
 }
 
