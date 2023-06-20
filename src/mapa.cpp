@@ -111,10 +111,15 @@ vector<string> Mapa::get_participantes_ruinas(){
 }
 
 void Mapa::inicio(map<string,Participante&> vivos) {
-    for(Participante p : vivos) {
-        _centro.push_back(p.get_nome()); // coloca os jogadores no centro
-        _td_mundo.push_back(p.get_nome()); // coloca os jogadores no vetor td_mundo
+    auto pair = vivos.begin();
+    while(pair != vivos.end()) {
+        _centro.push_back(pair->second.get_nome()); // coloca os jogadores no centro
+        _td_mundo.push_back(pair->second.get_nome()); // coloca os jogadores no vetor td_mundo
     }
+    // for(Participante p : vivos) {
+    //     _centro.push_back(p.get_nome()); // coloca os jogadores no centro
+    //     _td_mundo.push_back(p.get_nome()); // coloca os jogadores no vetor td_mundo
+    // }
 }
 
 void Mapa::morrer(Participante* fulano) {

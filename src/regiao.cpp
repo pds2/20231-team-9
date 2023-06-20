@@ -1,4 +1,4 @@
-#include "regiao.h"
+#include "../include/regiao.h"
 
 Regiao::Regiao() {
     _chance_agua = 0;
@@ -21,5 +21,7 @@ int Regiao::get_chance_agua() {return _chance_agua;}
 int Regiao::get_chance_comida() {return _chance_comida;}
 
 int Regiao::get_chance_arma() {return _chance_arma;}
+
+int Regiao::get_chance_remedio() {return _chance_remedio;}
 
 regioes Regiao::get_nome() {return _nome;}

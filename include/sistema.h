@@ -2,6 +2,7 @@
 #define PDS2_SISTEMA_H
 
 #include "participante.h"
+#include "jogador.h"
 #include "mapa.h"
 
 //class participante_ja_existe_e {};   A classe mapa.h já possui esses erros, a redefinição gera problema no compilador
@@ -10,7 +11,9 @@
 class Sistema{
     private:
     Mapa _mapa;
-    map<string,Participante> _vivos;
+    //pensei em colocar Participante como ponteiro
+    map<string, Participante> _vivos;
+    //map<string, Participante*> _vivos;
     vector<string> _mortos;
 
     public:

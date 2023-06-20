@@ -11,6 +11,7 @@ Participante::Participante(string nome, int distrito) {
     _energia = 100;
     _hidratacao = 100;
     _atual = Regiao();
+    *_arma = Arma(armas::desarmado);
 }
 
 string Participante::get_nome() const {
@@ -19,6 +20,10 @@ string Participante::get_nome() const {
 
 int Participante::get_distrito() const {
     return _distrito;
+}
+
+bool Participante::get_vivo() const {
+    return _vivo;
 }
 
 Regiao Participante::get_atual() {
@@ -30,6 +35,10 @@ float Participante::get_energia() {
 }
 float Participante::get_hidratacao() {
     return _hidratacao;
+}
+
+Arma Participante::get_arma() {
+    return *_arma;
 }
 
 void Participante::adicionar_arma(Arma arma) {
@@ -120,6 +129,8 @@ void Participante::buscar_na_regiao() {
         }
         _utensilios[utensilios::agua] = 1;
     }
+
+    //ESSA PARTE ESTAVA FALHANDO
     if(chance_remedio < _atual.get_chance_remedio()) {
         auto aux = _utensilios.begin();
         while(aux != _utensilios.end()) {
@@ -131,6 +142,8 @@ void Participante::buscar_na_regiao() {
         }
         _utensilios[utensilios::remedio] = 1;
     }
+    //FIM DA PARTE QUE ESTAVA FALHANDO
+
     if(chance_comida < _atual.get_chance_comida()) {
         auto aux = _utensilios.begin();
         while(aux != _utensilios.end()) {
@@ -145,16 +158,16 @@ void Participante::buscar_na_regiao() {
     if(chance_arma > _atual.get_chance_arma()) {
         int qual_arma = rand() % 10 + 1;
         if(qual_arma <= 4) {
-            Arma _faca(faca, 2);
+            Arma _faca(faca);
             adicionar_arma(_faca);
         } else if(qual_arma <= 7) {
-            Arma _arco(arco, 3);
+            Arma _arco(arco);
             adicionar_arma(_arco);
         } else if(qual_arma <= 8) {
-            Arma _espada(espada, 4);
+            Arma _espada(espada);
             adicionar_arma(_espada);
         } else if(qual_arma == 10) {
-            Arma _machado(machado, 5);
+            Arma _machado(machado);
             adicionar_arma(_machado);
         }
     }
