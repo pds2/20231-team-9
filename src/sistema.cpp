@@ -102,5 +102,6 @@ void Sistema::Rodada() {
             break;
         }
     }
+    }
 
 }
