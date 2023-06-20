@@ -49,7 +49,7 @@ class Participante {
         void adicionar_utensilio(Utensilio utensilio);
         void muda_regiao_atual(Regiao destino);
 
-        virtual void definir_acao() = 0;
+        
         /*
          * @brief simula a batalha entre o participante corrente com um outro participante p
          */

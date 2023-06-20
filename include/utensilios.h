@@ -17,6 +17,8 @@ class Utensilio {
         * @brief Retorna o tipo
         */
         utensilios get_tipo() const;
+
+         auto operator<=>(const Utensilio&) const = default;
 };
 
 #endif 
