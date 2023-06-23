@@ -2,7 +2,7 @@
 #define PDS2_ARMAS_H
 
 enum armas {
-    desarmado, faca, arco, espada, machado
+    desarmado=1, faca=2, arco=3, espada=4, machado=5
 };
 //poder de cada arma:
 /*
