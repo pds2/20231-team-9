@@ -151,6 +151,9 @@ void Mapa::morrer(Participante* fulano) {
         case ruinas:
         _ruinas.push_back(fulano->get_nome());
         break;
+
+        default:
+        break;
     }
 }
 
@@ -185,6 +188,9 @@ void Mapa::mover_do_centro(regioes destino, Participante* fulano) {
         _ruinas.push_back(fulano->get_nome());
         fulano->muda_regiao_atual(Ruinas);
         break;
+
+        default:
+        break;
     }
     for(auto it = _centro.begin();it != _centro.end();++it) {
         if(*(it) == fulano->get_nome()) {
@@ -212,6 +218,9 @@ void Mapa::mover_da_floresta(regioes destino, Participante* fulano) {
         case campo:
         _campo.push_back(fulano->get_nome());
         fulano->muda_regiao_atual(Campo);
+        break;
+
+        default:
         break;
     }
 
@@ -241,6 +250,9 @@ void Mapa::mover_do_deserto(regioes destino, Participante* fulano) {
         _montanhas.push_back(fulano->get_nome());
         fulano->muda_regiao_atual(Montanhas);
         break;
+
+        default:
+        break;
     }
 
     for(auto it = _deserto.begin();it != _deserto.end();++it) {
@@ -269,6 +281,9 @@ void Mapa::mover_do_pantano(regioes destino, Participante* fulano) {
         _montanhas.push_back(fulano->get_nome());
         fulano->muda_regiao_atual(Montanhas);
         break;
+
+        default:
+        break;
     }
     for(auto it = _deserto.begin();it != _deserto.end();++it) {
         if(*(it) == fulano->get_nome()) {
@@ -295,6 +310,9 @@ void Mapa::mover_do_campo(regioes destino, Participante* fulano) {
         case ruinas:
         _ruinas.push_back(fulano->get_nome());
         fulano->muda_regiao_atual(Ruinas);
+        break;
+
+        default:
         break;
     }
     for(auto it = _campo.begin();it != _campo.end();++it) {
@@ -323,6 +341,9 @@ void Mapa::mover_das_montanhas(regioes destino, Participante* fulano) {
         _deserto.push_back(fulano->get_nome());
         fulano->muda_regiao_atual(Deserto);
         break;
+
+        default:
+        break;
     }
     
     for(auto it = _montanhas.begin();it != _montanhas.end();++it) {
@@ -350,6 +371,9 @@ void Mapa::mover_das_ruinas(regioes destino, Participante* fulano) {
         case campo:
         _campo.push_back(fulano->get_nome());
         fulano->muda_regiao_atual(Campo);
+        break;
+
+        default:
         break;
     }
     
