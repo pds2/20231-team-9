@@ -40,36 +40,45 @@ Arma Participante::get_arma() {
     return _arma;
 }
 
+void Participante::imprime_qntd_utensilios() {
+    std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
+    std::cout << "1) " << to_string(qntd_agua) << "água(s)" << std::endl;
+    std::cout << "2) " << to_string(qntd_comida) << "comida(s)" << std::endl;
+    std::cout << "3) " << to_string(qntd_remedio) << "remédio(s)" << std::endl;
+
+}
+
 void Participante::adicionar_arma(Arma arma) {
     if(arma.get_poder() > _arma.get_poder()) {
         _arma = arma;
     }
 }
 
-void Participante::adicionar_utensilio() { //Vamos alterar isso
-    std::cout << "1) " << to_string(qntd_agua) << std::endl;
-    std::cout << "2) " << to_string(qntd_comida) << std::endl;
-    std::cout << "3) " << to_string(qntd_remedio) << std::endl;
-
-    int a_consumir;
-    std::cout << "Digite o nome do utensílio que você deseja adicionar nessa rodada: ";
-    std::cin >> a_consumir;
-
-    switch (a_consumir) {
-    case 1:
+void Participante::adicionar_utensilio(std::string utensilio, int qntd) { //Vamos alterar isso
+    if(utensilio == "agua") {
         qntd_agua++;
-        break;
-    case 2:
+    } else if( utensilio == "comida") {
         qntd_comida++;
-        break;
-    case 3:
+    } else if(utensilio == "remedio") {
         qntd_remedio++;
-        break;
-    
-    default:
-        break;
+    } else {
+        throw utensilio_invalido_e();
     }
 }
+
+/*
+void Participante::adicionar_utensilio_agua(int a_consumir) { //Vamos alterar isso
+    qntd_agua += a_consumir;
+}
+
+void Participante::adicionar_utensilio_comida(int a_consumir) { //Vamos alterar isso
+    qntd_comida += a_consumir;
+}
+
+void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar isso
+    qntd_remedio += a_consumir;
+}
+*/
 
 void Participante::muda_regiao_atual(Regiao destino) {
     _atual = destino;
@@ -99,34 +108,47 @@ regioes Participante::get_regiao_atual() {
     return _atual.get_nome();
 }
 
-void Participante::consumir_utensilios() { //Vamos alterar isso
-    //Consumir água  = hidratação 100
-    //Consumir comida = energia 100
-    //Remédio +50 +50, maximo 100
-    std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
-    std::cout << "1) " << to_string(qntd_agua) << "água(s)" << std::endl;
-    std::cout << "2) " << to_string(qntd_comida) << "comida(s)" << std::endl;
-    std::cout << "3) " << to_string(qntd_remedio) << "remédio(s)" << std::endl;
-
-    int a_consumir;
-    std::cout << "Digite o nome do utensílio que você deseja consumir nessa rodada: ";
-    std::cin >> a_consumir;
-
-    switch (a_consumir) {
-    case 1:
-        qntd_agua--;
-        break;
-    case 2:
-        qntd_comida--;
-        break;
-    case 3:
-        qntd_remedio--;
-        break;
-    
-    default:
-        break;
+void Participante::consumir_utensilio(std::string utensilio, int qntd) {
+    if(utensilio == "agua") {
+        consumir_utensilios_agua(qntd);
+    } else if( utensilio == "comida") {
+        consumir_utensilios_comida(qntd);
+    } else if(utensilio == "remedio") {
+        consumir_utensilios_remedio(qntd);
+    } else {
+        throw utensilio_invalido_e();
     }
+}
 
+void Participante::consumir_utensilios_agua(int a_consumir) {
+    if(a_consumir > qntd_agua) {
+        throw quantidade_agua_invalida_e();
+    }
+    qntd_agua -= a_consumir;
+    _hidratacao = 100;
+}
+
+void Participante::consumir_utensilios_comida(int a_consumir) {
+    if(a_consumir > qntd_comida) {
+        throw quantidade_comida_invalida_e();
+    }
+    qntd_comida -= a_consumir;
+    _energia = 100;
+}
+
+void Participante::consumir_utensilios_remedio(int a_consumir) {
+    if(a_consumir > qntd_remedio) {
+        throw quantidade_remedio_invalida_e();
+    }
+    qntd_remedio -= a_consumir;
+    _hidratacao += 50;
+    _energia += 50;
+    if(_energia > 100) {
+        _energia = 100;
+    }
+    if(_hidratacao > 100) {
+        _hidratacao = 100;
+    }
 }
 
 void Participante::buscar_na_regiao() {
