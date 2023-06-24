@@ -7,7 +7,7 @@ TEST_CASE("Testa se os atributos de Participante foram corretamente inicializado
     CHECK_EQ(p.get_distrito(), 8);
     CHECK_EQ(p.get_energia(), 100.0);
     CHECK_EQ(p.get_hidratacao(), 100.0);
-    // delete p;
+    //delete p;
 }
 
 TEST_CASE("Testa se o personagem está na região correta") {

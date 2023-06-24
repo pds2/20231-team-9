@@ -115,6 +115,7 @@ void Mapa::inicio(map<string,Participante*> vivos) {
     while(pair != vivos.end()) {
         _centro.push_back(pair->second->get_nome()); // coloca os jogadores no centro
         _td_mundo.push_back(pair->second->get_nome()); // coloca os jogadores no vetor td_mundo
+        pair = next(pair);
     }
     // for(Participante p : vivos) {
     //     _centro.push_back(p.get_nome()); // coloca os jogadores no centro
