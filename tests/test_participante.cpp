@@ -34,5 +34,5 @@ TEST_CASE("Testa a função batalha") {
     p2.adicionar_arma(_nova_arma2);
     p.batalha(p2);
     CHECK_EQ(p2.get_vivo(), false);
-    CHECK_EQ(p.get_energia(), p.get_energia() * p2.get_arma().get_poder() * 0.9);
+    CHECK_EQ(p.get_energia(), 60);
 }

@@ -13,7 +13,12 @@
 
 using namespace std;
 
-// class utensilio_nao_listado_e {};
+// Classes dos erros
+class quantidade_agua_invalida_e {};
+class quantidade_comida_invalida_e {};
+class quantidade_remedio_invalida_e {};
+class utensilio_invalido_e {};
+
 class Participante {
     private:
         int _id;
@@ -23,19 +28,15 @@ class Participante {
         float _energia;
         float _hidratacao;
         Regiao _atual;
-        //os dois maps ligam a arma/o utensílio à quantidade que o jogador tem de cada uma
-        // vector<Arma> _armas;
-        Arma *_arma;
+        Arma _arma;
         int qntd_agua;
         int qntd_comida;
         int qntd_remedio;
-        // map<Utensilio, int> _utensilios;
 
     public:
         /*
          * @brief um participante, inicializando os dados
          */
-        Participante();
         Participante(string nome, int distrito);
 
         /*
@@ -49,8 +50,6 @@ class Participante {
         float get_hidratacao();
         Arma get_arma();
         void adicionar_arma(Arma arma);
-        void adicionar_utensilio();
-        // void adicionar_utensilio(Utensilio utensilio);
         void muda_regiao_atual(Regiao destino);
 
         
@@ -65,7 +64,17 @@ class Participante {
          */
         regioes get_regiao_atual();
 
-        void consumir_utensilios();
+        void imprime_qntd_utensilios();
+
+        void adicionar_utensilio(std::string utensilio, int qntd);
+        // void adicionar_utensilio_agua(int a_consumir);
+        // void adicionar_utensilio_comida(int a_consumir);
+        // void adicionar_utensilio_remedio(int a_consumir);
+
+        void consumir_utensilio(std::string utensilio, int qntd);
+        void consumir_utensilios_agua(int a_consumir);
+        void consumir_utensilios_comida(int a_consumir);
+        void consumir_utensilios_remedio(int a_consumir);
 
         void buscar_na_regiao();
 

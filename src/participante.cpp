@@ -1,17 +1,13 @@
 #include "../include/participante.h"
-
 #define stringify( name ) # name
 
-Participante::Participante() {}
-
-Participante::Participante(string nome, int distrito) {
+Participante::Participante(string nome, int distrito) : _arma(armas::desarmado) {
     _nome = nome;
     _distrito = distrito;
     _vivo = true;
     _energia = 100;
     _hidratacao = 100;
     _atual = Regiao();
-    *_arma = Arma(armas::desarmado);
     qntd_agua = 0;
     qntd_comida = 0;
     qntd_remedio = 0;
@@ -41,51 +37,48 @@ float Participante::get_hidratacao() {
 }
 
 Arma Participante::get_arma() {
-    return *_arma;
+    return _arma;
+}
+
+void Participante::imprime_qntd_utensilios() {
+    std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
+    std::cout << "1) " << to_string(qntd_agua) << "água(s)" << std::endl;
+    std::cout << "2) " << to_string(qntd_comida) << "comida(s)" << std::endl;
+    std::cout << "3) " << to_string(qntd_remedio) << "remédio(s)" << std::endl;
+
 }
 
 void Participante::adicionar_arma(Arma arma) {
-    if(arma.get_poder() > _arma->get_poder()) {
-        *_arma = arma;
+    if(arma.get_poder() > _arma.get_poder()) {
+        _arma = arma;
     }
 }
 
-void Participante::adicionar_utensilio() {
-    std::cout << "1) " << to_string(qntd_agua) << std::endl;
-    std::cout << "2) " << to_string(qntd_comida) << std::endl;
-    std::cout << "3) " << to_string(qntd_remedio) << std::endl;
-
-    int a_consumir;
-    std::cout << "Digite o nome do utensílio que você deseja adicionar nessa rodada: ";
-    std::cin >> a_consumir;
-
-    switch (a_consumir) {
-    case 1:
+void Participante::adicionar_utensilio(std::string utensilio, int qntd) { //Vamos alterar isso
+    if(utensilio == "agua") {
         qntd_agua++;
-        break;
-    case 2:
+    } else if( utensilio == "comida") {
         qntd_comida++;
-        break;
-    case 3:
+    } else if(utensilio == "remedio") {
         qntd_remedio++;
-        break;
-    
-    default:
-        break;
+    } else {
+        throw utensilio_invalido_e();
     }
 }
 
-//FUNÇÃO ANTIGA
-// void Participante::adicionar_utensilio(Utensilio utensilio) {
-//     auto pair = _utensilios.begin();
-//     while(pair != _utensilios.end()) {
-//         if((pair->first).get_tipo() == utensilio.get_tipo()) {
-//             pair->second +=1;
-//             return ;
-//         }
-//     }
-//     _utensilios[utensilio] = 1;
-// }
+/*
+void Participante::adicionar_utensilio_agua(int a_consumir) { //Vamos alterar isso
+    qntd_agua += a_consumir;
+}
+
+void Participante::adicionar_utensilio_comida(int a_consumir) { //Vamos alterar isso
+    qntd_comida += a_consumir;
+}
+
+void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar isso
+    qntd_remedio += a_consumir;
+}
+*/
 
 void Participante::muda_regiao_atual(Regiao destino) {
     _atual = destino;
@@ -93,22 +86,21 @@ void Participante::muda_regiao_atual(Regiao destino) {
 
 void Participante::batalha(Participante& p) {
     std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " atacou o jogador " << p.get_nome() << " do distrito " << p.get_distrito() << std::endl;
-    Arma *arma_escolhida_atacante = _arma;
-    Arma *arma_escolhida_defesa = p._arma;
+    Arma arma_escolhida_atacante = _arma;
+    Arma arma_escolhida_defesa = p._arma;
 
-    if(arma_escolhida_atacante->get_poder() > arma_escolhida_defesa->get_poder()) {
+    if(arma_escolhida_atacante.get_poder() > arma_escolhida_defesa.get_poder()) {
         p._vivo = false;
         std::cout << "O jogador " << p.get_nome() << " do distrito " << p.get_distrito() << " foi morto" << std::endl;
-        //faltar adicionar chamadas que mudarão os campos "_energia" e "_ferido"
-        _energia *= (1 - 0.1*arma_escolhida_atacante->get_poder());
+        _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
 
-    } else if(arma_escolhida_atacante->get_poder() < arma_escolhida_defesa->get_poder()) {
+    } else if(arma_escolhida_atacante.get_poder() < arma_escolhida_defesa.get_poder()) {
         _vivo = false;
         std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " foi morto" << std::endl;
-        p._energia *= (1 - 0.1*arma_escolhida_defesa->get_poder());
+        p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
     } else {
-        _energia *= (1 - 0.1*arma_escolhida_atacante->get_poder());
-        p._energia *= (1 - 0.1*arma_escolhida_defesa->get_poder());
+        _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
+        p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
     }
 }
 
@@ -116,53 +108,47 @@ regioes Participante::get_regiao_atual() {
     return _atual.get_nome();
 }
 
-void Participante::consumir_utensilios() {
-    std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
-    std::cout << "1) " << to_string(qntd_agua) << "água(s)" << std::endl;
-    std::cout << "2) " << to_string(qntd_comida) << "comida(s)" << std::endl;
-    std::cout << "3) " << to_string(qntd_remedio) << "remédio(s)" << std::endl;
-
-    int a_consumir;
-    std::cout << "Digite o nome do utensílio que você deseja consumir nessa rodada: ";
-    std::cin >> a_consumir;
-
-    switch (a_consumir) {
-    case 1:
-        qntd_agua--;
-        break;
-    case 2:
-        qntd_comida--;
-        break;
-    case 3:
-        qntd_remedio--;
-        break;
-    
-    default:
-        break;
+void Participante::consumir_utensilio(std::string utensilio, int qntd) {
+    if(utensilio == "agua") {
+        consumir_utensilios_agua(qntd);
+    } else if( utensilio == "comida") {
+        consumir_utensilios_comida(qntd);
+    } else if(utensilio == "remedio") {
+        consumir_utensilios_remedio(qntd);
+    } else {
+        throw utensilio_invalido_e();
     }
+}
 
-    // auto pair = _utensilios.begin();
-    // std::cout << "O jogador " << get_nome() << " possui os seguintes utensílios:" << std::endl;
-    // while(pair != _utensilios.end()) {
-    //     std::cout << "* " << stringify(pair->first.get_tipo()) << ": " << pair->second << "unidades" << std::endl;
-    //     pair = next(pair);
-    // }
+void Participante::consumir_utensilios_agua(int a_consumir) {
+    if(a_consumir > qntd_agua) {
+        throw quantidade_agua_invalida_e();
+    }
+    qntd_agua -= a_consumir;
+    _hidratacao = 100;
+}
 
-    // while(1) {
-    //     std::string a_consumir;
-    //     std::cout << "Digite o nome do utensílio que você deseja consumir nessa rodada: ";
-    //     std::cin >> a_consumir;
+void Participante::consumir_utensilios_comida(int a_consumir) {
+    if(a_consumir > qntd_comida) {
+        throw quantidade_comida_invalida_e();
+    }
+    qntd_comida -= a_consumir;
+    _energia = 100;
+}
 
-    //     transform(a_consumir.begin(), a_consumir.end(), a_consumir.begin(), ::tolower);
-    //     pair = _utensilios.begin();
-    //     while(pair != _utensilios.end()) {
-    //         if(stringify(pair->first.get_tipo()) == a_consumir) {
-    //             _utensilios[pair->first] -= 1;
-    //             return ;
-    //         }
-    //     }
-    // }
-
+void Participante::consumir_utensilios_remedio(int a_consumir) {
+    if(a_consumir > qntd_remedio) {
+        throw quantidade_remedio_invalida_e();
+    }
+    qntd_remedio -= a_consumir;
+    _hidratacao += 50;
+    _energia += 50;
+    if(_energia > 100) {
+        _energia = 100;
+    }
+    if(_hidratacao > 100) {
+        _hidratacao = 100;
+    }
 }
 
 void Participante::buscar_na_regiao() {
@@ -173,44 +159,16 @@ void Participante::buscar_na_regiao() {
 
     if(chance_agua < _atual.get_chance_agua()) {
         qntd_agua++;
-        // auto aux = _utensilios.begin();
-        // while(aux != _utensilios.end()) {
-        //     if(aux->first.get_tipo() == utensilios::agua) {
-        //         aux->second++;
-        //         return ;
-        //     }
-        //     aux = next(aux);
-        // }
-        // _utensilios[utensilios::agua] = 1;
     }
 
-    //ESSA PARTE ESTAVA FALHANDO
     if(chance_remedio < _atual.get_chance_remedio()) {
         qntd_remedio++;
-        // auto aux = _utensilios.begin();
-        // while(aux != _utensilios.end()) {
-        //     if(aux->first.get_tipo() == utensilios::remedio) {
-        //         aux->second++;
-        //         return ;
-        //     }
-        //     aux = next(aux);
-        // }
-        // _utensilios[utensilios::remedio] = 1;
     }
-    //FIM DA PARTE QUE ESTAVA FALHANDO
 
     if(chance_comida < _atual.get_chance_comida()) {
         qntd_comida++;
-        // auto aux = _utensilios.begin();
-        // while(aux != _utensilios.end()) {
-        //     if(aux->first.get_tipo() == utensilios::comida) {
-        //         aux->second++;
-        //         return ;
-        //     }
-        //     aux = next(aux);
-        // }
-        // _utensilios[utensilios::comida] = 1;
     }
+
     if(chance_arma > _atual.get_chance_arma()) {
         int qual_arma = rand() % 10 + 1;
         if(qual_arma <= 4) {
