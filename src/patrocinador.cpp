@@ -33,7 +33,7 @@ Participante *Patrocinador::selecionar_participante() {
 
 }
 void Patrocinador::dar_utensilios(Participante& p) {
-    p.adicionar_utensilio();
+    // p.adicionar_utensilio();
     // p.adicionar_utensilio(u);
 }
 
