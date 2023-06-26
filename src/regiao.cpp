@@ -47,11 +47,12 @@ bool Regiao::pode_mudar_de_regiao(int x, int y) {
 }
 
 void Regiao::muda_regiao(regioes destino) {
+    bool aux;
     switch (destino)
     {
     case centro:
-        bool aux = pode_mudar_de_regiao(2,2);
-        if(aux == false) {
+        aux = pode_mudar_de_regiao(2, 2);
+        if (aux == false) {
             throw nao_da_para_mudar_para_essa_regiao_e();
         }
         _x = 2;
@@ -62,7 +63,7 @@ void Regiao::muda_regiao(regioes destino) {
         _chance_remedio = 9;
         _nome = centro;
         break;
-    
+
     case floresta:
         _x = 2;
         _y = 1;
@@ -72,7 +73,7 @@ void Regiao::muda_regiao(regioes destino) {
         _chance_remedio = 0;
         _nome = floresta;
         break;
-    
+
     case pantano:
         _x = 3;
         _y = 1;
@@ -122,7 +123,7 @@ void Regiao::muda_regiao(regioes destino) {
         _chance_remedio = 0;
         _nome = campo;
         break;
-    
+
     default:
         throw destino_nao_existe_e();
         break;
