@@ -10,7 +10,10 @@ int main() {
     vector<Jogador> participantes;
 
     Sistema tudo;
-   
+    /*
+    * @brief O jogo inteiro roda em um grande while com um break no final
+    * Tentar tratar a maior quantidade de casos para o jogo não quebrar e sair do while
+    */
     
     while(true){
         cout << "Seja Bem vindo ao simulador de jogos vorazes, inicialmente quantos players gostariam de jogar?" \ 
