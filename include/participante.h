@@ -50,7 +50,7 @@ class Participante {
         float get_hidratacao();
         Arma get_arma();
         void adicionar_arma(Arma arma);
-        void muda_regiao_atual(Regiao destino);
+        void muda_regiao(regioes destino);
 
         
         virtual void definir_acao() = 0;

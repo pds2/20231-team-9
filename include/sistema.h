@@ -11,7 +11,7 @@
 
 class Sistema{
     private:
-    Mapa _mapa;
+    //Mapa _mapa;
     //pensei em colocar Participante como ponteiro
     map<string, Participante*> _vivos;
     //map<string, Participante*> _vivos;

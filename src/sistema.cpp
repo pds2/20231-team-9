@@ -57,16 +57,16 @@ void Sistema::criar_bot(string nome, int distrito) {
 //     cout << jogadores[i + 1] << "." << endl; 
 // }
 
-void Sistema::morrer(Participante &fulano) {
-    _mapa.morrer(&fulano);
-    _mortos.push_back(fulano.get_nome());
-    auto pair = _vivos.begin();
-    while(pair != _vivos.end()) {
-        if(pair->first == fulano.get_nome()) {
-            _vivos.erase(pair);
-        }
-    }
-}
+// void Sistema::morrer(Participante &fulano) {
+//     _mapa.morrer(&fulano);
+//     _mortos.push_back(fulano.get_nome());
+//     auto pair = _vivos.begin();
+//     while(pair != _vivos.end()) {
+//         if(pair->first == fulano.get_nome()) {
+//             _vivos.erase(pair);
+//         }
+//     }
+// }
 
 map<string, Participante*> Sistema::get_vivos() {
     return _vivos;

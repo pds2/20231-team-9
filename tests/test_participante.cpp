@@ -12,8 +12,8 @@ TEST_CASE("Testa se os atributos de Participante foram corretamente inicializado
 
 TEST_CASE("Testa se o personagem está na região correta") {
     Jogador p = Jogador("Maria", 8);
-    Regiao _floresta(8,7,2,0,regioes::floresta);
-    p.muda_regiao_atual(_floresta);
+    Regiao _floresta(8,7,2,0,regioes::floresta,2,1);
+    p.muda_regiao(regioes::floresta);
     CHECK_EQ(p.get_atual().get_nome(), regioes::floresta);
 }
 

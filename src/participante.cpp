@@ -80,8 +80,8 @@ void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar
 }
 */
 
-void Participante::muda_regiao_atual(Regiao destino) {
-    _atual = destino;
+void Participante::muda_regiao(regioes destino) {
+    _atual.muda_regiao(destino);
 }
 
 void Participante::batalha(Participante& p) {
