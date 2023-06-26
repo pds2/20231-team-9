@@ -7,6 +7,9 @@
 
 enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas};
 
+class destino_nao_existe_e {};
+class nao_da_para_mudar_para_essa_regiao_e {};
+
 class Regiao{
     private:
     regioes _nome;
@@ -64,7 +67,11 @@ class Regiao{
     /*
      * @brief Converte o enum para as Coordenadas das regiões
      * 
-     * @param enum da região 
+     * @param enum da região
+     * 
+     * @throws lança um erro se o destino não existir
+     * @throws lança um erro se nao for possivel mudar para
+     *         a regiao solicitada 
      */
     void muda_regiao(regioes destino);
 };

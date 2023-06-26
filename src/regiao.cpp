@@ -50,6 +50,10 @@ void Regiao::muda_regiao(regioes destino) {
     switch (destino)
     {
     case centro:
+        bool aux = pode_mudar_de_regiao(2,2);
+        if(aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
         _x = 2;
         _y = 2;
         _chance_agua = 0;
@@ -120,6 +124,7 @@ void Regiao::muda_regiao(regioes destino) {
         break;
     
     default:
+        throw destino_nao_existe_e();
         break;
     }
 }

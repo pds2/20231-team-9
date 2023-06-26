@@ -81,6 +81,7 @@ void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar
 */
 
 void Participante::muda_regiao(regioes destino) {
+    //ainda tenho q colocar aq a função "pode mudar?"
     _atual.muda_regiao(destino);
 }
 
