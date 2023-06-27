@@ -1,6 +1,7 @@
 #include "../third_party/doctest.h"
 #include "../include/regiao.h"
 
+
 TEST_CASE("Testa se os atributos são inicializados") {
     Regiao r = Regiao();
     CHECK(r.get_chance_agua() == 0);
@@ -12,7 +13,7 @@ TEST_CASE("Testa se os atributos são inicializados") {
     CHECK(r.get_y() == 2);
 }
 
-TEST_CASE("Testa se a regiao muda corretamente") {
+TEST_CASE("Testa se a regiao muda corretamente e se os erros são lançados") {
     Regiao r = Regiao();
     std::pair<int,int> meuPair;
     int x,y,agua,comida,arma,remedio;
@@ -48,4 +49,6 @@ TEST_CASE("Testa se a regiao muda corretamente") {
     CHECK(arma == 5);
     CHECK(remedio == 0);
     CHECK(nome == regioes::deserto);
+
+    CHECK_THROWS_AS(r.muda_regiao(floresta),nao_da_para_mudar_para_essa_regiao_e);
 }

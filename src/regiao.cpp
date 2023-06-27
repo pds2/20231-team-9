@@ -65,6 +65,10 @@ void Regiao::muda_regiao(regioes destino) {
         break;
 
     case floresta:
+        aux = pode_mudar_de_regiao(2, 1);
+        if (aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
         _x = 2;
         _y = 1;
         _chance_agua = 8;
@@ -75,6 +79,10 @@ void Regiao::muda_regiao(regioes destino) {
         break;
 
     case pantano:
+        aux = pode_mudar_de_regiao(3, 1);
+        if (aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
         _x = 3;
         _y = 1;
         _chance_agua = 10;
@@ -85,6 +93,10 @@ void Regiao::muda_regiao(regioes destino) {
         break;
 
     case montanhas:
+        aux = pode_mudar_de_regiao(3, 2);
+        if (aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
         _x = 3;
         _y = 2;
         _chance_agua = 4;
@@ -95,6 +107,10 @@ void Regiao::muda_regiao(regioes destino) {
         break;
 
     case deserto:
+        aux = pode_mudar_de_regiao(3, 3);
+        if (aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
         _x = 3;
         _y = 3;
         _chance_agua = 2;
@@ -105,6 +121,10 @@ void Regiao::muda_regiao(regioes destino) {
         break;
 
     case ruinas:
+        aux = pode_mudar_de_regiao(1, 2);
+        if (aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
         _x = 1;
         _y = 2;
         _chance_agua = 0;
@@ -115,6 +135,10 @@ void Regiao::muda_regiao(regioes destino) {
         break;
 
     case campo:
+        aux = pode_mudar_de_regiao(1, 1 );
+        if (aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
         _x = 1;
         _y = 1;
         _chance_agua = 6;
