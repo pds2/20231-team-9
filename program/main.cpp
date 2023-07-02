@@ -70,7 +70,7 @@ int main() {
             cin >> nome;
             cout << "E de qual distrito será esse tributo?" << endl;
             cin >> distrito;
-            participantes.push_back(Jogador(nome, distrito));
+            participantes.push_back(Bot(nome, distrito));
         }
         /*
         * @brief Cria nomes aleatorios e alteraveis para os bots
@@ -78,16 +78,16 @@ int main() {
         * Depois há de se mudar os bots para o tipo bot
         */
         if(desc == 2){
-            participantes.push_back(Jogador("Jorge", 1));
-            participantes.push_back(Jogador("Ana", 1));
-            participantes.push_back(Jogador("Carlos", 1));
-            participantes.push_back(Jogador("Marisa", 1));
-            participantes.push_back(Jogador("Joao o matador", 1));
-            participantes.push_back(Jogador("Junior o esperto", 1));
-            participantes.push_back(Jogador("Eliane", 1));
+            participantes.push_back(Bot("Jorge", 1));
+            participantes.push_back(Bot("Ana", 1));
+            participantes.push_back(Bot("Carlos", 1));
+            participantes.push_back(Bot("Marisa", 1));
+            participantes.push_back(Bot("Joao o matador", 1));
+            participantes.push_back(Bot("Junior o esperto", 1));
+            participantes.push_back(Bot("Eliane", 1));
             while (quantidade - 12 > 0){
                 int i = 2;
-                participantes.push_back(Jogador("Jorge " + i, 1));
+                participantes.push_back(Bot("Jorge " + i, 1));
                 i++;
             }
         }

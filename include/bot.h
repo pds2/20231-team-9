@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Bot : public Participante {
+class Bot : public Jogador {
     public:
         /*
         * @brief Construtor
