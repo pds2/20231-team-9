@@ -41,10 +41,10 @@ Arma Participante::get_arma() {
 }
 
 void Participante::imprime_qntd_utensilios() {
-    std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
-    std::cout << "1) " << to_string(qntd_agua) << "água(s)" << std::endl;
-    std::cout << "2) " << to_string(qntd_comida) << "comida(s)" << std::endl;
-    std::cout << "3) " << to_string(qntd_remedio) << "remédio(s)" << std::endl;
+    //std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
+    std::cout << "Água: " << to_string(qntd_agua) << std::endl;
+    std::cout << "Comida: " << to_string(qntd_comida) << std::endl;
+    std::cout << "Remédio: " << to_string(qntd_remedio) << std::endl;
 
 }
 
@@ -170,7 +170,7 @@ void Participante::buscar_na_regiao() {
         qntd_comida++;
     }
 
-    if(chance_arma > _atual.get_chance_arma()) {
+    if(chance_arma < _atual.get_chance_arma()) {
         int qual_arma = rand() % 10 + 1;
         if(qual_arma <= 4) {
             Arma _faca(faca);
