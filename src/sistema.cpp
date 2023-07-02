@@ -1,6 +1,7 @@
 #include "../include/sistema.h"
 
 #include <iostream>
+#include <set>
 
 void Sistema::criar_jogador(string nome, int distrito) {
     //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
@@ -23,6 +24,7 @@ void Sistema::criar_jogador(string nome, int distrito) {
 
     Jogador *novo_jogador = new Jogador(nome, distrito);
     _vivos[nome] = novo_jogador;
+    _mapa.inicio(novo_jogador);
     // _vivos[nome] = Participante(nome,distrito);
     // _vivos.push_back(Participante(nome, distrito));
 }
@@ -42,6 +44,17 @@ void Sistema::criar_bot(string nome, int distrito) {
 
     Bot *novo_bot = new Bot(nome, distrito);
     _vivos[nome] = novo_bot;
+}
+
+void Sistema::inicio() {
+    cout << "O jogo começou! Jogadores estão no centro!" << endl;
+    cout << "Nossos jogadores são: ";
+    set<Participante *> jogadores = _mapa.get_participantes_centro();
+    auto it = jogadores.begin();
+    while(it != jogadores.end()) {
+        cout << (*it)->get_nome() << endl;
+        it = next(it);
+    }
 }
 
 // void Sistema::inicio() {

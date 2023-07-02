@@ -1,6 +1,8 @@
 #ifndef PDS2_MAPA_H
 #define PDS2_MAPA_H
 
+#include <set>
+
 #include "participante.h"
 #include "jogador.h"
 #include "bot.h"
@@ -13,14 +15,22 @@ class destino_invalido_e{};
 
 class Mapa {
     private:
-        vector<string> _td_mundo;
-        vector<string> _centro;
-        vector<string> _floresta;
-        vector<string> _deserto;
-        vector<string> _pantano;
-        vector<string> _campo;
-        vector<string> _montanhas;
-        vector<string> _ruinas;
+        set<Participante *> _td_mundo;
+        set<Participante *> _centro;
+        set<Participante *> _floresta;
+        set<Participante *> _deserto;
+        set<Participante *> _pantano;
+        set<Participante *> _campo;
+        set<Participante *> _montanhas;
+        set<Participante *> _ruinas;
+        // vector<string> _td_mundo;
+        // vector<string> _centro;
+        // vector<string> _floresta;
+        // vector<string> _deserto;
+        // vector<string> _pantano;
+        // vector<string> _campo;
+        // vector<string> _montanhas;
+        // vector<string> _ruinas;
 
     public:
     /*
@@ -30,39 +40,39 @@ class Mapa {
     /**
      * @brief retorna um vetor embaralhado com todo mundo
     */
-   vector<string> get_td_mundo();
+   set<Participante *> get_td_mundo();
     /*
     * @brief retorna um vetor embaralhado com os participantes no centro
     */
-    vector<string> get_participantes_centro();
+    set<Participante *> get_participantes_centro();
     /*
     * @brief retorna um vetor embaralhado com os participantes na floresta
     */
-    vector<string> get_participantes_floresta();
+    set<Participante *> get_participantes_floresta();
     /*
     * @brief retorna um vetor embaralhado com os participantes no deserto
     */
-    vector<string> get_participantes_deserto();
+    set<Participante *> get_participantes_deserto();
     /*
     * @brief retorna um vetor embaralhado com os participantes no pantano
     */
-    vector<string> get_participantes_pantano();
+    set<Participante *> get_participantes_pantano();
     /*
     * @brief retorna um vetor embaralhado com os participantes no campo
     */
-    vector<string> get_participantes_campo();
+    set<Participante *> get_participantes_campo();
     /*
     * @brief retorna um vetor embaralhado com os participantes nas montanhas
     */
-    vector<string> get_participantes_montanhas();
+    set<Participante *> get_participantes_montanhas();
     /*
     * @brief retorna um vetor embaralhado com os participantes nas ruínas
     */
-    vector<string> get_participantes_ruinas();
+    set<Participante *> get_participantes_ruinas();
     /*
     * @brief Inicia o Jogo colocando os participantes no Centro
     */
-    void inicio(map<string,Participante*> vivos);
+    void inicio(Participante *p);
     /*
     * @brief Remove o participante do map de vivos e insere ele
              no vetor com os nomes dos mortos
