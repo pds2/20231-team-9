@@ -45,6 +45,11 @@ class Sistema{
      * @brief Realiza uma rodada com os jogadores vivos
     */
    void Rodada();
+   /**
+    * @brief Retorna um vetor embaralhado com os nomes dos participantes 
+    *        que estão vivos
+   */
+   vector<string> EmbaralhaParticipantesVivos();
 };
 
 #endif

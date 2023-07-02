@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <set>
+#include <algorithm>
+#include <random>
 
 void Sistema::criar_jogador(string nome, int distrito) {
     //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
@@ -83,6 +85,45 @@ void Sistema::inicio() {
 
 map<string, Participante*> Sistema::get_vivos() {
     return _vivos;
+}
+
+vector<string> Sistema::EmbaralhaParticipantesVivos() {
+    vector<string> v;
+    // Coloca o os jogadores que estão vivos no vetor:
+    auto pair = _vivos.begin();
+    while(pair != _vivos.end()) {
+        if(pair->second->get_vivo() == true) {
+            v.push_back(pair->second->get_nome());
+        }
+    }
+
+    // Criar um gerador de números aleatórios
+    random_device rd;
+    mt19937 g(rd());
+
+    // Embaralhar o vetor usando a função std::shuffle
+    shuffle(v.begin(), v.end(), g);
+
+    return v;
+}
+
+void Sistema::Rodada() {
+    //Pegando Vetor com os Jogadores embaralhados:
+    vector<string> participantes = EmbaralhaParticipantesVivos();
+
+    //Percorrendo:
+    for(string participante : participantes) {
+        Participante *ParticipanteDaVez;
+        //Procurando o participante da vez
+        auto pair = _vivos.begin();
+        while(pair != _vivos.end()) {
+            if(pair->second->get_nome() == participante) {
+                ParticipanteDaVez == pair->second;
+            }
+        }
+        //Definindo a ação:
+        ParticipanteDaVez->definir_acao();
+    } 
 }
 
 // void Sistema::Rodada() {
