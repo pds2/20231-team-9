@@ -15,7 +15,7 @@ class destino_invalido_e{};
 
 class Mapa {
     private:
-        set<Participante *> _td_mundo;
+        // set<Participante *> _td_mundo;
         set<Participante *> _centro;
         set<Participante *> _floresta;
         set<Participante *> _deserto;
@@ -40,7 +40,7 @@ class Mapa {
     /**
      * @brief retorna um vetor embaralhado com todo mundo
     */
-   set<Participante *> get_td_mundo();
+//    set<Participante *> get_td_mundo();
     /*
     * @brief retorna um vetor embaralhado com os participantes no centro
     */

@@ -13,9 +13,9 @@ Regiao Ruinas(0,2,5,4,regioes::ruinas,1,2);
 
 Mapa::Mapa() {}
 
-set<Participante *> Mapa::get_td_mundo() {
-    return _td_mundo;
-}
+// set<Participante *> Mapa::get_td_mundo() {
+//     return _td_mundo;
+// }
 set<Participante *> Mapa::get_participantes_centro() {
     return _centro;
 }
