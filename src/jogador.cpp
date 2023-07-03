@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Jogador::Jogador(string nome, int distrito) : Participante(nome, distrito) { }
+Jogador::Jogador(string nome) : Participante(nome) { }
 
 void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
     cout << endl << "---------------------------------------------------------------------------" << endl;

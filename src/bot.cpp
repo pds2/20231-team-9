@@ -1,7 +1,7 @@
 #include "../include/bot.h"
 #include <cstdlib>
 
-Bot::Bot(string nome, int distrito) : Jogador(nome,distrito) {}
+Bot::Bot(string nome) : Jogador(nome) {}
 
 // void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu){
 //     if (get_hidratacao() < 60){

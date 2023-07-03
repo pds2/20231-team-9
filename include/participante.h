@@ -25,7 +25,6 @@ class Participante {
         int _id;
         string _nome;
         bool _vivo;
-        int _distrito;
         float _energia;
         float _hidratacao;
         Regiao _regiao_atual;
@@ -38,15 +37,11 @@ class Participante {
         /*
          * @brief um participante, inicializando os dados
          */
-        Participante(string nome, int distrito);
+        Participante(string nome);
         /**
          * @brief Retorna o nome do participante
         */
         string get_nome() const;
-        /**
-         * @brief Retorna o distrito do participante
-        */
-        int get_distrito() const;
         /**
          * @brief Retorna 'True' se o participante está vivo e 'False'
          *        se ele está morto

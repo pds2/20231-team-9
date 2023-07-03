@@ -5,7 +5,7 @@ TEST_CASE("Testa a saída quando a ação de um jogador é chamada"){
     cout << "------------------------------------------------------------------" << endl;
     cout << "Saída de imprime_status" << endl;
 
-    Jogador p = Jogador("Maria", 8);
+    Jogador p = Jogador("Maria");
     p.imprime_status();
     cout << "------------------------------------------------------------------" << endl;
 

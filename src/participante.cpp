@@ -1,9 +1,8 @@
 #include "../include/participante.h"
 #define stringify( name ) # name
 
-Participante::Participante(string nome, int distrito) : _arma(armas::desarmado) {
+Participante::Participante(string nome) : _arma(armas::desarmado) {
     _nome = nome;
-    _distrito = distrito;
     _vivo = true;
     _energia = 100;
     _hidratacao = 100;
@@ -15,10 +14,6 @@ Participante::Participante(string nome, int distrito) : _arma(armas::desarmado) 
 
 string Participante::get_nome() const {
     return _nome;
-}
-
-int Participante::get_distrito() const {
-    return _distrito;
 }
 
 bool Participante::get_vivo() const {
@@ -82,18 +77,18 @@ void Participante::muda_regiao(regioes destino) {
 }
 
 void Participante::batalha(Participante& p) {
-    std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " atacou o jogador " << p.get_nome() << " do distrito " << p.get_distrito() << std::endl;
+    std::cout << "O jogador " << get_nome() << " atacou o jogador " << p.get_nome() << std::endl;
     Arma arma_escolhida_atacante = _arma;
     Arma arma_escolhida_defesa = p._arma;
 
     if(arma_escolhida_atacante.get_poder() > arma_escolhida_defesa.get_poder()) {
         p._vivo = false;
-        std::cout << "O jogador " << p.get_nome() << " do distrito " << p.get_distrito() << " foi morto" << std::endl;
+        std::cout << "O jogador " << p.get_nome() << " foi morto" << std::endl;
         _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
 
     } else if(arma_escolhida_atacante.get_poder() < arma_escolhida_defesa.get_poder()) {
         _vivo = false;
-        std::cout << "O jogador " << get_nome() << " do distrito " << get_distrito() << " foi morto" << std::endl;
+        std::cout << "O jogador " << get_nome() << " foi morto" << std::endl;
         p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
     } else {
         _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());

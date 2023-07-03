@@ -11,7 +11,7 @@ Sistema::Sistema() {
     contador_vivos_ = 0;
 }
 
-void Sistema::criar_jogador(string nome, int distrito) {
+void Sistema::criar_jogador(string nome) {
     //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
     // for(Participante& this_one : _vivos) {
     //     if(nome == this_one.get_nome()) {
@@ -25,12 +25,8 @@ void Sistema::criar_jogador(string nome, int distrito) {
         }
         pair = next(pair);
     }
-    
-    if(distrito > 12 || distrito < 1) {
-        throw distrito_invalido_e();
-    }
 
-    Jogador *novo_jogador = new Jogador(nome, distrito);
+    Jogador *novo_jogador = new Jogador(nome);
     participantes_[nome] = novo_jogador;
     contador_vivos_++;
     // _vivos[nome] = Participante(nome,distrito);
@@ -46,7 +42,7 @@ void Sistema::criar_jogador(string nome, int distrito) {
 //         participantes_[nome_bot] = novo_bot;
 //     }
 // }
-void Sistema::criar_bot(string nome, int distrito) {
+void Sistema::criar_bot(string nome) {
     auto pair = participantes_.begin();
     while(pair != participantes_.end()) {
         if(nome == pair->first) {
@@ -54,12 +50,8 @@ void Sistema::criar_bot(string nome, int distrito) {
         }
         pair = next(pair);
     }
-    
-    if(distrito > 12 || distrito < 1) {
-        throw distrito_invalido_e();
-    }
 
-    Jogador *novo_bot = new Jogador(nome, distrito);
+    Jogador *novo_bot = new Jogador(nome);
     participantes_[nome] = novo_bot;
     contador_vivos_++;
 }

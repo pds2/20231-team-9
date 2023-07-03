@@ -12,7 +12,7 @@ class Jogador : public Participante {
         /*
         * @brief Construtor
         */
-        Jogador(string nome, int distrito);
+        Jogador(string nome);
         /*
         * @brief Lê do usuário um comando para definir a ação do respectivo participante
         */
