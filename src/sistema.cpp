@@ -51,7 +51,7 @@ void Sistema::criar_bot(string nome) {
         pair = next(pair);
     }
 
-    Jogador *novo_bot = new Jogador(nome);
+    Bot *novo_bot = new Bot(nome);
     participantes_[nome] = novo_bot;
     contador_vivos_++;
 }
@@ -64,6 +64,7 @@ void Sistema::inicio() {
     while(it != participantes_.end()) {
         cout << it->second->get_nome() << endl;
         it = next(it);
+        cout << endl << endl;
     }
 }
 
@@ -133,7 +134,7 @@ set<Participante*> Sistema::ParticipanteNaMesmaRegiao(Participante* fulano) {
 
 void Sistema::Rodada() {
     // Pegando vetor com os jogadores embaralhados:
-    cout << "hello";
+    cout << "Iniciando uma rodada!" << endl << endl;
 
     vector<Participante*> participantes = EmbaralhaParticipantesVivos();
 
@@ -167,10 +168,10 @@ void Sistema::Jogo() {
     //Chama Rodadas até ter apenas um participante vivo:
     while (contador_vivos_ > 1) {
         //Informa o Dia em que a rodada acontece
-        cout << "Dia " << contador_dias_ << ":" << endl;
+        cout << "Dia " << contador_dias_ << ":" << endl << endl;;
        
         Rodada();
-        cout <<"alo2";
+        cout <<"Início do dia!" << endl << endl;
         contador_dias_++;
 
         // Roda uma rodada "Noite" a não ser q sobre apenas um participante

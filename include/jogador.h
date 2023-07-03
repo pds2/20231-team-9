@@ -7,6 +7,8 @@
 
 using namespace std;
 
+class comando_invalido_e{};
+
 class Jogador : public Participante {
     public:
         /*
@@ -17,7 +19,7 @@ class Jogador : public Participante {
         * @brief Lê do usuário um comando para definir a ação do respectivo participante
         */
         void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) override;
-        void imprime_status();
+        void imprime_status(set<Participante*> Msm_Regiao_Q_Eu);
 };
 
 #endif

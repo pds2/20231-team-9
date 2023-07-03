@@ -16,8 +16,8 @@ int main() {
     */
     
     while(true){
-        cout << "Seja Bem vindo ao simulador de jogos vorazes, inicialmente quantos players gostariam de jogar?" \ 
-        << endl << "digite um número de 1 a 5" << endl;
+        cout << "Seja Bem vindo ao simulador de jogos vorazes, inicialmente quantos players gostariam de jogar?" \
+        << endl << "Digite um número de 1 a 5:" << endl;
         int quantidade = 0;
         /*
         * @brief da um check para ver se está valida a quantidade de pessoas.
@@ -26,7 +26,7 @@ int main() {
         while(true){
             cin >> quantidade;
             if(quantidade > 5 || quantidade < 1){
-                cout << "Desculpe, a quantidade inserida não é valida, digite outro numero" << endl;
+                cout << "Desculpe, a quantidade inserida não é valida, digite outro número" << endl;
             }
             else{
                 break;
@@ -35,7 +35,7 @@ int main() {
         /*
         * @brief Cria string e int discartaveis e constroi o participante dentro de um vetor de jogadores
         */
-        cout <<"Okay, está na hora de nomear os jogadores" << endl;
+        cout <<"Está na hora de nomear os jogadores!" << endl;
         for(int i = 0; i < quantidade; i++){
             string nome;
             cout << "Qual é o nome do jogador " << i + 1 << "?" << endl;
@@ -47,8 +47,8 @@ int main() {
         * @brief Setta a quantidade de bots baseado em uma quantidade total de players em 12
         * Essa quantidade total de players pode ser alterada
         */
-        cout << "Muito bem, agora você deseja criar os nomes e distritos dos bots, ou deseja que a maquina decida?" \
-        << endl<< "Digite 1 para você escolher e 2 para deixar a maquina" << endl;
+        cout << "Certo, agora você deseja nomear os bots, ou deseja que a maquina decida?" \
+        << endl << "Digite 1 para você escolher e 2 para deixar a maquina decidir." << endl << endl;
         int desc;
         while(true){
             cin >> desc;
@@ -64,12 +64,9 @@ int main() {
         if(desc == 1){
             for(int i = 0; i < (12 - quantidade); i++){
             string nome;
-            int distrito;
             cout << "Qual é o nome do Bot " << i + quantidade + 1 << "?" << endl;
             cin >> nome;
-            cout << "E de qual distrito será esse tributo?" << endl;
-            cin >> distrito;
-            jogo.criar_jogador(nome);
+            jogo.criar_bot(nome);
             participantes.push_back(Jogador(nome));
         }}
         /*
@@ -79,17 +76,17 @@ int main() {
         */
         if(desc == 2){
             jogo.criar_bot("Jorginho");
-            jogo.criar_jogador("Ana");
-            jogo.criar_jogador("Carlos");
-            jogo.criar_jogador("Marisa");
-            jogo.criar_jogador("Joao o matador");
-            jogo.criar_jogador("Junior o esperto");
-            jogo.criar_jogador("Eliane");
+            jogo.criar_bot("Ana");
+            jogo.criar_bot("Carlos");
+            jogo.criar_bot("Marisa");
+            jogo.criar_bot("João Matador");
+            jogo.criar_bot("Júnior Espertinho");
+            jogo.criar_bot("Eliane");
             int j = quantidade + 7;
             int i = 2;
             while(j < 12){
-                string nome_desc = "jorge" + std::to_string(i);
-                jogo.criar_jogador(nome_desc);
+                string nome_desc = "Jorge " + std::to_string(i);
+                jogo.criar_bot(nome_desc);
                 i++;
                 j++;
         }

@@ -17,7 +17,7 @@ class Bot : public Jogador {
         /*
         * @brief Define a ação do bot a partir de parâmetros pré-definidos
         */
-        // void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) override;
+        void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) override;
 };
 
 #endif

@@ -144,6 +144,8 @@ void Participante::consumir_utensilios_remedio(int a_consumir) {
 }
 
 void Participante::buscar_na_regiao() {
+    _energia -= 20;
+    _hidratacao -= 20;
     float chance_agua = rand() % 10 + 1;
     float chance_comida = rand() % 10 + 1;
     float chance_remedio = rand() % 10 + 1;

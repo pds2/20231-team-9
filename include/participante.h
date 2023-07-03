@@ -23,15 +23,16 @@ class utensilio_invalido_e {};
 class Participante {
     private:
         int _id;
-        string _nome;
-        bool _vivo;
-        float _energia;
-        float _hidratacao;
-        Regiao _regiao_atual;
-        Arma _arma;
         int qntd_agua;
         int qntd_comida;
         int qntd_remedio;
+        float _energia;
+        float _hidratacao;
+        bool _vivo;
+        string _nome;
+        Regiao _regiao_atual;
+        Arma _arma;
+
 
     public:
         /*

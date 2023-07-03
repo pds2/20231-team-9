@@ -11,17 +11,27 @@ Jogador::Jogador(string nome) : Participante(nome) { }
 void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
     cout << endl << "---------------------------------------------------------------------------" << endl;
     cout << get_nome() << ", é sua vez de jogar!" << endl;
-    imprime_status();
+    imprime_status(Msm_Regiao_Q_Eu);
     char comando;
     string escolha;
+    bool encontrou = 0;
     cin >> comando;
     switch (comando){
         case 'a': //atacar
             cin >> escolha;
-
+            for (auto pessoa : Msm_Regiao_Q_Eu){
+                if (pessoa->get_nome() == escolha) batalha(*pessoa);
+                encontrou = 1;
+            }
+            if(encontrou == 0){
+                cout << "Jogador nao encontrado" << endl;
+            }
+            //throw comando_invalido_e{};
             break;
+
         case 'm': //mover
-            //muda_regiao_atual(destino);
+
+            //muda_regiao(escolha));
             break;
 
         case 'b': //buscar elementos
@@ -29,8 +39,13 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
             break;
         case 'u': //usar utensílio
             cin >> escolha;
-            consumir_utensilio(escolha, 1);
+            if ((escolha == "agua") || (escolha == "remedio") || escolha == "comida"){
+                consumir_utensilio(escolha, 1);
+            } else {
+                throw comando_invalido_e{};
+            }
             break;
+
         /*┌──────────────────────┬───────────────────────┬────────────────────┐
 │░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░│
 │░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░│
@@ -64,12 +79,16 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
     }
 }
 
-void Jogador::imprime_status() {
+void Jogador::imprime_status(set<Participante*> Msm_Regiao_Q_Eu) {
     cout << "STATUS:" << endl;
     cout << "Energia: " << get_energia() << "/100" << endl;
     cout << "Hidratação: " << get_hidratacao() << "/100" << endl;
 
     cout << "Você está na região " << get_Regiao_Atual().get_nome() << "." << endl << endl;
+    cout << "Estão na mesma região que você:" << endl;
+    for (auto i: Msm_Regiao_Q_Eu){
+        cout << i->get_nome() << endl;
+    }
 
     cout << "Seu inventário:" << endl;
     imprime_qntd_utensilios();
@@ -80,5 +99,4 @@ void Jogador::imprime_status() {
     cout << "Atacar: Batalha com outro participante." << endl;
     cout << "Buscar: Procura por recursos na região." << endl;
     cout << "Usar: Consome um item." << endl << endl;
-    cout << "Comando: ";
 }
