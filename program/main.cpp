@@ -9,7 +9,8 @@ int main() {
         */
     vector<Jogador> participantes;
 
-    Sistema tudo;
+    Sistema jogo;
+    Mapa map;
     /*
     * @brief O jogo inteiro roda em um grande while com um break no final
     * Tentar tratar a maior quantidade de casos para o jogo não quebrar e sair do while
@@ -43,7 +44,7 @@ int main() {
             cin >> nome;
             cout << "E de qual distrito será esse tributo?" << endl;
             cin >> distrito;
-            participantes.push_back(Jogador(nome, distrito));
+            jogo.criar_jogador(nome, distrito);
         }
         /*
         * @brief Setta a quantidade de bots baseado em uma quantidade total de players em 12
@@ -70,7 +71,7 @@ int main() {
             cin >> nome;
             cout << "E de qual distrito será esse tributo?" << endl;
             cin >> distrito;
-            participantes.push_back(Bot(nome, distrito));
+            jogo.criar_bot(nome, distrito);
         }
         /*
         * @brief Cria nomes aleatorios e alteraveis para os bots
@@ -78,13 +79,13 @@ int main() {
         * Depois há de se mudar os bots para o tipo bot
         */
         if(desc == 2){
-            participantes.push_back(Bot("Jorge", 1));
-            participantes.push_back(Bot("Ana", 1));
-            participantes.push_back(Bot("Carlos", 1));
-            participantes.push_back(Bot("Marisa", 1));
-            participantes.push_back(Bot("Joao o matador", 1));
-            participantes.push_back(Bot("Junior o esperto", 1));
-            participantes.push_back(Bot("Eliane", 1));
+            jogo.criar_bot("Jorge", 1);
+            jogo.criar_bot("Ana", 1);
+            jogo.criar_bot("Carlos", 1);
+            jogo.criar_bot("Marisa", 1);
+            jogo.criar_bot("Joao o matador", 1);
+            jogo.criar_bot("Junior o esperto", 1);
+            jogo.criar_bot("Eliane", 1);
             while (quantidade - 12 > 0){
                 int i = 2;
                 participantes.push_back(Bot("Jorge " + i, 1));
@@ -92,6 +93,8 @@ int main() {
             }
         }
         }
+        jogo.inicio();
+    
 
 
 
