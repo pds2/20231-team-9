@@ -5,6 +5,12 @@
 #include <algorithm>
 #include <random>
 
+Sistema::Sistema() {
+    contador_dias_ = 1;
+    contador_noites_ = 1;
+    contador_vivos_ = 0;
+}
+
 void Sistema::criar_jogador(string nome, int distrito) {
     //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
     // for(Participante& this_one : _vivos) {
@@ -27,6 +33,7 @@ void Sistema::criar_jogador(string nome, int distrito) {
     Jogador *novo_jogador = new Jogador(nome, distrito);
     _vivos[nome] = novo_jogador;
     _mapa.inicio(novo_jogador);
+    contador_vivos_++;
     // _vivos[nome] = Participante(nome,distrito);
     // _vivos.push_back(Participante(nome, distrito));
 }
@@ -46,6 +53,7 @@ void Sistema::criar_bot(string nome, int distrito) {
 
     Bot *novo_bot = new Bot(nome, distrito);
     _vivos[nome] = novo_bot;
+    contador_vivos_++;
 }
 
 void Sistema::inicio() {
@@ -107,6 +115,21 @@ vector<string> Sistema::EmbaralhaParticipantesVivos() {
     return v;
 }
 
+set<Participante*> Sistema::ParticipanteNaMesmaRegiao(Participante* fulano) {
+    set<Participante*> s;
+
+    // busco o nome(enum) da regiao atual do participante
+    regioes r = fulano->get_Regiao_Atual().get_nome();
+
+    auto pair = _vivos.begin();
+    while(pair != _vivos.end()) {
+        if(pair->second->get_Regiao_Atual().get_nome() == r) {
+            s.insert(pair->second);
+        }
+    }
+    return s;
+}
+
 void Sistema::Rodada() {
     //Pegando Vetor com os Jogadores embaralhados:
     vector<string> participantes = EmbaralhaParticipantesVivos();
@@ -121,9 +144,32 @@ void Sistema::Rodada() {
                 ParticipanteDaVez == pair->second;
             }
         }
-        //Definindo a ação:
-        ParticipanteDaVez->definir_acao();
+
+        // Definindo a ação:
+
+        // Recolhendo um set com os participantes na mesma regiao que
+        // o jogador da vez:
+        set<Participante*> s = ParticipanteNaMesmaRegiao(ParticipanteDaVez);
+        ParticipanteDaVez->definir_acao(s);
     } 
+}
+
+void Sistema::Jogo() {
+    //Chama Rodadas até ter apenas um participante vivo:
+    while (contador_noites_ > 1) {
+        //Informa o Dia em que a rodada acontece
+        cout << "Dia " << contador_dias_ << ":" << endl;
+        Rodada();
+        contador_dias_++;
+
+        // Roda uma rodada "Noite" a não ser q sobre apenas um participante
+        // do "Dia" anterior
+        if(contador_vivos_ > 1) {
+            cout << "Noite " << contador_noites_ << ":" << endl;
+            Rodada();
+            contador_noites_++;
+        }
+    }
 }
 
 // void Sistema::Rodada() {

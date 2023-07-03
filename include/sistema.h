@@ -16,8 +16,15 @@ class Sistema{
     map<string, Participante*> _vivos;
     //map<string, Participante*> _vivos;
     vector<string> _mortos;
+    unsigned int contador_dias_;
+    unsigned int contador_noites_;
+    unsigned int contador_vivos_;
 
     public:
+    /**
+     * @brief Construtor
+    */
+   Sistema();
     /*
      * @brief Cria um jogador recebendo nome, idade e destrito
      * @throws Lança uma excessão se destrito > 12
@@ -46,10 +53,19 @@ class Sistema{
     */
    void Rodada();
    /**
+    * @brief Realiza um Jogo com um Conjunto de Rodadas
+   */
+  void Jogo();
+   /**
     * @brief Retorna um vetor embaralhado com os nomes dos participantes 
     *        que estão vivos
    */
    vector<string> EmbaralhaParticipantesVivos();
+   /**
+    * @brief Retorna um set com os participantes na mesma Região que o
+    *        Participante escolhido
+   */
+  set<Participante*> ParticipanteNaMesmaRegiao(Participante* fulano);
 };
 
 #endif

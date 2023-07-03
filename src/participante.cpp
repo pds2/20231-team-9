@@ -105,8 +105,8 @@ void Participante::batalha(Participante& p) {
     }
 }
 
-regioes Participante::get_regiao_atual() {
-    return _atual.get_nome();
+Regiao Participante::get_Regiao_Atual() {
+    return _atual;
 }
 
 void Participante::consumir_utensilio(std::string utensilio, int qntd) {
