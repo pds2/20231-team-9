@@ -71,6 +71,7 @@
         "xlocmes": "cpp",
         "xlocmon": "cpp",
         "xloctime": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "functional": "cpp"
     }
 }

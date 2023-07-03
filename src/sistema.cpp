@@ -51,7 +51,7 @@ void Sistema::criar_bot(string nome, int distrito) {
         throw distrito_invalido_e();
     }
 
-    Bot *novo_bot = new Bot(nome, distrito);
+    Jogador *novo_bot = new Jogador(nome, distrito);
     participantes_[nome] = novo_bot;
     contador_vivos_++;
     _mapa.inicio(novo_bot);

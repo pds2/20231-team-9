@@ -45,6 +45,7 @@ int main() {
             cout << "E de qual distrito será esse tributo?" << endl;
             cin >> distrito;
             jogo.criar_jogador(nome, distrito);
+            participantes.push_back(Jogador(nome, distrito));
         }
         /*
         * @brief Setta a quantidade de bots baseado em uma quantidade total de players em 12
@@ -52,7 +53,7 @@ int main() {
         */
         cout << "Muito bem, agora você deseja criar os nomes e distritos dos bots, ou deseja que a maquina decida?" \
         << endl<< "Digite 1 para você escolher e 2 para deixar a maquina" << endl;
-        int desc = -1;
+        int desc;
         while(true){
             cin >> desc;
             if(desc > 2 || desc < 1){
@@ -61,6 +62,7 @@ int main() {
             else{
                 break;
             }
+            
         }
         
         if(desc == 1){
@@ -71,33 +73,39 @@ int main() {
             cin >> nome;
             cout << "E de qual distrito será esse tributo?" << endl;
             cin >> distrito;
-            jogo.criar_bot(nome, distrito);
-        }
+            jogo.criar_jogador(nome, distrito);
+            participantes.push_back(Jogador(nome, distrito));
+        }}
         /*
         * @brief Cria nomes aleatorios e alteraveis para os bots
         * Novamente baseado em 12 pessoas sendo isso alteravél
         * Depois há de se mudar os bots para o tipo bot
         */
         if(desc == 2){
-            jogo.criar_bot("Jorge", 1);
-            jogo.criar_bot("Ana", 1);
-            jogo.criar_bot("Carlos", 1);
-            jogo.criar_bot("Marisa", 1);
-            jogo.criar_bot("Joao o matador", 1);
-            jogo.criar_bot("Junior o esperto", 1);
-            jogo.criar_bot("Eliane", 1);
-            while (quantidade - 12 > 0){
-                int i = 2;
-                participantes.push_back(Bot("Jorge " + i, 1));
+            jogo.criar_bot("Jorginho", 1);
+            jogo.criar_jogador("Ana", 1);
+            jogo.criar_jogador("Carlos", 1);
+            jogo.criar_jogador("Marisa", 1);
+            jogo.criar_jogador("Joao o matador", 1);
+            jogo.criar_jogador("Junior o esperto", 1);
+            jogo.criar_jogador("Eliane", 1);
+            int j = quantidade + 7;
+            int i = 2;
+            while(j < 12){
+                string nome_desc = "jorge" + std::to_string(i);
+                jogo.criar_jogador(nome_desc, 1);
                 i++;
-            }
+                j++;
         }
-        }
+        
         jogo.inicio();
-    
+        jogo.Jogo();
+        
+        
 
 
 
+        }
     break;
     }
     return 0;
