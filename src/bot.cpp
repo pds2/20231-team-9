@@ -3,7 +3,7 @@
 
 Bot::Bot(string nome, int distrito) : Participante(nome,distrito) {}
 
-void Bot::definir_acao(){
+void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu){
     if (get_hidratacao() < 60){
         //consumir_utensilios();
         //A função deve ser específica para cada utensílio,

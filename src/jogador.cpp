@@ -2,12 +2,13 @@
 
 #include <iostream>
 #include <string>
+#include <set>
 
 using namespace std;
 
 Jogador::Jogador(string nome, int distrito) : Participante(nome, distrito) { }
 
-void Jogador::definir_acao() {
+void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
     cout << endl << "---------------------------------------------------------------------------" << endl;
     cout << get_nome() << ", é sua vez de jogar!" << endl;
     imprime_status();

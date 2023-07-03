@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 
 #include "armas.h"
 // #include "utensilios.h"
@@ -54,7 +55,7 @@ class Participante {
         
 
         
-        virtual void definir_acao() = 0;
+        virtual void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) = 0;
         /*
          * @brief simula a batalha entre o participante corrente com um outro participante p
          */
@@ -63,7 +64,7 @@ class Participante {
         /*
          * @brief retorna o enum com o nome da sua regiao atual 
          */
-        regioes get_regiao_atual();
+        Regiao get_Regiao_Atual();
 
         void imprime_qntd_utensilios();
 
