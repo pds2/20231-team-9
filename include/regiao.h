@@ -5,7 +5,7 @@
 #include <map>
 //#include "participante.h" Essa inclusão cria um loop de includes, e não é utilizado nesse arquivo
 
-enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas};
+enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas, cavernas, savana};
 
 class destino_nao_existe_e {};
 class nao_da_para_mudar_para_essa_regiao_e {};

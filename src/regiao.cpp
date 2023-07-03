@@ -3,6 +3,7 @@
 #include <cmath>
 
 Regiao::Regiao() {
+    //Inicializa, por padrão, a regiao como Centro
     _chance_agua = 0;
     _chance_comida = 0;
     _chance_arma = 9;
@@ -146,6 +147,34 @@ void Regiao::muda_regiao(regioes destino) {
         _chance_arma = 2;
         _chance_remedio = 0;
         _nome = campo;
+        break;
+    
+    case cavernas:
+        aux = pode_mudar_de_regiao(1, 3);
+        if (aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
+        _x = 1;
+        _y = 3;
+        _chance_agua = 7;
+        _chance_comida = 3;
+        _chance_arma = 5;
+        _chance_remedio = 0;
+        _nome = cavernas;
+        break;
+    
+    case savana:
+        aux = pode_mudar_de_regiao(2, 3);
+        if (aux == false) {
+            throw nao_da_para_mudar_para_essa_regiao_e();
+        }
+        _x = 2;
+        _y = 3;
+        _chance_agua = 3;
+        _chance_comida = 6;
+        _chance_arma = 4;
+        _chance_remedio = 1;
+        _nome = savana;
         break;
 
     default:
