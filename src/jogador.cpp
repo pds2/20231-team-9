@@ -69,7 +69,7 @@ void Jogador::imprime_status() {
     cout << "Energia: " << get_energia() << "/100" << endl;
     cout << "Hidratação: " << get_hidratacao() << "/100" << endl;
 
-    cout << "Você está na região " << get_atual().get_nome() << "." << endl << endl;
+    cout << "Você está na região " << get_Regiao_Atual().get_nome() << "." << endl << endl;
 
     cout << "Seu inventário:" << endl;
     imprime_qntd_utensilios();
