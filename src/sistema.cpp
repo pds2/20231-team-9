@@ -142,6 +142,7 @@ void Sistema::Rodada() {
         while(pair != participantes_.end()) {
             if(pair->second->get_nome() == participante) {
                 ParticipanteDaVez == pair->second;
+                break;
             }
         }
 
@@ -156,7 +157,7 @@ void Sistema::Rodada() {
 
 void Sistema::Jogo() {
     //Chama Rodadas até ter apenas um participante vivo:
-    while (contador_noites_ > 1) {
+    while (contador_vivos_ > 1) {
         //Informa o Dia em que a rodada acontece
         cout << "Dia " << contador_dias_ << ":" << endl;
         Rodada();

@@ -16,27 +16,27 @@ Mapa::Mapa() {}
 // set<Participante *> Mapa::get_td_mundo() {
 //     return _td_mundo;
 // }
-set<Participante *> Mapa::get_participantes_centro() {
-    return _centro;
-}
-set<Participante *> Mapa::get_participantes_floresta() {
-    return _floresta;
-}
-set<Participante *> Mapa::get_participantes_deserto() {
-    return _deserto;
-}
-set<Participante *> Mapa::get_participantes_pantano() {
-    return _pantano;
-}
-set<Participante *> Mapa::get_participantes_campo() {
-    return _campo;
-}
-set<Participante *> Mapa::get_participantes_montanhas() {
-    return _montanhas;
-}
-set<Participante *> Mapa::get_participantes_ruinas() {
-    return _ruinas;
-}
+// set<Participante *> Mapa::get_participantes_centro() {
+//     return _centro;
+// }
+// set<Participante *> Mapa::get_participantes_floresta() {
+//     return _floresta;
+// }
+// set<Participante *> Mapa::get_participantes_deserto() {
+//     return _deserto;
+// }
+// set<Participante *> Mapa::get_participantes_pantano() {
+//     return _pantano;
+// }
+// set<Participante *> Mapa::get_participantes_campo() {
+//     return _campo;
+// }
+// set<Participante *> Mapa::get_participantes_montanhas() {
+//     return _montanhas;
+// }
+// set<Participante *> Mapa::get_participantes_ruinas() {
+//     return _ruinas;
+// }
 
 
 // vector<string> Mapa::get_td_mundo() {
