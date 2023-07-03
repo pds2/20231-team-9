@@ -38,6 +38,15 @@ void Sistema::criar_jogador(string nome, int distrito) {
     // _vivos.push_back(Participante(nome, distrito));
 }
 
+// !!! IDEIA DE NOVA FUNÇÃO CRIAR_BOT
+// void Sistema::criar_bot(int n) {
+//     std::string nome_bot = "Bot ";
+//     for(int i = 0; i < n; i++) {
+//         nome_bot += to_string(i+1);
+//         Bot *novo_bot = new Bot(novo_bot);
+//         participantes_[nome_bot] = novo_bot;
+//     }
+// }
 void Sistema::criar_bot(string nome, int distrito) {
     auto pair = participantes_.begin();
     while(pair != participantes_.end()) {
@@ -60,10 +69,10 @@ void Sistema::criar_bot(string nome, int distrito) {
 void Sistema::inicio() {
     cout << "O jogo começou! Jogadores estão no centro!" << endl;
     cout << "Nossos jogadores são: ";
-    set<Jogador *> jogadores = _mapa.get_participantes_centro();
-    auto it = jogadores.begin();
-    while(it != jogadores.end()) {
-        cout << (*it)->get_nome() << endl;
+    // set<Jogador *> jogadores = _mapa.get_participantes_centro();
+    auto it = participantes_.begin();
+    while(it != participantes_.end()) {
+        cout << it->second->get_nome() << endl;
         it = next(it);
     }
 }
