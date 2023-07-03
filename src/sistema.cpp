@@ -32,7 +32,6 @@ void Sistema::criar_jogador(string nome, int distrito) {
 
     Jogador *novo_jogador = new Jogador(nome, distrito);
     participantes_[nome] = novo_jogador;
-    _mapa.inicio(novo_jogador);
     contador_vivos_++;
     // _vivos[nome] = Participante(nome,distrito);
     // _vivos.push_back(Participante(nome, distrito));
@@ -63,7 +62,6 @@ void Sistema::criar_bot(string nome, int distrito) {
     Jogador *novo_bot = new Jogador(nome, distrito);
     participantes_[nome] = novo_bot;
     contador_vivos_++;
-    _mapa.inicio(novo_bot);
 }
 
 void Sistema::inicio() {
