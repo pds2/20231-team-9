@@ -1,5 +1,4 @@
 #include "../include/patrocinador.h"
-#include "../include/mapa.h"
 #include "../include/sistema.h"
 
 Patrocinador::Patrocinador() {

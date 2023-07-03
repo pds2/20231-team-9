@@ -15,7 +15,6 @@ TEST_CASE("Testa se os atributos são inicializados") {
 
 TEST_CASE("Testa se a regiao muda corretamente e se os erros são lançados") {
     Regiao r = Regiao();
-    std::pair<int,int> meuPair;
     int x,y,agua,comida,arma,remedio;
     regioes nome = regioes::centro;
     r.muda_regiao(floresta);
