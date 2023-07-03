@@ -61,7 +61,7 @@ class Sistema{
     * @brief Retorna um vetor embaralhado com os nomes dos participantes 
     *        que estão vivos
    */
-   vector<string> EmbaralhaParticipantesVivos();
+   vector<Participante*> EmbaralhaParticipantesVivos();
    /**
     * @brief Retorna um set com os participantes na mesma Região que o
     *        Participante escolhido

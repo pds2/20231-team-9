@@ -105,12 +105,12 @@ map<string, Participante*> Sistema::get_participantes() {
     return participantes_;
 }
 
-vector<string> Sistema::EmbaralhaParticipantesVivos() {
-    vector<string> v;
+vector<Participante*> Sistema::EmbaralhaParticipantesVivos() {
+    vector<Participante*> v;
     // Coloca os jogadores que estão vivos no vetor:
     for (auto pair = participantes_.begin(); pair != participantes_.end(); ++pair) {
         if (pair->second->get_vivo() == true) {
-            v.push_back(pair->second->get_nome());
+            v.push_back(pair->second);
         }
     }
 
@@ -145,32 +145,27 @@ void Sistema::Rodada() {
     // Pegando vetor com os jogadores embaralhados:
     cout << "hello";
 
-    vector<string> participantes = EmbaralhaParticipantesVivos();
+    vector<Participante*> participantes = EmbaralhaParticipantesVivos();
 
     // Percorrendo:
-    for (string participante : participantes) {
-        Participante* ParticipanteDaVez = nullptr;
-        // Procurando o participante da vez
-        auto pair = participantes_.begin();
-        while (pair != participantes_.end()) {
-            if (pair->second->get_nome() == participante) {
-                ParticipanteDaVez = pair->second;
-                break;
-            }
-            pair = next(pair); // Incrementar o iterador
-        }
-
-        if (ParticipanteDaVez == nullptr) {
-            // O participante da vez não foi encontrado, faça algo para lidar com isso
-            continue; // Ou use break, dependendo do comportamento desejado
-        }
-
+    for (Participante* participante_da_vez : participantes) {
         // Definindo a ação:
 
         // Recolhendo um set com os participantes na mesma região que
         // o jogador da vez:
-        set<Participante*> s = ParticipanteNaMesmaRegiao(ParticipanteDaVez);
-        ParticipanteDaVez->definir_acao(s);
+        set<Participante*> s = ParticipanteNaMesmaRegiao(participante_da_vez);
+        participante_da_vez->definir_acao(s);
+
+        //Atualizando o contador de vivos depois de algm jogar:
+        int aux = 0;
+        auto pair = participantes_.begin();
+        while(pair != participantes_.end()) {
+            if(pair->second->get_vivo() == true) {
+                aux++;
+            }
+            pair = next(pair);
+        }
+        contador_vivos_ = aux;
     }
 }
 
@@ -193,54 +188,3 @@ void Sistema::Jogo() {
         }
     }
 }
-
-// void Sistema::Rodada() {
-//     for(string nome : _mapa.get_td_mundo()) {
-
-//         Participante *jogador;
-//         //achando o jogador da vez
-//         auto pair = _vivos.begin();
-//         while(pair != _vivos.end()) {
-//             if(nome == pair->second.get_nome()) {
-//                 jogador = pair->second;
-//             }
-
-//             cout << nome << ", você está na região " << endl;
-//             cout << endl << "Os jogadores que estão na mesma regiao que voce sao: ";
-
-
-//             //Pergunta o que o jogador quer fazer
-//             cout << nome <<  ", o que voce quer fazer?" << endl;
-//             cout << "1. Atacar." << endl;
-//             cout << "2. Buscar." << endl;
-//             cout << "3. Sei la." << endl;
-
-//             //Realizando Ação:
-//             int resposta;
-//             switch (resposta) {
-//             case 1: // Case Atacar
-//                 cout << "Quem voce quer atacar?" << endl;
-
-//                 //achando o jogador da vez
-//                 auto pair = _vivos.begin();
-//                 while(pair != _vivos.end()) {
-//                     if(nome == pair->second.get_nome()) {
-//                         pair->second.batalha();
-//                     }
-//                 }
-//                 break;
-            
-//             case 2: // Case Buscar
-//                 /* code */
-//                 break;
-            
-//             case 3: // Case Sla
-//                 /* code */
-//                 break;
-
-//             default:
-//                 break;
-//             }
-//         }
-//     }
-// }
