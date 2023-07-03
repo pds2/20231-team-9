@@ -97,15 +97,10 @@ int main() {
                 i++;
                 j++;
         }
-        
+        }
         jogo.inicio();
         jogo.Jogo();
         
-        
-
-
-
-        }
     break;
     }
     return 0;

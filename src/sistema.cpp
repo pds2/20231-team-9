@@ -98,10 +98,9 @@ map<string, Participante*> Sistema::get_participantes() {
 
 vector<string> Sistema::EmbaralhaParticipantesVivos() {
     vector<string> v;
-    // Coloca o os jogadores que estão vivos no vetor:
-    auto pair = participantes_.begin();
-    while(pair != participantes_.end()) {
-        if(pair->second->get_vivo() == true) {
+    // Coloca os jogadores que estão vivos no vetor:
+    for (auto pair = participantes_.begin(); pair != participantes_.end(); ++pair) {
+        if (pair->second->get_vivo() == true) {
             v.push_back(pair->second->get_nome());
         }
     }
@@ -116,44 +115,54 @@ vector<string> Sistema::EmbaralhaParticipantesVivos() {
     return v;
 }
 
+
 set<Participante*> Sistema::ParticipanteNaMesmaRegiao(Participante* fulano) {
     set<Participante*> s;
 
-    // busco o nome(enum) da regiao atual do participante
+    // Busco o nome (enum) da região atual do participante
     regioes r = fulano->get_Regiao_Atual().get_nome();
 
-    auto pair = participantes_.begin();
-    while(pair != participantes_.end()) {
-        if(pair->second->get_Regiao_Atual().get_nome() == r) {
+    for (auto pair = participantes_.begin(); pair != participantes_.end(); ++pair) {
+        if (pair->second->get_Regiao_Atual().get_nome() == r) {
             s.insert(pair->second);
         }
     }
+
     return s;
 }
 
+
 void Sistema::Rodada() {
-    //Pegando Vetor com os Jogadores embaralhados:
+    // Pegando vetor com os jogadores embaralhados:
+    cout << "hello";
+
     vector<string> participantes = EmbaralhaParticipantesVivos();
 
-    //Percorrendo:
-    for(string participante : participantes) {
-        Participante *ParticipanteDaVez;
-        //Procurando o participante da vez
+    // Percorrendo:
+    for (string participante : participantes) {
+        Participante* ParticipanteDaVez = nullptr;
+        // Procurando o participante da vez
         auto pair = participantes_.begin();
-        while(pair != participantes_.end()) {
-            if(pair->second->get_nome() == participante) {
-                ParticipanteDaVez == pair->second;
+        while (pair != participantes_.end()) {
+            if (pair->second->get_nome() == participante) {
+                ParticipanteDaVez = pair->second;
                 break;
             }
+            ++pair; // Incrementar o iterador
+        }
+
+        if (ParticipanteDaVez == nullptr) {
+            // O participante da vez não foi encontrado, faça algo para lidar com isso
+            continue; // Ou use break, dependendo do comportamento desejado
         }
 
         // Definindo a ação:
 
-        // Recolhendo um set com os participantes na mesma regiao que
+        // Recolhendo um set com os participantes na mesma região que
         // o jogador da vez:
         set<Participante*> s = ParticipanteNaMesmaRegiao(ParticipanteDaVez);
         ParticipanteDaVez->definir_acao(s);
-    } 
+    }
 }
 
 void Sistema::Jogo() {
@@ -161,7 +170,9 @@ void Sistema::Jogo() {
     while (contador_vivos_ > 1) {
         //Informa o Dia em que a rodada acontece
         cout << "Dia " << contador_dias_ << ":" << endl;
+       
         Rodada();
+        cout <<"alo2";
         contador_dias_++;
 
         // Roda uma rodada "Noite" a não ser q sobre apenas um participante
