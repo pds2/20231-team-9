@@ -151,7 +151,7 @@ void Mapa::inicio(Participante *p) {
 }
 
 void Mapa::morrer(Participante* fulano) {
-    switch (fulano->get_regiao_atual()) {
+    switch (fulano->get_Regiao_Atual().get_nome()) {
         case centro:
         _centro.erase(fulano);
         break;
