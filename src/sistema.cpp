@@ -157,7 +157,7 @@ void Sistema::Rodada() {
                 ParticipanteDaVez = pair->second;
                 break;
             }
-            ++pair; // Incrementar o iterador
+            pair = next(pair); // Incrementar o iterador
         }
 
         if (ParticipanteDaVez == nullptr) {

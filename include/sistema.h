@@ -65,6 +65,8 @@ class Sistema{
    /**
     * @brief Retorna um set com os participantes na mesma Região que o
     *        Participante escolhido
+    * 
+    * @param Participante
    */
   set<Participante*> ParticipanteNaMesmaRegiao(Participante* fulano);
 };
