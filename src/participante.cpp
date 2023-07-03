@@ -7,7 +7,7 @@ Participante::Participante(string nome, int distrito) : _arma(armas::desarmado) 
     _vivo = true;
     _energia = 100;
     _hidratacao = 100;
-    _atual = Regiao();
+    _regiao_atual = Regiao();
     qntd_agua = 0;
     qntd_comida = 0;
     qntd_remedio = 0;
@@ -23,10 +23,6 @@ int Participante::get_distrito() const {
 
 bool Participante::get_vivo() const {
     return _vivo;
-}
-
-Regiao Participante::get_atual() {
-    return _atual;
 }
 
 float Participante::get_energia() {
@@ -82,7 +78,7 @@ void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar
 
 void Participante::muda_regiao(regioes destino) {
     //ainda tenho q colocar aq a função "pode mudar?"
-    _atual.muda_regiao(destino);
+    _regiao_atual.muda_regiao(destino);
 }
 
 void Participante::batalha(Participante& p) {
@@ -106,7 +102,7 @@ void Participante::batalha(Participante& p) {
 }
 
 Regiao Participante::get_Regiao_Atual() {
-    return _atual;
+    return _regiao_atual;
 }
 
 void Participante::consumir_utensilio(std::string utensilio, int qntd) {
@@ -158,19 +154,19 @@ void Participante::buscar_na_regiao() {
     float chance_remedio = rand() % 10 + 1;
     float chance_arma = rand() % 10 + 1;
 
-    if(chance_agua < _atual.get_chance_agua()) {
+    if(chance_agua < _regiao_atual.get_chance_agua()) {
         qntd_agua++;
     }
 
-    if(chance_remedio < _atual.get_chance_remedio()) {
+    if(chance_remedio < _regiao_atual.get_chance_remedio()) {
         qntd_remedio++;
     }
 
-    if(chance_comida < _atual.get_chance_comida()) {
+    if(chance_comida < _regiao_atual.get_chance_comida()) {
         qntd_comida++;
     }
 
-    if(chance_arma < _atual.get_chance_arma()) {
+    if(chance_arma < _regiao_atual.get_chance_arma()) {
         int qual_arma = rand() % 10 + 1;
         if(qual_arma <= 4) {
             Arma _faca(faca);

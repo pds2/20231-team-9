@@ -28,7 +28,7 @@ class Participante {
         int _distrito;
         float _energia;
         float _hidratacao;
-        Regiao _atual;
+        Regiao _regiao_atual;
         Arma _arma;
         int qntd_agua;
         int qntd_comida;
@@ -39,45 +39,100 @@ class Participante {
          * @brief um participante, inicializando os dados
          */
         Participante(string nome, int distrito);
-
-        /*
-         * @brief retornam o nome e o distrito, respectivamente, do participante
-         */
+        /**
+         * @brief Retorna o nome do participante
+        */
         string get_nome() const;
+        /**
+         * @brief Retorna o distrito do participante
+        */
         int get_distrito() const;
+        /**
+         * @brief Retorna 'True' se o participante está vivo e 'False'
+         *        se ele está morto
+        */
         bool get_vivo() const;
-        Regiao get_atual();
+        /**
+         * @brief Retorna a quantidade de energia do participante
+        */
         float get_energia();
+        /**
+         * @brief Retorna a hidratação do participante
+        */
         float get_hidratacao();
+        /**
+         * @brief Retorna a Arma do participante
+        */
         Arma get_arma();
+        /**
+         * @brief Adiciona uma arma para o participante
+         * 
+         * @param arma
+        */
         void adicionar_arma(Arma arma);
+        /**
+         * @brief Muda a região do participante
+         * 
+         * @param destino
+        */
         void muda_regiao(regioes destino);
-        
-
-        
+        /**
+         * @brief Define a ação do participante
+         * 
+         * @param Msm_Regiao_Q_Eu
+        */
         virtual void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) = 0;
         /*
          * @brief simula a batalha entre o participante corrente com um outro participante p
          */
         void batalha(Participante& p);
-
-        /*
-         * @brief retorna o enum com o nome da sua regiao atual 
-         */
+        /**
+         * @brief Retorna a regiao atual do participante
+        */
         Regiao get_Regiao_Atual();
-
+        /**
+         * @brief Imprime a quantidade de utensílios do participante
+        */
         void imprime_qntd_utensilios();
-
+        /**
+         * @brief Adiciona utensílios ao participante
+         * 
+         * @param utelsilio
+         * @param qntd
+        */
         void adicionar_utensilio(std::string utensilio, int qntd);
         // void adicionar_utensilio_agua(int a_consumir);
         // void adicionar_utensilio_comida(int a_consumir);
         // void adicionar_utensilio_remedio(int a_consumir);
 
+        /**
+         * @brief Faz o participante consumir um utensilio
+         * 
+         * @param utensilio
+         * @param qntd
+        */
         void consumir_utensilio(std::string utensilio, int qntd);
+        /**
+         * @brief Faz o participante consumir água
+         * 
+         * @param a_consumir
+        */
         void consumir_utensilios_agua(int a_consumir);
+        /**
+         * @brief Faz o participante consumir comida
+         * 
+         * @param a_consumir
+        */
         void consumir_utensilios_comida(int a_consumir);
+        /**
+         * @brief Faz o participante comsumir remédio
+         * 
+         * @param a_consumir
+        */
         void consumir_utensilios_remedio(int a_consumir);
-
+        /**
+         * @brief Efetua uma busca na região atual do participante
+        */
         void buscar_na_regiao();
 
 };
