@@ -13,9 +13,9 @@ class Sistema{
     private:
     Mapa _mapa;
     //pensei em colocar Participante como ponteiro
-    map<string, Participante*> _vivos;
+    map<string, Participante*> participantes_;
     //map<string, Participante*> _vivos;
-    vector<string> _mortos;
+    vector<string> _mortos; // acho q não vamos usar
     unsigned int contador_dias_;
     unsigned int contador_noites_;
     unsigned int contador_vivos_;
@@ -43,11 +43,12 @@ class Sistema{
      * @brief Remove o participante do map de vivos e insere ele
              no vetor com os nomes dos mortos
      */
-    void morrer(Participante &fulano);
+    //void morrer(Participante &fulano);
+
     /*
      * @brief retorna o mapa com os participantes vivos
      */
-    map<string,Participante*> get_vivos();
+    map<string,Participante*> get_participantes();
     /**
      * @brief Realiza uma rodada com os jogadores vivos
     */

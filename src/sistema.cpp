@@ -18,8 +18,8 @@ void Sistema::criar_jogador(string nome, int distrito) {
     //         throw participante_ja_existe_e();
     //     }
     // }
-    auto pair = _vivos.begin();
-    while(pair != _vivos.end()) {
+    auto pair = participantes_.begin();
+    while(pair != participantes_.end()) {
         if(nome == pair->first) {
             throw participante_ja_existe_e();
         }
@@ -31,7 +31,7 @@ void Sistema::criar_jogador(string nome, int distrito) {
     }
 
     Jogador *novo_jogador = new Jogador(nome, distrito);
-    _vivos[nome] = novo_jogador;
+    participantes_[nome] = novo_jogador;
     _mapa.inicio(novo_jogador);
     contador_vivos_++;
     // _vivos[nome] = Participante(nome,distrito);
@@ -39,8 +39,8 @@ void Sistema::criar_jogador(string nome, int distrito) {
 }
 
 void Sistema::criar_bot(string nome, int distrito) {
-    auto pair = _vivos.begin();
-    while(pair != _vivos.end()) {
+    auto pair = participantes_.begin();
+    while(pair != participantes_.end()) {
         if(nome == pair->first) {
             throw participante_ja_existe_e();
         }
@@ -52,7 +52,7 @@ void Sistema::criar_bot(string nome, int distrito) {
     }
 
     Bot *novo_bot = new Bot(nome, distrito);
-    _vivos[nome] = novo_bot;
+    participantes_[nome] = novo_bot;
     contador_vivos_++;
 }
 
@@ -91,15 +91,15 @@ void Sistema::inicio() {
 //     }
 // }
 
-map<string, Participante*> Sistema::get_vivos() {
-    return _vivos;
+map<string, Participante*> Sistema::get_participantes() {
+    return participantes_;
 }
 
 vector<string> Sistema::EmbaralhaParticipantesVivos() {
     vector<string> v;
     // Coloca o os jogadores que estão vivos no vetor:
-    auto pair = _vivos.begin();
-    while(pair != _vivos.end()) {
+    auto pair = participantes_.begin();
+    while(pair != participantes_.end()) {
         if(pair->second->get_vivo() == true) {
             v.push_back(pair->second->get_nome());
         }
@@ -121,8 +121,8 @@ set<Participante*> Sistema::ParticipanteNaMesmaRegiao(Participante* fulano) {
     // busco o nome(enum) da regiao atual do participante
     regioes r = fulano->get_Regiao_Atual().get_nome();
 
-    auto pair = _vivos.begin();
-    while(pair != _vivos.end()) {
+    auto pair = participantes_.begin();
+    while(pair != participantes_.end()) {
         if(pair->second->get_Regiao_Atual().get_nome() == r) {
             s.insert(pair->second);
         }
@@ -138,8 +138,8 @@ void Sistema::Rodada() {
     for(string participante : participantes) {
         Participante *ParticipanteDaVez;
         //Procurando o participante da vez
-        auto pair = _vivos.begin();
-        while(pair != _vivos.end()) {
+        auto pair = participantes_.begin();
+        while(pair != participantes_.end()) {
             if(pair->second->get_nome() == participante) {
                 ParticipanteDaVez == pair->second;
             }
