@@ -46,6 +46,7 @@ void Sistema::criar_bot(string nome, int distrito) {
 
     Bot *novo_bot = new Bot(nome, distrito);
     _vivos[nome] = novo_bot;
+    _mapa.inicio(novo_bot);
 }
 
 void Sistema::inicio() {
