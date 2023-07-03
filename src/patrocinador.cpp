@@ -8,7 +8,7 @@ Patrocinador::Patrocinador() {
 
 Participante *Patrocinador::selecionar_participante() {
     Sistema s;
-    map<string, Participante*> map_vivos = s.get_vivos();
+    map<string, Participante*> map_vivos = s.get_participantes();
 
 
    //acho que aqui dá para usar polimorfismo 

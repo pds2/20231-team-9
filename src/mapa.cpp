@@ -16,7 +16,7 @@ Mapa::Mapa() {}
 // set<Participante *> Mapa::get_td_mundo() {
 //     return _td_mundo;
 // }
-set<Participante *> Mapa::get_participantes_centro() {
+set<Jogador *> Mapa::get_participantes_centro() {
     return _centro;
 }
 set<Participante *> Mapa::get_participantes_floresta() {
@@ -136,7 +136,7 @@ set<Participante *> Mapa::get_participantes_ruinas() {
 //     return vetor;
 // }
 
-void Mapa::inicio(Participante *p) {
+void Mapa::inicio(Jogador *p) {
     _centro.insert(p);
     // auto pair = vivos.begin();
     // while(pair != vivos.end()) {
@@ -150,233 +150,233 @@ void Mapa::inicio(Participante *p) {
     // }
 }
 
-void Mapa::morrer(Participante* fulano) {
-    switch (fulano->get_Regiao_Atual().get_nome()) {
-        case centro:
-        _centro.erase(fulano);
-        break;
+// void Mapa::morrer(Participante* fulano) {
+//     switch (fulano->get_Regiao_Atual().get_nome()) {
+//         case centro:
+//         _centro.erase(fulano);
+//         break;
     
-        case floresta:
-        _floresta.erase(fulano);
-        break;
+//         case floresta:
+//         _floresta.erase(fulano);
+//         break;
 
-        case deserto:
-        _deserto.erase(fulano);
-        break;
+//         case deserto:
+//         _deserto.erase(fulano);
+//         break;
 
-        case pantano:
-        _pantano.erase(fulano);
-        break;
+//         case pantano:
+//         _pantano.erase(fulano);
+//         break;
 
-        case campo:
-        _campo.erase(fulano);
-        break;
+//         case campo:
+//         _campo.erase(fulano);
+//         break;
 
-        case montanhas:
-        _montanhas.erase(fulano);
-        break;
+//         case montanhas:
+//         _montanhas.erase(fulano);
+//         break;
 
-        case ruinas:
-        _ruinas.erase(fulano);
-        break;
+//         case ruinas:
+//         _ruinas.erase(fulano);
+//         break;
 
-        default:
-        break;
-    }
-}
+//         default:
+//         break;
+//     }
+// }
 
-void Mapa::mover_do_centro(regioes destino, Participante* fulano) {
-    switch (destino) {
-        case floresta:
-        _floresta.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+// void Mapa::mover_do_centro(regioes destino, Participante* fulano) {
+//     switch (destino) {
+//         case floresta:
+//         _floresta.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case deserto:
-        _deserto.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case deserto:
+//         _deserto.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case pantano:
-        _pantano.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case pantano:
+//         _pantano.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case campo:
-        _campo.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case campo:
+//         _campo.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case montanhas:
-        _montanhas.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case montanhas:
+//         _montanhas.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case ruinas:
-        _ruinas.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case ruinas:
+//         _ruinas.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        default:
-        break;
-    }
-    _centro.erase(fulano);
+//         default:
+//         break;
+//     }
+//     _centro.erase(fulano);
 
-}
+// }
 
-void Mapa::mover_da_floresta(regioes destino, Participante* fulano) {
-    if((destino != centro) && (destino != pantano) && (destino != campo)) {
-        throw destino_invalido_e();
-    }
-    switch (destino) {
-        case centro:
-        _centro.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+// void Mapa::mover_da_floresta(regioes destino, Participante* fulano) {
+//     if((destino != centro) && (destino != pantano) && (destino != campo)) {
+//         throw destino_invalido_e();
+//     }
+//     switch (destino) {
+//         case centro:
+//         _centro.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case pantano:
-        _pantano.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case pantano:
+//         _pantano.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case campo:
-        _campo.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case campo:
+//         _campo.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        default:
-        break;
-    }
-    _floresta.erase(fulano);
-}
+//         default:
+//         break;
+//     }
+//     _floresta.erase(fulano);
+// }
 
-void Mapa::mover_do_deserto(regioes destino, Participante* fulano) {
-    if((destino != centro) && (destino != ruinas) && (destino != montanhas)) {
-        throw destino_invalido_e();
-    }
-    switch (destino) {
-        case centro:
-        _centro.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+// void Mapa::mover_do_deserto(regioes destino, Participante* fulano) {
+//     if((destino != centro) && (destino != ruinas) && (destino != montanhas)) {
+//         throw destino_invalido_e();
+//     }
+//     switch (destino) {
+//         case centro:
+//         _centro.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case ruinas:
-        _ruinas.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case ruinas:
+//         _ruinas.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case montanhas:
-        _montanhas.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case montanhas:
+//         _montanhas.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        default:
-        break;
-    }
-    _deserto.erase(fulano);
-}
+//         default:
+//         break;
+//     }
+//     _deserto.erase(fulano);
+// }
 
-void Mapa::mover_do_pantano(regioes destino, Participante* fulano) {
-    if((destino != centro) && (destino != floresta) && (destino != montanhas)) {
-        throw destino_invalido_e();
-    }
-    switch (destino) {
-        case centro:
-        _centro.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+// void Mapa::mover_do_pantano(regioes destino, Participante* fulano) {
+//     if((destino != centro) && (destino != floresta) && (destino != montanhas)) {
+//         throw destino_invalido_e();
+//     }
+//     switch (destino) {
+//         case centro:
+//         _centro.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case floresta:
-        _floresta.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case floresta:
+//         _floresta.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case montanhas:
-        _montanhas.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case montanhas:
+//         _montanhas.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        default:
-        break;
-    }
-    _pantano.erase(fulano);
-}
+//         default:
+//         break;
+//     }
+//     _pantano.erase(fulano);
+// }
 
-void Mapa::mover_do_campo(regioes destino, Participante* fulano) {
-    if((destino != centro) && (destino != floresta) && (destino != ruinas)) {
-        throw destino_invalido_e();
-    }
-    switch (destino) {
-        case centro:
-        _centro.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+// void Mapa::mover_do_campo(regioes destino, Participante* fulano) {
+//     if((destino != centro) && (destino != floresta) && (destino != ruinas)) {
+//         throw destino_invalido_e();
+//     }
+//     switch (destino) {
+//         case centro:
+//         _centro.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case floresta:
-        _floresta.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case floresta:
+//         _floresta.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case ruinas:
-        _ruinas.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case ruinas:
+//         _ruinas.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        default:
-        break;
-    }
-    _campo.erase(fulano);
-}
+//         default:
+//         break;
+//     }
+//     _campo.erase(fulano);
+// }
 
-void Mapa::mover_das_montanhas(regioes destino, Participante* fulano) {
-    if((destino != centro) && (destino != pantano) && (destino != deserto)) {
-        throw destino_invalido_e();
-    }
-    switch (destino) {
-        case centro:
-        _centro.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+// void Mapa::mover_das_montanhas(regioes destino, Participante* fulano) {
+//     if((destino != centro) && (destino != pantano) && (destino != deserto)) {
+//         throw destino_invalido_e();
+//     }
+//     switch (destino) {
+//         case centro:
+//         _centro.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case pantano:
-        _pantano.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case pantano:
+//         _pantano.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case deserto:
-        _deserto.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case deserto:
+//         _deserto.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        default:
-        break;
-    }
-    _montanhas.erase(fulano);
-}
+//         default:
+//         break;
+//     }
+//     _montanhas.erase(fulano);
+// }
 
-void Mapa::mover_das_ruinas(regioes destino, Participante* fulano) {
-    if((destino != centro) && (destino != deserto) && (destino != campo)) {
-        throw destino_invalido_e();
-    }
-    switch (destino) {
-        case centro:
-        _centro.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+// void Mapa::mover_das_ruinas(regioes destino, Participante* fulano) {
+//     if((destino != centro) && (destino != deserto) && (destino != campo)) {
+//         throw destino_invalido_e();
+//     }
+//     switch (destino) {
+//         case centro:
+//         _centro.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case deserto:
-        _deserto.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case deserto:
+//         _deserto.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        case campo:
-        _campo.insert(fulano);
-        fulano->muda_regiao(destino);
-        break;
+//         case campo:
+//         _campo.insert(fulano);
+//         fulano->muda_regiao(destino);
+//         break;
 
-        default:
-        break;
-    }
-    _ruinas.erase(fulano);
+//         default:
+//         break;
+//     }
+//     _ruinas.erase(fulano);
 
-}
+// }

@@ -54,12 +54,13 @@ void Sistema::criar_bot(string nome, int distrito) {
     Bot *novo_bot = new Bot(nome, distrito);
     participantes_[nome] = novo_bot;
     contador_vivos_++;
+    _mapa.inicio(novo_bot);
 }
 
 void Sistema::inicio() {
     cout << "O jogo começou! Jogadores estão no centro!" << endl;
     cout << "Nossos jogadores são: ";
-    set<Participante *> jogadores = _mapa.get_participantes_centro();
+    set<Jogador *> jogadores = _mapa.get_participantes_centro();
     auto it = jogadores.begin();
     while(it != jogadores.end()) {
         cout << (*it)->get_nome() << endl;

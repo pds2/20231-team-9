@@ -16,7 +16,7 @@ class destino_invalido_e{};
 class Mapa {
     private:
         // set<Participante *> _td_mundo;
-        set<Participante *> _centro;
+        set<Jogador *> _centro;
         set<Participante *> _floresta;
         set<Participante *> _deserto;
         set<Participante *> _pantano;
@@ -44,7 +44,7 @@ class Mapa {
     /*
     * @brief retorna um vetor embaralhado com os participantes no centro
     */
-    set<Participante *> get_participantes_centro();
+    set<Jogador *> get_participantes_centro();
     /*
     * @brief retorna um vetor embaralhado com os participantes na floresta
     */
@@ -72,7 +72,7 @@ class Mapa {
     /*
     * @brief Inicia o Jogo colocando os participantes no Centro
     */
-    void inicio(Participante *p);
+    void inicio(Jogador *p);
     /*
     * @brief Remove o participante do map de vivos e insere ele
              no vetor com os nomes dos mortos

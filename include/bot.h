@@ -2,6 +2,7 @@
 #define PDS2_BOT_H
 
 #include "participante.h"
+#include "jogador.h"
 
 #include <string>
 
@@ -16,7 +17,7 @@ class Bot : public Jogador {
         /*
         * @brief Define a ação do bot a partir de parâmetros pré-definidos
         */
-        void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) override;
+        // void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) override;
 };
 
 #endif
