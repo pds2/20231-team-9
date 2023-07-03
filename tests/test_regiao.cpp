@@ -33,7 +33,7 @@ TEST_CASE("Testa se a regiao muda corretamente e se os erros são lançados") {
     CHECK(remedio == 0);
     CHECK(nome == floresta);
     
-    r.muda_regiao(deserto);
+    r.muda_regiao(pantano);
     nome = r.get_nome();
     x = r.get_x();
     y = r.get_y();
@@ -42,12 +42,12 @@ TEST_CASE("Testa se a regiao muda corretamente e se os erros são lançados") {
     arma = r.get_chance_arma();
     remedio = r.get_chance_remedio();
     CHECK(x == 3);
-    CHECK(y == 3);
-    CHECK(agua == 2);
-    CHECK(comida == 5);
-    CHECK(arma == 5);
+    CHECK(y == 1);
+    CHECK(agua == 10);
+    CHECK(comida == 3);
+    CHECK(arma == 1);
     CHECK(remedio == 0);
-    CHECK(nome == regioes::deserto);
+    CHECK(nome == regioes::pantano);
 
-    CHECK_THROWS_AS(r.muda_regiao(floresta),nao_da_para_mudar_para_essa_regiao_e);
+    CHECK_THROWS_AS(r.muda_regiao(deserto),nao_da_para_mudar_para_essa_regiao_e);
 }
