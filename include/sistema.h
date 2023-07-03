@@ -15,7 +15,7 @@ class Sistema{
     //pensei em colocar Participante como ponteiro
     map<string, Participante*> participantes_;
     //map<string, Participante*> _vivos;
-    vector<string> _mortos; // acho q não vamos usar
+    vector<Participante*> _mortos; // acho q não vamos usar
     unsigned int contador_dias_;
     unsigned int contador_noites_;
     unsigned int contador_vivos_;

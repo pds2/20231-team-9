@@ -163,6 +163,10 @@ void Sistema::Rodada() {
             if(pair->second->get_vivo() == true) {
                 aux++;
             }
+            else {
+                _mortos.push_back(pair->second);
+                participantes_.erase(pair);
+            }
             pair = next(pair);
         }
         contador_vivos_ = aux;
@@ -184,6 +188,14 @@ void Sistema::Jogo() {
         if(contador_vivos_ > 1) {
             cout << "Noite " << contador_noites_ << ":" << endl;
             Rodada();
+            
+            //faz um resumo dos personagens que morreram no dia
+            cout << "Personagens que morreram nessa rodada:" <<endl;
+            for(Participante *p : _mortos) {
+                cout << p->get_nome() << endl;
+            }
+            _mortos.clear();
+            
             contador_noites_++;
         }
     }
