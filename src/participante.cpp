@@ -105,7 +105,7 @@ void Participante::muda_regiao(std::string destino) {
 void Participante::muda_regiao(regioes destino) {
     _regiao_atual.muda_regiao(destino);
     _hidratacao -= 20;
-    std::cout << get_nome() << " correu para a região " << stringify(destino) << endl;
+    std::cout << get_nome() << " correu para a região " << destino << endl;
 }
 
 void Participante::batalha(Participante& p) {
@@ -186,7 +186,7 @@ void Participante::buscar_na_regiao() {
     float chance_comida = rand() % 10 + 1;
     float chance_remedio = rand() % 10 + 1;
     float chance_arma = rand() % 10 + 1;
-
+    cout << get_nome() << " fez uma busca na sua região:" << endl;
     if(chance_agua < _regiao_atual.get_chance_agua()) {
         qntd_agua++;
         std::cout << get_nome() << " encontrou água em suas buscas." << endl;

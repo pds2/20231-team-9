@@ -40,7 +40,7 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
                 for (auto pessoa : Msm_Regiao_Q_Eu){
                     if (pessoa->get_nome() == escolha) {
                         batalha(*pessoa);
-                        break;
+                        return;
                     }
                 }
                 cout << "Não existe essa pessoa na sua região! Insira outro nome" << endl;
@@ -91,7 +91,6 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
                     cout << "Você não possui nenhuma comida!" << endl;
                 }
             }
-            cout << endl << "------------------------------------------------------------------------------------" << endl;
             break;
     }
 }

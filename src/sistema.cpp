@@ -152,13 +152,17 @@ void Sistema::Rodada() {
    
    //Atualizando o contador de vivos depois da rodada:
     int aux = 0;
-    for (auto participante = participantes.begin(); participante != participantes.end(); participante++) {
+    for (auto participante = participantes.begin(); participante != participantes.end();) {
         if((*participante)->get_vivo() == true) {
             aux++;
+            participante++;
         }
         else {
             _mortos.push_back(*participante);
             participantes.erase(participante);
+            if (participante != participantes.end()){
+                participante++;
+                }
             }
         }
     contador_vivos_ = aux;
@@ -174,7 +178,7 @@ void Sistema::Rodada() {
 
 void Sistema::Jogo() {
     //Chama Rodadas até ter apenas um participante vivo:
-    while (contador_vivos_ > 1) {
+    while (contador_vivos_ >= 1) {
         //Informa o Dia em que a rodada acontece
         cout << "-----------------------------------------------------------------" << endl;
         cout << "Dia " << contador_dias_ << ":" << endl << endl;
@@ -195,7 +199,6 @@ void Sistema::Jogo() {
             //faz um resumo dos personagens que morreram no dia
         }
     }
-    cout << "-----------------------------------------------------------------" << endl;
     cout << "-----------------------------------------------------------------" << endl;
     cout << "FIM DE JOGO!" << endl;
     for (auto pair = participantes_.begin(); pair != participantes_.end(); ++pair) {
