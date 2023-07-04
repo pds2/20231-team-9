@@ -78,12 +78,12 @@ int main() {
         */
         if(desc == 2){
             cout << endl;
-            jogo.criar_bot("Carla");
+            jogo.criar_bot("Carla_Maluca");
             jogo.criar_bot("Ana");
             jogo.criar_bot("Carlos");
             jogo.criar_bot("Marisa");
-            jogo.criar_bot("João Matador");
-            jogo.criar_bot("Júnior Espertinho");
+            jogo.criar_bot("João_Matador");
+            jogo.criar_bot("Júnior_Espertinho");
             jogo.criar_bot("Eliane");
             int j = quantidade + 7;
             int i = 2;

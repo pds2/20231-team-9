@@ -12,6 +12,18 @@ Participante::Participante(string nome) : _arma(armas::desarmado) {
     qntd_remedio = 0;
 }
 
+int Participante::get_agua(){
+    return qntd_agua;
+}
+
+int Participante::get_remedio(){
+    return qntd_remedio;
+}
+
+int Participante::get_comida(){
+    return qntd_comida;
+}
+
 string Participante::get_nome() const {
     return _nome;
 }
@@ -61,25 +73,7 @@ void Participante::adicionar_utensilio(std::string utensilio, int qntd) { //Vamo
     }
 }
 
-/*
-void Participante::adicionar_utensilio_agua(int a_consumir) { //Vamos alterar isso
-    qntd_agua += a_consumir;
-}
-
-void Participante::adicionar_utensilio_comida(int a_consumir) { //Vamos alterar isso
-    qntd_comida += a_consumir;
-}
-
-void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar isso
-    qntd_remedio += a_consumir;
-}
-*/
-
-// ADICIONEI O CÓDIGO DESSA FUNÇÃO
 void Participante::muda_regiao(std::string destino) {
-    //ainda tenho q colocar aq a função "pode mudar?"
-    //_regiao_atual.muda_regiao(destino);
-    std::cout << get_nome() << " correu para a região " << destino << endl;
     regioes destino_enum;
     if(destino == "centro") {
         destino_enum = centro;
@@ -104,12 +98,14 @@ void Participante::muda_regiao(std::string destino) {
     }
 
     _regiao_atual.muda_regiao(destino_enum);
+    _hidratacao -= 20;
+    std::cout << get_nome() << " correu para a região " << destino << endl;
 }
 
 void Participante::muda_regiao(regioes destino) {
-    //ainda tenho q colocar aq a função "pode mudar?"
     _regiao_atual.muda_regiao(destino);
-    std::cout << get_nome() << " correu para a região " << destino << endl;
+    _hidratacao -= 20;
+    std::cout << get_nome() << " correu para a região " << stringify(destino) << endl;
 }
 
 void Participante::batalha(Participante& p) {
@@ -120,16 +116,16 @@ void Participante::batalha(Participante& p) {
     if(arma_escolhida_atacante.get_poder() > arma_escolhida_defesa.get_poder()) {
         p._vivo = false;
         std::cout << "O jogador " << p.get_nome() << " foi morto em batalha." << std::endl;
-        _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
+        _energia -= (10*arma_escolhida_atacante.get_poder());
 
     } else if(arma_escolhida_atacante.get_poder() < arma_escolhida_defesa.get_poder()) {
         _vivo = false;
         std::cout << "O jogador " << get_nome() << " foi morto em batalha." << std::endl;
-        p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
+        p._energia -= (10*arma_escolhida_defesa.get_poder());
     } else {
         std::cout << "Mas nada acontece..." << endl;
-        _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
-        p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
+        _energia -= (10*arma_escolhida_atacante.get_poder());
+        p._energia -= (10*arma_escolhida_defesa.get_poder());
     }
 }
 

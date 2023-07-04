@@ -20,14 +20,22 @@ void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu){
         try{
             consumir_utensilio("agua",1);
         } catch (quantidade_agua_invalida_e){
-            buscar_na_regiao();
+            try{
+                consumir_utensilio("remedio",1);
+            } catch (quantidade_remedio_invalida_e){
+                buscar_na_regiao();
+            }
         }
     } 
     else if (get_energia() < 60){
         try{
             consumir_utensilio("comida",1);
         } catch (quantidade_comida_invalida_e){
-            buscar_na_regiao();
+            try{
+                consumir_utensilio("remedio",1);
+            } catch (quantidade_remedio_invalida_e){
+                buscar_na_regiao();
+            }
         }
     } else{    
         int rng = rand() % 10 + 1;
@@ -43,12 +51,14 @@ void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu){
             }
         }
         else {
-            int escolhido = rand() % Msm_Regiao_Q_Eu.size();
-            auto adversario = Msm_Regiao_Q_Eu.begin();
-            for (int i=0; i < escolhido ; i++){
-                adversario++;
-            }
-            batalha(**adversario);
+            if (Msm_Regiao_Q_Eu.size()!=0){
+                int escolhido = rand() % Msm_Regiao_Q_Eu.size();
+                auto adversario = Msm_Regiao_Q_Eu.begin();
+                for (int i=0; i < escolhido ; i++){
+                    adversario++;
+                }
+                batalha(**adversario);
+            }else buscar_na_regiao();
         }
 
     }

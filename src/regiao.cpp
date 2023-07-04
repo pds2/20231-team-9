@@ -7,7 +7,7 @@ Regiao::Regiao() {
     _chance_agua = 0;
     _chance_comida = 0;
     _chance_arma = 9;
-    _chance_remedio = 9;
+    _chance_remedio = 3;
     _nome = regioes::centro;
     _x = 2;
     _y = 2;
@@ -61,7 +61,7 @@ void Regiao::muda_regiao(regioes destino) {
         _chance_agua = 0;
         _chance_comida = 0;
         _chance_arma = 9;
-        _chance_remedio = 9;
+        _chance_remedio = 3;
         _nome = centro;
         break;
 

@@ -1,6 +1,7 @@
 #include "../include/jogador.h"
 
 #include <iostream>
+#include <ratio>
 #include <string>
 #include <set>
 
@@ -25,20 +26,27 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
     imprime_status(Msm_Regiao_Q_Eu);
     char comando;
     string escolha;
-    bool encontrou = 0;
     cin >> comando;
     switch (comando){
         case 'a': //atacar
-            cin >> escolha;
-            cout << endl << "------------------------------------------------------------------------------------" << endl;
-            for (auto pessoa : Msm_Regiao_Q_Eu){
-                if (pessoa->get_nome() == escolha) batalha(*pessoa);
-                encontrou = 1;
-            }
-            if(encontrou == 0){
-                cout << "Jogador nao encontrado" << endl;
+            while(1){
+                cin >> escolha;
+                if (Msm_Regiao_Q_Eu.size() == 0){
+                    cout << "A região está vazia, não há ninguém para atacar!" << endl;
+                    cout << "Por isso, você buscará recursos na rodada" << endl;
+                    buscar_na_regiao();
+                    return;
+                }
+                for (auto pessoa : Msm_Regiao_Q_Eu){
+                    if (pessoa->get_nome() == escolha) {
+                        batalha(*pessoa);
+                        break;
+                    }
+                }
+                cout << "Não existe essa pessoa na sua região! Insira outro nome" << endl;
             }
             //throw comando_invalido_e{};
+            cout << endl << "------------------------------------------------------------------------------------" << endl;
             break;
 
         case 'm': //mover
@@ -48,8 +56,10 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
                 cin >> escolha;
                 try {
                     return muda_regiao(escolha);
-                } catch (regiao_invalida_e &e) {
+                } catch (regiao_invalida_e) {
                     cout << "Entrada inválida! Essa região não existe. Digite novamente" << endl; 
+                } catch (nao_da_para_mudar_para_essa_regiao_e) {
+                    cout << "Movimento incorreto! Essa região não é adjacente a que você está. Digite novamente" << endl;
                 }
 
             }
@@ -61,45 +71,28 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
             buscar_na_regiao();
             break;
         case 'u': //usar utensílio
-            cin >> escolha;
-            cout << endl << "------------------------------------------------------------------------------------" << endl;
-            if ((escolha == "agua") || (escolha == "remedio") || escolha == "comida"){
-                consumir_utensilio(escolha, 1);
-            } else {
-                throw comando_invalido_e{};
+            while(1){
+                cin >> escolha;
+                if (get_agua() == 0 && get_remedio() == 0 && get_comida() == 0){
+                    cout << "Você não tem nada para consumir!" << endl;
+                    cout << "Por isso, você buscará recursos nessa rodada" << endl;
+                    buscar_na_regiao();
+                    return;
+                }
+                try{
+                    return consumir_utensilio(escolha, 1);
+                } catch (utensilio_invalido_e){
+                    cout << "Utensílio inválido! Nome não registrado no jogo." << endl;
+                } catch (quantidade_remedio_invalida_e){
+                    cout << "Você não possui nenhum remédio!" << endl;
+                }catch (quantidade_agua_invalida_e){ 
+                    cout << "Você não possui nenhuma água!" << endl;
+                }catch (quantidade_comida_invalida_e){
+                    cout << "Você não possui nenhuma comida!" << endl;
+                }
             }
+            cout << endl << "------------------------------------------------------------------------------------" << endl;
             break;
-
-        /*┌──────────────────────┬───────────────────────┬────────────────────┐
-│░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░░░├────────────────┤░░░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░░│
-├─────────────────────────┤░░░░░░░░░░░░░░░░├────────────────────────┤
-│░░░░░░░░░░░░░░░░░░░░░░░░░├────────────────┤░░░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░│
-│░░░░░░░░░░░░░░░░░┌┘░░░░░░░░░░░░░░░░░░░░░░░░░░░░└┐░░░░░░░░░░░░░░░░░░│
-└─────────────────┴──────────────────────────────┴──────────────────┘
-*/
     }
 }
 
@@ -109,12 +102,14 @@ void Jogador::imprime_status(set<Participante*> Msm_Regiao_Q_Eu) {
     cout << "Hidratação: " << get_hidratacao() << "/100" << endl << endl;
     cout << "Seu inventário:" << endl;
     imprime_qntd_utensilios();
-    cout << "   Arma: " << get_arma().get_tipo() << endl << endl;
+    cout << "Arma: " << get_arma().get_tipo() << endl << endl;
 
 
     cout << "Você está na região " << get_Regiao_Atual().get_nome() << "." << endl << endl;
     cout << "Estão na mesma região que você:" << endl;
-    for (auto i: Msm_Regiao_Q_Eu){
+    if (Msm_Regiao_Q_Eu.size()==0){
+        cout << "Você está sozinho..." << endl;
+    } else for (auto i: Msm_Regiao_Q_Eu){
         cout << i->get_nome() << ", ";
     }
     cout << endl << endl;

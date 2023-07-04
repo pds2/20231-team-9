@@ -40,6 +40,18 @@ class Participante {
          * @brief um participante, inicializando os dados
          */
         Participante(string nome);
+        /*
+         * @brief Retorna a quantidade de comida.
+         */
+        int get_comida();
+        /*
+         * @brief Retorna a quantidade de remédios.
+         */
+        int get_remedio();
+        /*
+         * @brief Retorna a quantidade de agua.
+         */
+        int get_agua();
         /**
          * @brief Retorna o nome do participante
         */

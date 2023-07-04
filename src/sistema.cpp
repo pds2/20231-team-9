@@ -123,7 +123,7 @@ set<Participante*> Sistema::ParticipanteNaMesmaRegiao(Participante* fulano) {
     regioes r = fulano->get_Regiao_Atual().get_nome();
 
     for (auto pair = participantes_.begin(); pair != participantes_.end(); ++pair) {
-        if (pair->second->get_Regiao_Atual().get_nome() == r) {
+        if (pair->second->get_Regiao_Atual().get_nome() == r && pair->second->get_vivo() && pair->second->get_nome() != fulano->get_nome()) {
             s.insert(pair->second);
         }
     }
@@ -145,23 +145,31 @@ void Sistema::Rodada() {
         // Recolhendo um set com os participantes na mesma região que
         // o jogador da vez:
         set<Participante*> s = ParticipanteNaMesmaRegiao(participante_da_vez);
-        participante_da_vez->definir_acao(s);
-
-        //Atualizando o contador de vivos depois de algm jogar:
-        int aux = 0;
-        auto pair = participantes_.begin();
-        while(pair != participantes_.end()) {
-            if(pair->second->get_vivo() == true) {
-                aux++;
-            }
-            else {
-                _mortos.push_back(pair->second);
-                participantes_.erase(pair);
-            }
-            pair = next(pair);
+        if(participante_da_vez->get_vivo()){
+            participante_da_vez->definir_acao(s);
         }
-        contador_vivos_ = aux;
     }
+   
+   //Atualizando o contador de vivos depois da rodada:
+    int aux = 0;
+    for (auto participante = participantes.begin(); participante != participantes.end(); participante++) {
+        if((*participante)->get_vivo() == true) {
+            aux++;
+        }
+        else {
+            _mortos.push_back(*participante);
+            participantes.erase(participante);
+            }
+        }
+    contador_vivos_ = aux;
+
+    cout << "-----------------------------------------------------------------" << endl;
+    cout << "Personagens que morreram nessa rodada:" <<endl;
+    for(Participante *p : _mortos) {
+        cout << p->get_nome() << endl;
+    }
+    cout << "-----------------------------------------------------------------" << endl;
+    _mortos.clear();
 }
 
 void Sistema::Jogo() {
@@ -183,16 +191,17 @@ void Sistema::Jogo() {
             cout << "-----------------------------------------------------------------" << endl;
 
             Rodada();
-            //faz um resumo dos personagens que morreram no dia
-            cout << "-----------------------------------------------------------------" << endl;
-            cout << "Personagens que morreram nessa rodada:" <<endl;
-            for(Participante *p : _mortos) {
-                cout << p->get_nome() << endl;
-            }
-            cout << "-----------------------------------------------------------------" << endl;
-            _mortos.clear();
-            
             contador_noites_++;
+            //faz um resumo dos personagens que morreram no dia
         }
     }
+    cout << "-----------------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------" << endl;
+    cout << "FIM DE JOGO!" << endl;
+    for (auto pair = participantes_.begin(); pair != participantes_.end(); ++pair) {
+        if (pair->second->get_vivo()) {
+            cout << pair->second->get_nome() << " foi o grande campeão!" << endl;
+        }
+    }
+    cout << "PARABÉNS!";
 }
