@@ -30,8 +30,18 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
             break;
 
         case 'm': //mover
+        // !! ADICIONEI O CÓDIGO DAQUI 
+            cout << "Digite o nome da região para onde você quer ir:" << endl;
+            while(1) {
+                cin >> escolha;
+                try {
+                    return muda_regiao(escolha);
+                } catch (regiao_invalida_e &e) {
+                    cout << "Entrada inválida! Essa região não existe. Digite novamente" << endl; 
+                }
 
-            //muda_regiao(escolha));
+            }
+        // !! ADICIONEI O CÓDIGO ATÉ AQUI
             break;
 
         case 'b': //buscar elementos

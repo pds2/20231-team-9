@@ -19,6 +19,7 @@ class quantidade_agua_invalida_e {};
 class quantidade_comida_invalida_e {};
 class quantidade_remedio_invalida_e {};
 class utensilio_invalido_e {};
+class regiao_invalida_e {};
 
 class Participante {
     private:
@@ -71,7 +72,7 @@ class Participante {
          * 
          * @param destino
         */
-        void muda_regiao(regioes destino);
+        void muda_regiao(std::string destino);
         /**
          * @brief Define a ação do participante
          * 
