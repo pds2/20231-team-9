@@ -71,10 +71,35 @@ void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar
 }
 */
 
-void Participante::muda_regiao(regioes destino) {
+// ADICIONEI O CÓDIGO DESSA FUNÇÃO
+void Participante::muda_regiao(std::string destino) {
     //ainda tenho q colocar aq a função "pode mudar?"
     _regiao_atual.muda_regiao(destino);
     std::cout << get_nome() << " correu para a região " << destino << endl;
+    regioes destino_enum;
+    if(destino == "centro") {
+        destino_enum = centro;
+    } else if(destino == "floresta") {
+        destino_enum = floresta;
+    } else if(destino == "deserto") {
+        destino_enum = deserto;
+    } else if(destino == "pantano") {
+        destino_enum = pantano;
+    } else if(destino == "campo") {
+        destino_enum = campo;
+    } else if(destino == "montanhas") {
+        destino_enum = montanhas;
+    } else if(destino == "ruinas") {
+        destino_enum = ruinas;
+    } else if(destino == "cavernas") {
+        destino_enum = cavernas;
+    } else if(destino == "savana") {
+        destino_enum = savana;
+    } else {
+        throw regiao_invalida_e();
+    }
+
+    _regiao_atual.muda_regiao(destino_enum);
 }
 
 void Participante::batalha(Participante& p) {

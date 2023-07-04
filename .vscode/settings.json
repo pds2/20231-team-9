@@ -72,6 +72,13 @@
         "xlocmon": "cpp",
         "xloctime": "cpp",
         "deque": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "*.tcc": "cpp",
+        "condition_variable": "cpp",
+        "cstdarg": "cpp",
+        "cwctype": "cpp",
+        "unordered_map": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp"
     }
 }
