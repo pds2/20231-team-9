@@ -16,7 +16,7 @@ int main() {
     */
     
     while(true){
-        cout << "Seja Bem vindo ao simulador de jogos vorazes, inicialmente quantos players gostariam de jogar?" \
+        cout << "Seja bem-vindo ao Simulador de Jogos Vorazes!" << endl << "Inicialmente, quantos players gostariam de jogar?" \
         << endl << "Digite um número de 1 a 5:" << endl;
         int quantidade = 0;
         /*
@@ -35,11 +35,12 @@ int main() {
         /*
         * @brief Cria string e int discartaveis e constroi o participante dentro de um vetor de jogadores
         */
-        cout <<"Está na hora de nomear os jogadores!" << endl;
+        cout << endl << "Está na hora de nomear os jogadores!" << endl;
         for(int i = 0; i < quantidade; i++){
             string nome;
             cout << "Qual é o nome do jogador " << i + 1 << "?" << endl;
             cin >> nome;
+            cout << endl;
             jogo.criar_jogador(nome);
             participantes.push_back(Jogador(nome));
         }
@@ -48,7 +49,7 @@ int main() {
         * Essa quantidade total de players pode ser alterada
         */
         cout << "Certo, agora você deseja nomear os bots, ou deseja que a maquina decida?" \
-        << endl << "Digite 1 para você escolher e 2 para deixar a maquina decidir." << endl << endl;
+        << endl << "Digite 1 para você escolher e 2 para deixar a maquina decidir." << endl;
         int desc;
         while(true){
             cin >> desc;
@@ -62,6 +63,7 @@ int main() {
         }
         
         if(desc == 1){
+            cout << endl;
             for(int i = 0; i < (12 - quantidade); i++){
             string nome;
             cout << "Qual é o nome do Bot " << i + quantidade + 1 << "?" << endl;
@@ -72,10 +74,11 @@ int main() {
         /*
         * @brief Cria nomes aleatorios e alteraveis para os bots
         * Novamente baseado em 12 pessoas sendo isso alteravél
-        * Depois há de se mudar os bots para o tipo bot
+        * 
         */
         if(desc == 2){
-            jogo.criar_bot("Jorginho");
+            cout << endl;
+            jogo.criar_bot("Carla");
             jogo.criar_bot("Ana");
             jogo.criar_bot("Carlos");
             jogo.criar_bot("Marisa");
@@ -85,7 +88,7 @@ int main() {
             int j = quantidade + 7;
             int i = 2;
             while(j < 12){
-                string nome_desc = "Jorge " + std::to_string(i);
+                string nome_desc = "Jorge" + std::to_string(i);
                 jogo.criar_bot(nome_desc);
                 i++;
                 j++;

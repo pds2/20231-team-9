@@ -74,23 +74,25 @@ void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar
 void Participante::muda_regiao(regioes destino) {
     //ainda tenho q colocar aq a função "pode mudar?"
     _regiao_atual.muda_regiao(destino);
+    std::cout << get_nome() << " correu para a região " << destino << endl;
 }
 
 void Participante::batalha(Participante& p) {
-    std::cout << "O jogador " << get_nome() << " atacou o jogador " << p.get_nome() << std::endl;
+    std::cout << "O jogador " << get_nome() << " atacou o jogador " << p.get_nome() << "." << std::endl;
     Arma arma_escolhida_atacante = _arma;
     Arma arma_escolhida_defesa = p._arma;
 
     if(arma_escolhida_atacante.get_poder() > arma_escolhida_defesa.get_poder()) {
         p._vivo = false;
-        std::cout << "O jogador " << p.get_nome() << " foi morto" << std::endl;
+        std::cout << "O jogador " << p.get_nome() << " foi morto em batalha." << std::endl;
         _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
 
     } else if(arma_escolhida_atacante.get_poder() < arma_escolhida_defesa.get_poder()) {
         _vivo = false;
-        std::cout << "O jogador " << get_nome() << " foi morto" << std::endl;
+        std::cout << "O jogador " << get_nome() << " foi morto em batalha." << std::endl;
         p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
     } else {
+        std::cout << "Mas nada acontece..." << endl;
         _energia *= (1 - 0.1*arma_escolhida_atacante.get_poder());
         p._energia *= (1 - 0.1*arma_escolhida_defesa.get_poder());
     }
@@ -103,10 +105,13 @@ Regiao Participante::get_Regiao_Atual() {
 void Participante::consumir_utensilio(std::string utensilio, int qntd) {
     if(utensilio == "agua") {
         consumir_utensilios_agua(qntd);
+        std::cout << get_nome() << " bebeu água." << endl;
     } else if( utensilio == "comida") {
         consumir_utensilios_comida(qntd);
+        std::cout << get_nome() << " comeu um lanche." << endl;
     } else if(utensilio == "remedio") {
         consumir_utensilios_remedio(qntd);
+        std::cout << get_nome() << " tomou seus remédios." << endl;
     } else {
         throw utensilio_invalido_e();
     }
@@ -144,8 +149,8 @@ void Participante::consumir_utensilios_remedio(int a_consumir) {
 }
 
 void Participante::buscar_na_regiao() {
-    _energia -= 20;
-    _hidratacao -= 20;
+    _energia -= 15;
+    _hidratacao -= 15;
     float chance_agua = rand() % 10 + 1;
     float chance_comida = rand() % 10 + 1;
     float chance_remedio = rand() % 10 + 1;
@@ -153,14 +158,17 @@ void Participante::buscar_na_regiao() {
 
     if(chance_agua < _regiao_atual.get_chance_agua()) {
         qntd_agua++;
+        std::cout << get_nome() << " encontrou água em suas buscas." << endl;
     }
 
     if(chance_remedio < _regiao_atual.get_chance_remedio()) {
         qntd_remedio++;
+        std::cout << get_nome() << " achou um kit de primeiros socorros." << endl;
     }
 
     if(chance_comida < _regiao_atual.get_chance_comida()) {
         qntd_comida++;
+        std::cout << get_nome() << " achou uma fonte de alimento." << endl;
     }
 
     if(chance_arma < _regiao_atual.get_chance_arma()) {
@@ -168,15 +176,19 @@ void Participante::buscar_na_regiao() {
         if(qual_arma <= 4) {
             Arma _faca(faca);
             adicionar_arma(_faca);
+            std::cout << get_nome() << " encontrou uma faca." << endl;
         } else if(qual_arma <= 7) {
             Arma _arco(arco);
             adicionar_arma(_arco);
+            std::cout << get_nome() << " encontrou um arco e flecha." << endl;
         } else if(qual_arma <= 8) {
             Arma _espada(espada);
             adicionar_arma(_espada);
+            std::cout << get_nome() << " encontrou uma espada." << endl;
         } else if(qual_arma == 10) {
             Arma _machado(machado);
             adicionar_arma(_machado);
+            std::cout << get_nome() << " encontrou um machado! Agora ele está imparável!" << endl;
         }
     }
 }

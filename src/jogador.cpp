@@ -9,8 +9,8 @@ using namespace std;
 Jogador::Jogador(string nome) : Participante(nome) { }
 
 void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
-    cout << endl << "---------------------------------------------------------------------------" << endl;
-    cout << get_nome() << ", é sua vez de jogar!" << endl;
+    cout << endl << "------------------------------------------------------------------------------------" << endl;
+    cout << get_nome() << ", é sua vez de jogar!" << endl << endl;
     imprime_status(Msm_Regiao_Q_Eu);
     char comando;
     string escolha;
@@ -19,6 +19,7 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
     switch (comando){
         case 'a': //atacar
             cin >> escolha;
+            cout << endl << "------------------------------------------------------------------------------------" << endl;
             for (auto pessoa : Msm_Regiao_Q_Eu){
                 if (pessoa->get_nome() == escolha) batalha(*pessoa);
                 encontrou = 1;
@@ -35,10 +36,12 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
             break;
 
         case 'b': //buscar elementos
+            cout << endl << "------------------------------------------------------------------------------------" << endl;
             buscar_na_regiao();
             break;
         case 'u': //usar utensílio
             cin >> escolha;
+            cout << endl << "------------------------------------------------------------------------------------" << endl;
             if ((escolha == "agua") || (escolha == "remedio") || escolha == "comida"){
                 consumir_utensilio(escolha, 1);
             } else {
@@ -82,17 +85,18 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
 void Jogador::imprime_status(set<Participante*> Msm_Regiao_Q_Eu) {
     cout << "STATUS:" << endl;
     cout << "Energia: " << get_energia() << "/100" << endl;
-    cout << "Hidratação: " << get_hidratacao() << "/100" << endl;
+    cout << "Hidratação: " << get_hidratacao() << "/100" << endl << endl;
+    cout << "Seu inventário:" << endl;
+    imprime_qntd_utensilios();
+    cout << "   Arma: " << get_arma().get_tipo() << endl << endl;
+
 
     cout << "Você está na região " << get_Regiao_Atual().get_nome() << "." << endl << endl;
     cout << "Estão na mesma região que você:" << endl;
     for (auto i: Msm_Regiao_Q_Eu){
-        cout << i->get_nome() << endl;
+        cout << i->get_nome() << ", ";
     }
-
-    cout << "Seu inventário:" << endl;
-    imprime_qntd_utensilios();
-    cout << "Arma: " << get_arma().get_tipo() << endl << endl;
+    cout << endl << endl;
 
     cout << "Defina sua ação!" << endl;
     cout << "Mover: Muda para outra região." << endl;

@@ -58,14 +58,14 @@ void Sistema::criar_bot(string nome) {
 
 void Sistema::inicio() {
     cout << "O jogo começou! Jogadores estão no centro!" << endl;
-    cout << "Nossos jogadores são: ";
+    cout << "Nossos jogadores são: " << endl;
     // set<Jogador *> jogadores = _mapa.get_participantes_centro();
     auto it = participantes_.begin();
     while(it != participantes_.end()) {
         cout << it->second->get_nome() << endl;
         it = next(it);
-        cout << endl << endl;
     }
+    cout << endl;
 }
 
 // void Sistema::inicio() {
@@ -168,23 +168,28 @@ void Sistema::Jogo() {
     //Chama Rodadas até ter apenas um participante vivo:
     while (contador_vivos_ > 1) {
         //Informa o Dia em que a rodada acontece
-        cout << "Dia " << contador_dias_ << ":" << endl << endl;;
+        cout << "-----------------------------------------------------------------" << endl;
+        cout << "Dia " << contador_dias_ << ":" << endl << endl;
+        cout << "-----------------------------------------------------------------" << endl;
        
         Rodada();
-        cout <<"Início do dia!" << endl << endl;
         contador_dias_++;
 
         // Roda uma rodada "Noite" a não ser q sobre apenas um participante
         // do "Dia" anterior
         if(contador_vivos_ > 1) {
+            cout << "-----------------------------------------------------------------" << endl;
             cout << "Noite " << contador_noites_ << ":" << endl;
+            cout << "-----------------------------------------------------------------" << endl;
+
             Rodada();
-            
             //faz um resumo dos personagens que morreram no dia
+            cout << "-----------------------------------------------------------------" << endl;
             cout << "Personagens que morreram nessa rodada:" <<endl;
             for(Participante *p : _mortos) {
                 cout << p->get_nome() << endl;
             }
+            cout << "-----------------------------------------------------------------" << endl;
             _mortos.clear();
             
             contador_noites_++;
