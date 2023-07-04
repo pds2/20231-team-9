@@ -31,6 +31,10 @@ Arma Participante::get_arma() {
     return _arma;
 }
 
+void Participante::morrer(){
+    _vivo = false;
+}
+
 void Participante::imprime_qntd_utensilios() {
     //std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
     std::cout << "Água: " << to_string(qntd_agua) << std::endl;
@@ -74,7 +78,7 @@ void Participante::adicionar_utensilio_remedio(int a_consumir) { //Vamos alterar
 // ADICIONEI O CÓDIGO DESSA FUNÇÃO
 void Participante::muda_regiao(std::string destino) {
     //ainda tenho q colocar aq a função "pode mudar?"
-    _regiao_atual.muda_regiao(destino);
+    //_regiao_atual.muda_regiao(destino);
     std::cout << get_nome() << " correu para a região " << destino << endl;
     regioes destino_enum;
     if(destino == "centro") {
@@ -100,6 +104,12 @@ void Participante::muda_regiao(std::string destino) {
     }
 
     _regiao_atual.muda_regiao(destino_enum);
+}
+
+void Participante::muda_regiao(regioes destino) {
+    //ainda tenho q colocar aq a função "pode mudar?"
+    _regiao_atual.muda_regiao(destino);
+    std::cout << get_nome() << " correu para a região " << destino << endl;
 }
 
 void Participante::batalha(Participante& p) {

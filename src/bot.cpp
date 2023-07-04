@@ -5,6 +5,17 @@
 Bot::Bot(string nome) : Jogador(nome) {}
 
 void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu){
+    if (get_energia() <= 0){
+        morrer();
+        std::cout << get_nome() << " morreu de fome." << endl;
+        return;
+    }
+    if (get_hidratacao() <= 0){
+        morrer();
+        std::cout << get_nome() << " morreu de sede." << endl;
+        return;
+    }
+
     if (get_hidratacao() < 60){
         try{
             consumir_utensilio("agua",1);
@@ -25,7 +36,7 @@ void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu){
         }
         else if (rng <= 8){
             if(get_Regiao_Atual().get_nome() != centro){
-                muda_regiao(centro);
+                muda_regiao("centro");
             } else{
                 int destino = rand() % 7 + 1;
                 muda_regiao(regioes(destino));

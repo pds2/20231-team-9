@@ -9,6 +9,17 @@ using namespace std;
 Jogador::Jogador(string nome) : Participante(nome) { }
 
 void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
+    if (get_energia() <= 0){
+        morrer();
+        std::cout << get_nome() << " morreu de fome." << endl;
+        return;
+    }
+    if (get_hidratacao() <= 0){
+        morrer();
+        std::cout << get_nome() << " morreu de sede." << endl;
+        return;
+    }
+    
     cout << endl << "------------------------------------------------------------------------------------" << endl;
     cout << get_nome() << ", é sua vez de jogar!" << endl << endl;
     imprime_status(Msm_Regiao_Q_Eu);

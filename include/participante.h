@@ -67,12 +67,22 @@ class Participante {
          * @param arma
         */
         void adicionar_arma(Arma arma);
+        /*
+         * @brief Muda o estado do participante para morto.
+         */
+        void morrer();
         /**
          * @brief Muda a região do participante
          * 
          * @param destino
         */
         void muda_regiao(std::string destino);
+        /**
+         * @brief Muda a região do participante
+         * 
+         * @param destino
+        */
+        void muda_regiao(regioes destino);
         /**
          * @brief Define a ação do participante
          * 
