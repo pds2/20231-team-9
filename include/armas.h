@@ -13,24 +13,6 @@ enum armas {
  * machado: 5
  */
 
-class Arma {
-    private:
-        armas _tipo;
-        int _poder;
-    public:
 
-        /*
-        * @brief Construtor
-        */
-        Arma(armas tipo);
-        /*
-        * @brief Retorna o tipo da arma (enum armas)
-        */
-        armas get_tipo() const;
-        /*
-        * @brief Retorna o poder da arma
-        */
-        int get_poder() const;
-};
 
 #endif
