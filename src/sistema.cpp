@@ -11,6 +11,8 @@ Sistema::Sistema() {
     contador_vivos_ = 0;
 }
 
+// TESTE commit na branch v2.0
+
 void Sistema::criar_jogador(string nome) {
     //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
     // for(Participante& this_one : _vivos) {
