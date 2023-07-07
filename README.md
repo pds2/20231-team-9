@@ -6,6 +6,54 @@
 - **Felipe Gomide**
 - **Lucas Junqueira**
 
+# SIMULADOR DE JOGOS VORAZES
+- O projeto foi inspirado na saga "Jogo Vorazes". O jogador será capaz de tomar decisões se ele deseja batalhar, mover para outra região, recolher armas, remédios, comida e/ou armas, tendo como principal objetivo sobreviver até o fim, tornando-se, então, o campeão.
+
+## Pré-requisitos
+- Para executar o programa corretamente, é necessário ter instalado o compilador C++ (g++ preferencialmente).
+
+## Como executar:
+1. Para acessar o repositório do projeto, digite no terminal "cd 20231-team-9"
+2. Digite `make` para **compilar o projeto**
+3. Digite `make tests` para **executar os testes**
+4. Digite `make clean` para deletar os arquivos binários localizados no diretório "build"
+5. **Execução**: `./bin/main`
+
+## INFORMAÇÕES IMPORTANTES SOBRE O JOGO
+- O programa é composto por participantes do tipo `Jogador`, cujas decisões sobre o que será feito no jogo são tomadas pelo usuário e inseridas no terminal, e do tipo `Bot`, que tem tais decisões automatizadas e aleatórias.
+- Todos os participantes iniciam o jogo na Região Centro.
+- Os participantes podem acumular ao longo do jogo *água*, *comida*, *remédio* e *arma*. Inicialmente, os participantes (jogadores + bots) estão com os atributos referentes às quantidades de 'água', 'comida' e 'remédio' iguais a zero e estão, também, desarmados.
+- Ao longo do jogo, cada participante pode acumular quantas águas, comidas e remédios que ele quiser na funcionalidade "Buscar na região" (que será explicada mais à frente) e ele apenas mudará de arma se ele achar uma mais poderosa do que a que ele tem no momento.
+    - Possíveis armas e seus respectivos poderes:
+        - Desarmado: poder = 1;
+        - Faca: poder = 2;
+        - Arco: poder = 3;
+        - Espada: poder = 4;
+        - Machado: poder = 5;
+
+# COMO JOGAR
+1. Ao executar o programa, será pedido ao usuário que ele insira no terminal um número inteiro de 1 a 5, que determinará quantos objetos da classe `Jogador` serão criados.
+    - Após isso, ele deverá inserir os nomes de cada um dos jogadores
+    - No que tange aos `Bots`, ele poderá escolher se quer nomear cada Bot, ou se prefere que isso seja feito pelo programa.
+
+2. Após concluir tal etapa, todos os jogadores, que estão armazenados em um container, serão embaralhados em cada rodada, a fim de definir a ordem de jogada. Dessa forma, cada `Jogador` pode escolher **UMA** entre as **QUATRO** possíveis ações estabelecidas no jogo:
+    - ***MOVER PARA OUTRA REGIÃO***: a partir da Região que o participante está, ele só pode mover para as **regiões adjacentes à corrente**. Caso ele insira uma que não seja adjacente, tal erro será tratado pelo programa, sendo solicitado outra entrada do nome de uma região, até que seja inserida o nome correspondente a uma região que atenda à condição.
+    >> m *nome_da_região*
+
+    - ***BUSCAR UTENSÍLIOS***: cada região possui uma probabilidade fixa de possuir cada um dos utensílios. Ao escolher essa ação, é executada um código que sorteia uma porcentagem e, se o número obtido for menor ou igual à probabilidade referente a cada utensílio e arma, o jogador adiciona à sua coleção o que foi obtido naquela rodada.
+    >> b
+
+    - ***UTILIZAR UTENSÍLIO***: ao selecionar tal ação, o personagem deve indicar qual utensílio (água, comida ou remédio) ele quer consumir e, com isso, será descontado 1 unidade da coleção referente ao utensílio ingerido. Caso seja selecionado um utensílio que o jogador não possui, será solicitado que ele insira outro utensílio. Além disso, se ele não possuir nenhum dos três utensílios, ele é forçado a *buscar na região* (isso é automatizado), para não desperdiçar sua jogada.
+    >> u *nome_do_utensílio*
+
+    - ***BATALHAR***: ao selecionar tal ação, o participante tem acesso a todos os outros jogadores que estão na mesma região que ele. Deve ser inserido no terminal o nome de um participante e, caso o nome não exista ou o participante não esteja na região daquele que tomou a decisão, é solicitado que o usuário permaneça inserindo nomes, até inserir o nome de alguém que esteja na sua região. Porém, se o participante estiver sozinho, ele é forçado a buscar utensílios na região.
+    O vencedor da batalha é aquele que possui a arma de maior poder. O perdedor é morto e excluído do jogo e o vencedor tem o seu campo "energia" subtraído por 10 vezes o poder na arma do adversário.
+    Caso ambos tenham armas com o mesmo poder, ninguém morre, mas os dois têm suas energia diminuída em 10 vezes o poder da arma do adversário.
+    >> a *nome_do_adversário*
+
+### Como um jogador por morrer:
+- Sendo morto em uma batalha por outro participante com uma arma mais poderosa.
+
 # User Stories
 - Como Participante da Edição do Jogo, quero ser capaz de me locomover pelo mapa, a fim de fugir dos adversários.
 - Como Participante da Edição do Jogo, quero ser capaz de enfrentar e derrotar outros jogadores, a fim de tentar continuar no jogo.
