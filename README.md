@@ -30,7 +30,7 @@
 
 - O que acontece se consumir cada um dos utensílios:
     - Água: campo `hidratação` vai para 100 e `energia` permanece inalterado.
-    
+
     - Comida: campo `energia` vai para 100 e `hidratação` permanece inalterado.
     - Remédio: tanto `hidratação`, quanto `energia` vão para 100.
 
@@ -40,6 +40,20 @@
     - Arco: poder = 3;
     - Espada: poder = 4;
     - Machado: poder = 5;
+
+## REGIÕES QUE COMPÕE O JOGO
+- O jogo é composto por 9 regiões:
+    - Centro
+    - Floresta
+    - Pantano
+    - Montanhas
+    - Deserto
+    - Ruinas
+    - Campo
+    - Cavernas
+    - Savana
+- Um participante só pode mover para as regiões adjacentes à que ele está no momento
+![Alt text](image.png)
 
 # COMO JOGAR
 1. Ao executar o programa, será pedido ao usuário que ele insira no terminal um número inteiro de 1 a 5, que determinará quantos objetos da classe `Jogador` serão criados.
@@ -51,29 +65,33 @@
     
         - Sempre que o participante se locomove, seu campo *"hidratação"* é reduzido em 20 unidades.
 
-    >> m *nome_da_região*
+    > m *nome_da_região*
 
 
     - ***BUSCAR UTENSÍLIOS***: cada região possui uma probabilidade fixa de possuir cada um dos utensílios. Ao escolher essa ação, é executada um código que sorteia uma porcentagem e, se o número obtido for menor ou igual à probabilidade referente a cada utensílio e arma, o jogador adiciona à sua coleção o que foi obtido naquela rodada.
 
         - Sempre que o participante se locomove, os campos *"hidratação"* *"energia"* são reduzidos em 15 unidades.
-    >> b
+    > b
 
 
     - ***UTILIZAR UTENSÍLIO***: ao selecionar tal ação, o personagem deve indicar qual utensílio (água, comida ou remédio) ele quer consumir e, com isso, será descontado 1 unidade da coleção referente ao utensílio ingerido. Caso seja selecionado um utensílio que o jogador não possui, será solicitado que ele insira outro utensílio. Além disso, se ele não possuir nenhum dos três utensílios, ele é forçado a *buscar na região* (isso é automatizado), para não desperdiçar sua jogada.
 
         - Ao consumir *alimento*, o campo "comida" é mudado para 100. Ao consumir *água*, o campo hidratação é mudado para 100 e, ao consumir *remédio*, ambos os campos vão para 100.
-    >> u *nome_do_utensílio*
+    > u *nome_do_utensílio*
 
     - ***BATALHAR***: ao selecionar tal ação, o participante tem acesso a todos os outros jogadores que estão na mesma região que ele. Deve ser inserido no terminal o nome de um participante e, caso o nome não exista ou o participante não esteja na região daquele que tomou a decisão, é solicitado que o usuário permaneça inserindo nomes, até inserir o nome de alguém que esteja na sua região. Porém, se o participante estiver sozinho, ele é forçado a buscar utensílios na região.
         - O vencedor da batalha é aquele que possui a arma de maior poder. O perdedor é morto e excluído do jogo e o vencedor tem o seu campo "energia" subtraído por 10 vezes o poder na arma do adversário.
         - Caso ambos tenham armas com o mesmo poder, ninguém morre, mas os dois têm suas energia diminuída em 10 vezes o poder da arma do adversário.
 
-    >> a *nome_do_adversário*
+    > a *nome_do_adversário*
 
 ### Como um jogador por morrer:
 - Sendo morto em uma batalha por outro participante com uma arma mais poderosa.
 - À medida que batalha, move de região e busca utensílios, a energia e a hidratação caem e, caso esses campos cheguem a 0 (mesmo que alcance tais níveis após vencer uma batalha), o participante também morre.
+
+## FIM DO JOGO
+- O jogo terminará quando apenas um participante sobreviver, independente do nível de energia ou hidratação que ele tiver.
+
 
 # User Stories
 - Como Participante da Edição do Jogo, quero ser capaz de me locomover pelo mapa, a fim de fugir dos adversários.
