@@ -3,15 +3,14 @@
 
 #include <utility>
 #include <map>
-
-enum regioes{centro, floresta, deserto, pantano, campo, montanhas, ruinas, cavernas, savana};
+#include <string>
 
 class destino_nao_existe_e {};
 class nao_da_para_mudar_para_essa_regiao_e {};
 
 class Regiao{
     private:
-    regioes _nome;
+    std::string _nome_string;
     int _x;
     int _y;
     int _chance_agua;
@@ -21,13 +20,13 @@ class Regiao{
 
     public:
     /*
-     * @brief Construtor Padrao
+     * @brief Construtor Padrao que inicializa a regiao como centro
      */
     Regiao();
-    /*
-     * @brief Construtor
-     */
-    Regiao(int chance_agua, int chance_comida, int chance_arma, int chance_remedio, regioes _nome, int x, int y);
+    /**
+     * @brief Construtor com atributos.
+    */
+    Regiao(int x,int y, std::string nome_str, int chance_agua, int chance_comida, int chance_arma, int chance_remedio);
     /*
      * @brief Retorna chance de agua
      */
@@ -44,10 +43,10 @@ class Regiao{
     * @brief Retorna chance de remedio
     */
     int get_chance_remedio();
-    /*
-     * @brief Retorna o enum com o nome da regiao
-     */
-    regioes get_nome();
+    /**
+     * @brief Retorna uma string com o nome da regiao
+    */
+   std::string get_nome_string();
     /*
      * @brief Retorna a coordenada x da região 
      */
@@ -72,7 +71,6 @@ class Regiao{
      * @throws lança um erro se nao for possivel mudar para
      *         a regiao solicitada 
      */
-    void muda_regiao(regioes destino);
 };
 
 #endif

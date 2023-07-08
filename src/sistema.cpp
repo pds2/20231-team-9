@@ -6,9 +6,12 @@
 #include <random>
 
 Sistema::Sistema() {
-    contador_dias_ = 1;
-    contador_noites_ = 1;
+    contador_dias_noites_ = 1;
     contador_vivos_ = 0;
+}
+
+void Sistema::insere_regiao(Regiao* lugar) {
+    map_regioes_[lugar->get_nome_string()] = lugar;
 }
 
 void Sistema::criar_jogador(string nome) {
@@ -28,6 +31,7 @@ void Sistema::criar_jogador(string nome) {
 
     Jogador *novo_jogador = new Jogador(nome);
     participantes_[nome] = novo_jogador;
+    novo_jogador->muda_regiao("centro", &map_regioes_);
     contador_vivos_++;
     // _vivos[nome] = Participante(nome,distrito);
     // _vivos.push_back(Participante(nome, distrito));
@@ -53,6 +57,7 @@ void Sistema::criar_bot(string nome) {
 
     Bot *novo_bot = new Bot(nome);
     participantes_[nome] = novo_bot;
+    novo_bot->muda_regiao("centro", &map_regioes_);
     contador_vivos_++;
 }
 
@@ -120,10 +125,10 @@ set<Participante*> Sistema::ParticipanteNaMesmaRegiao(Participante* fulano) {
     set<Participante*> s;
 
     // Busco o nome (enum) da região atual do participante
-    regioes r = fulano->get_Regiao_Atual().get_nome();
+    string r = fulano->get_Regiao_Atual()->get_nome_string();
 
     for (auto pair = participantes_.begin(); pair != participantes_.end(); ++pair) {
-        if (pair->second->get_Regiao_Atual().get_nome() == r && pair->second->get_vivo() && pair->second->get_nome() != fulano->get_nome()) {
+        if (pair->second->get_Regiao_Atual()->get_nome_string() == r && pair->second->get_vivo() && pair->second->get_nome() != fulano->get_nome()) {
             s.insert(pair->second);
         }
     }
@@ -146,7 +151,7 @@ void Sistema::Rodada() {
         // o jogador da vez:
         set<Participante*> s = ParticipanteNaMesmaRegiao(participante_da_vez);
         if(participante_da_vez->get_vivo()){
-            participante_da_vez->definir_acao(s);
+            participante_da_vez->definir_acao(s,&map_regioes_);
         }
     }
    
@@ -178,24 +183,23 @@ void Sistema::Rodada() {
 
 void Sistema::Jogo() {
     //Chama Rodadas até ter apenas um participante vivo:
-    while (contador_vivos_ >= 1) {
+    while (contador_vivos_ > 1) {
         //Informa o Dia em que a rodada acontece
         cout << "-----------------------------------------------------------------" << endl;
-        cout << "Dia " << contador_dias_ << ":" << endl << endl;
+        cout << "Dia " << contador_dias_noites_ << ":" << endl << endl;
         cout << "-----------------------------------------------------------------" << endl;
        
         Rodada();
-        contador_dias_++;
 
         // Roda uma rodada "Noite" a não ser q sobre apenas um participante
         // do "Dia" anterior
         if(contador_vivos_ > 1) {
             cout << "-----------------------------------------------------------------" << endl;
-            cout << "Noite " << contador_noites_ << ":" << endl;
+            cout << "Noite " << contador_dias_noites_ << ":" << endl;
             cout << "-----------------------------------------------------------------" << endl;
 
             Rodada();
-            contador_noites_++;
+            contador_dias_noites_++;
             //faz um resumo dos personagens que morreram no dia
         }
     }

@@ -9,7 +9,7 @@ using namespace std;
 
 Jogador::Jogador(string nome) : Participante(nome) { }
 
-void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
+void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu, map<string,Regiao*>* map_regioes) {
     if (get_energia() <= 0){
         morrer();
         std::cout << get_nome() << " morreu de fome." << endl;
@@ -55,7 +55,7 @@ void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu) {
             while(1) {
                 cin >> escolha;
                 try {
-                    return muda_regiao(escolha);
+                    return muda_regiao(escolha, map_regioes);
                 } catch (regiao_invalida_e) {
                     cout << "Entrada inválida! Essa região não existe. Digite novamente" << endl; 
                 } catch (nao_da_para_mudar_para_essa_regiao_e) {
@@ -104,7 +104,7 @@ void Jogador::imprime_status(set<Participante*> Msm_Regiao_Q_Eu) {
     cout << "Arma: " << get_arma().get_tipo() << endl << endl;
 
 
-    cout << "Você está na região " << get_Regiao_Atual().get_nome() << "." << endl << endl;
+    cout << "Você está na região " << get_Regiao_Atual()->get_nome_string() << "." << endl << endl;
     cout << "Estão na mesma região que você:" << endl;
     if (Msm_Regiao_Q_Eu.size()==0){
         cout << "Você está sozinho..." << endl;

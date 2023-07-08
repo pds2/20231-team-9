@@ -4,7 +4,7 @@
 
 Bot::Bot(string nome) : Jogador(nome) {}
 
-void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu){
+void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu, map<string,Regiao*>* map_regioes){
     if (get_energia() <= 0){
         morrer();
         std::cout << get_nome() << " morreu de fome." << endl;
@@ -38,16 +38,20 @@ void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu){
             }
         }
     } else{    
+        std::vector<std::string> regioes = {"centro", "floresta", "deserto", "pantano", "campo", "montanhas", "ruinas", "cavernas", "savana"};
+
         int rng = rand() % 10 + 1;
         if (rng <= 4){
             buscar_na_regiao();
         }
         else if (rng <= 8){
-            if(get_Regiao_Atual().get_nome() != centro){
-                muda_regiao("centro");
+            if(get_Regiao_Atual()->get_nome_string() != "centro"){
+                muda_regiao("centro", map_regioes);
             } else{
+
+
                 int destino = rand() % 7 + 1;
-                muda_regiao(regioes(destino));
+                muda_regiao(regioes[destino],map_regioes);
             }
         }
         else {

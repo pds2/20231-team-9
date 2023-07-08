@@ -11,10 +11,9 @@ class Sistema{
     private:
     //pensei em colocar Participante como ponteiro
     map<string, Participante*> participantes_;
-    //map<string, Participante*> _vivos;
+    map<string,Regiao*> map_regioes_;
     vector<Participante*> _mortos; // acho q não vamos usar
-    unsigned int contador_dias_;
-    unsigned int contador_noites_;
+    unsigned int contador_dias_noites_;
     unsigned int contador_vivos_;
 
     public:
@@ -22,6 +21,10 @@ class Sistema{
      * @brief Construtor
     */
    Sistema();
+   /**
+    * @brief Insere a Regiao no map de regioes
+   */
+  void insere_regiao(Regiao* lugar);
     /*
      * @brief Cria um jogador recebendo nome, idade e destrito
      * @throws Lança uma excessão se destrito > 12

@@ -6,10 +6,10 @@ Participante::Participante(string nome) : _arma(armas::desarmado) {
     _vivo = true;
     _energia = 100;
     _hidratacao = 100;
-    _regiao_atual = Regiao();
     qntd_agua = 0;
     qntd_comida = 0;
     qntd_remedio = 0;
+    _regiao_atual = nullptr;
 }
 
 int Participante::get_agua(){
@@ -73,39 +73,29 @@ void Participante::adicionar_utensilio(std::string utensilio, int qntd) { //Vamo
     }
 }
 
-void Participante::muda_regiao(std::string destino) {
-    regioes destino_enum;
-    if(destino == "centro") {
-        destino_enum = centro;
-    } else if(destino == "floresta") {
-        destino_enum = floresta;
-    } else if(destino == "deserto") {
-        destino_enum = deserto;
-    } else if(destino == "pantano") {
-        destino_enum = pantano;
-    } else if(destino == "campo") {
-        destino_enum = campo;
-    } else if(destino == "montanhas") {
-        destino_enum = montanhas;
-    } else if(destino == "ruinas") {
-        destino_enum = ruinas;
-    } else if(destino == "cavernas") {
-        destino_enum = cavernas;
-    } else if(destino == "savana") {
-        destino_enum = savana;
-    } else {
+void Participante::muda_regiao(std::string destino_str, map<string,Regiao*>* map_regioes) {
+    bool aux = false;
+    Regiao* destino;
+    auto pair = map_regioes->begin();
+    while(pair != map_regioes->end()) {
+        if(pair->first == destino_str) {
+            destino = pair->second;
+            aux = true;
+            break;
+        }
+        pair = next(pair);
+    }
+    if(aux == false) {
         throw regiao_invalida_e();
     }
 
-    _regiao_atual.muda_regiao(destino_enum);
+    if(_regiao_atual == nullptr) {
+        _regiao_atual = destino;
+    } else if(_regiao_atual->pode_mudar_de_regiao(destino->get_x(),destino->get_y())) {
+        _regiao_atual = destino;
+    } else if(_regiao_atual->pode_mudar_de_regiao(destino->get_x(),destino->get_y()) == false) {throw nao_da_para_mudar_para_essa_regiao_e();}
     _hidratacao -= 20;
-    std::cout << get_nome() << " correu para a região " << destino << endl;
-}
-
-void Participante::muda_regiao(regioes destino) {
-    _regiao_atual.muda_regiao(destino);
-    _hidratacao -= 20;
-    std::cout << get_nome() << " correu para a região " << destino << endl;
+    std::cout << get_nome() << " correu para a região " << destino_str << endl;
 }
 
 void Participante::batalha(Participante& p) {
@@ -129,7 +119,7 @@ void Participante::batalha(Participante& p) {
     }
 }
 
-Regiao Participante::get_Regiao_Atual() {
+Regiao* Participante::get_Regiao_Atual() {
     return _regiao_atual;
 }
 
@@ -187,22 +177,22 @@ void Participante::buscar_na_regiao() {
     float chance_remedio = rand() % 10 + 1;
     float chance_arma = rand() % 10 + 1;
     cout << get_nome() << " fez uma busca na sua região:" << endl;
-    if(chance_agua < _regiao_atual.get_chance_agua()) {
+    if(chance_agua < _regiao_atual->get_chance_agua()) {
         qntd_agua++;
         std::cout << get_nome() << " encontrou água em suas buscas." << endl;
     }
 
-    if(chance_remedio < _regiao_atual.get_chance_remedio()) {
+    if(chance_remedio < _regiao_atual->get_chance_remedio()) {
         qntd_remedio++;
         std::cout << get_nome() << " achou um kit de primeiros socorros." << endl;
     }
 
-    if(chance_comida < _regiao_atual.get_chance_comida()) {
+    if(chance_comida < _regiao_atual->get_chance_comida()) {
         qntd_comida++;
         std::cout << get_nome() << " achou uma fonte de alimento." << endl;
     }
 
-    if(chance_arma < _regiao_atual.get_chance_arma()) {
+    if(chance_arma < _regiao_atual->get_chance_arma()) {
         int qual_arma = rand() % 10 + 1;
         if(qual_arma <= 4) {
             Arma _faca(faca);

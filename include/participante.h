@@ -31,7 +31,7 @@ class Participante {
         float _hidratacao;
         bool _vivo;
         string _nome;
-        Regiao _regiao_atual;
+        Regiao* _regiao_atual;
         Arma _arma;
 
 
@@ -88,19 +88,13 @@ class Participante {
          * 
          * @param destino
         */
-        void muda_regiao(std::string destino);
-        /**
-         * @brief Muda a região do participante
-         * 
-         * @param destino
-        */
-        void muda_regiao(regioes destino);
+        void muda_regiao(std::string destino_str, map<string,Regiao*>* map_regioes);
         /**
          * @brief Define a ação do participante
          * 
          * @param Msm_Regiao_Q_Eu
         */
-        virtual void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) = 0;
+        virtual void definir_acao(set<Participante*> Msm_Regiao_Q_Eu, map<string,Regiao*>* map_regioes) = 0;
         /*
          * @brief simula a batalha entre o participante corrente com um outro participante p
          */
@@ -108,7 +102,7 @@ class Participante {
         /**
          * @brief Retorna a regiao atual do participante
         */
-        Regiao get_Regiao_Atual();
+        Regiao* get_Regiao_Atual();
         /**
          * @brief Imprime a quantidade de utensílios do participante
         */

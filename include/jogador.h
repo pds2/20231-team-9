@@ -18,7 +18,7 @@ class Jogador : public Participante {
         /*
         * @brief Lê do usuário um comando para definir a ação do respectivo participante
         */
-        void definir_acao(set<Participante*> Msm_Regiao_Q_Eu) override;
+        void definir_acao(set<Participante*> Msm_Regiao_Q_Eu, map<string,Regiao*>* map_regioes) override;
         void imprime_status(set<Participante*> Msm_Regiao_Q_Eu);
 };
 

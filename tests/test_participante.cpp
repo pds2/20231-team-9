@@ -3,17 +3,17 @@
 
 TEST_CASE("Testa se os atributos de Participante foram corretamente inicializados") {
     Jogador p = Jogador("Maria");
-    CHECK_EQ(p.get_Regiao_Atual().get_nome(), regioes::centro);
+    CHECK_EQ(p.get_Regiao_Atual()->get_nome_string(), "centro");
     CHECK_EQ(p.get_energia(), 100.0);
     CHECK_EQ(p.get_hidratacao(), 100.0);
 }
 
-TEST_CASE("Testa se o personagem está na região correta") {
-    Jogador p = Jogador("Maria");
-    Regiao _floresta(8,7,2,0,regioes::floresta,2,1);
-    p.muda_regiao("floresta");
-    CHECK_EQ(p.get_Regiao_Atual().get_nome(), regioes::floresta);
-}
+// TEST_CASE("Testa se o personagem está na região correta") {
+//     Jogador p = Jogador("Maria");
+//     Regiao _floresta(8,7,2,0,regioes::floresta,2,1);
+//     p.muda_regiao("floresta");
+//     CHECK_EQ(p.get_Regiao_Atual().get_nome_enum(), regioes::floresta);
+// }
 
 TEST_CASE("Testa se a mudança de arma está ocorrendo corretamente") {
     Jogador p = Jogador("Maria");
@@ -35,15 +35,15 @@ TEST_CASE("Testa a função batalha") {
     CHECK_EQ(p.get_energia(), 60);
 }
 
-TEST_CASE("Testa o lançamento das excessões") {
-    Jogador p = Jogador("Maria");
-    p.muda_regiao("floresta");
+// TEST_CASE("Testa o lançamento das excessões") {
+//     Jogador p = Jogador("Maria");
+//     p.muda_regiao("floresta");
 
-    Regiao _floresta(8,7,2,0,floresta,2,1);
-    CHECK_EQ(p.get_Regiao_Atual(), _floresta);
+//     Regiao _floresta(8,7,2,0,floresta,2,1);
+//     CHECK_EQ(p.get_Regiao_Atual(), _floresta);
 
-    CHECK_THROWS_AS(p.muda_regiao("praia"), regiao_invalida_e);
-}
+//     CHECK_THROWS_AS(p.muda_regiao("praia"), regiao_invalida_e);
+// }
 
 TEST_CASE("Testa a função 'consumir_utensilio()'") {
     Jogador p = Jogador("Maria");
@@ -65,12 +65,54 @@ TEST_CASE("Testa a função 'consumir_utensilio()'") {
     CHECK_THROWS_AS(p.consumir_utensilio("cafe", 1), utensilio_invalido_e);
 
 }
+
+TEST_CASE("Testa a função muda regiao") {
+    Jogador p = Jogador("Maria");
+
+    map<string,Regiao*> map_regioes;
+    Regiao Centro(2,2,"centro",0,0,9,3);
+    Regiao Floresta(2,1,"floresta",8,7,2,0);
+    Regiao Deserto(3,3,"deserto",2,5,5,0);
+    map_regioes[Centro.get_nome_string()] =  &Centro;
+    map_regioes[Floresta.get_nome_string()] = &Floresta;
+    map_regioes[Deserto.get_nome_string()] = &Deserto;
+
+    p.muda_regiao("centro",&map_regioes);
+    CHECK(p.get_Regiao_Atual()->get_nome_string() == "centro");
+
+    p.muda_regiao("floresta",&map_regioes);
+    CHECK(p.get_Regiao_Atual()->get_nome_string() == "floresta");
+    CHECK(p.get_Regiao_Atual()->get_chance_agua() == 8);
+    CHECK(p.get_Regiao_Atual()->get_chance_comida() == 7);
+    CHECK(p.get_Regiao_Atual()->get_chance_arma() == 2);
+    CHECK(p.get_Regiao_Atual()->get_chance_remedio() == 0);
+    CHECK(p.get_Regiao_Atual()->get_x() == 2);
+    CHECK(p.get_Regiao_Atual()->get_y() == 1);
+
+    CHECK_THROWS(p.muda_regiao("deserto",&map_regioes));
+}
+
 // TEST_CASE("Testa a função buscar_na_regiao()") {
 //     Jogador p = Jogador("Maria");
-//     CHECK_EQ(p.get_agua(), 0);
-//     CHECK_EQ(p.get_remedio(), 0);
-//     CHECK_EQ(p.get_comida(), 0);
-
-//     p.muda_regiao(regioes::floresta);
+//     Regiao Teste1(2,2,"teste1",10,10,0,0);
+//     map<string,Regiao*> map_regioes;
+//     map_regioes[Teste1.get_nome_string()] =  &Teste1;
+//     p.muda_regiao("teste1",&map_regioes);
 //     p.buscar_na_regiao();
+//     CHECK_EQ(p.get_agua(), 1);
+//     CHECK_EQ(p.get_comida(), 1);
+//     CHECK_EQ(p.get_arma(), 0);
+//     CHECK_EQ(p.get_remedio(), 0);
+
+//     Regiao Teste2(2,2,"teste2",0,0,10,10);
+//     map_regioes[Teste2.get_nome_string()] =  &Teste2;
+//     p.muda_regiao("teste2",&map_regioes);
+//     p.buscar_na_regiao();
+//     CHECK_EQ(p.get_agua(), 1);
+//     CHECK_EQ(p.get_comida(), 1);
+//     CHECK_EQ(p.get_arma(), 1);
+//     CHECK_EQ(p.get_remedio(), 1);
+
+//     //p.muda_regiao(regioes::floresta);
+//     //p.buscar_na_regiao();
 // }
