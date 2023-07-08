@@ -164,10 +164,10 @@ void Sistema::Rodada() {
         }
         else {
             _mortos.push_back(*participante);
-            participantes.erase(participante);
-            if (participante != participantes.end()){
-                participante++;
-                }
+            participante = participantes.erase(participante);
+            // if (participante != participantes.end()){
+            //     participante++;
+            //     }
             }
         }
     contador_vivos_ = aux;
