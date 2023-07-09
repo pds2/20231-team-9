@@ -62,6 +62,20 @@ Quero substituir pela tabela do próprio markdown.
 
 ## Disponibilidade de Recursos (WIP)
 Explicar disponibilidade recursos.
+Quando o participante seleciona a opção "Buscar na região" na sua jogada, ele poderá coletar os utensílios e arma, dependendo da disponibilidade dos recursos na região onde ele se encontra. \
+A disponibilidade de recursos é estabelecida através de uma escala de números inteiros de 0 a 10, para cada um dos recursos (água, comida, remédio e arma) de cada região e, ao chamar a função *"buscar_na_regiao()"* - caso o participante selecione tal opção -, serão executadas linhas de comando que selecionarão números aleatórios de 1 a 10 para cada um dos recursos. Se o número obtido for menor do que a disponibilidade do respectivo recurso (isso para água, comida e remédio) na região, é adicionado uma unidade à respectiva coleção. Mas, para a coleção de armas, só será coletada a arma se a selecionada for mais poderosa do que a que o personagem já tinha.
+
+| Região | Disponibilidade água | Disponibilidade comida | Disponibilidade remédio | Disponibilidade arma |
+| ------ | ------------------- | ---------------------- | ----------------------- | -------------------- |
+| Centro | 0 | 0 | 3 | 9 |
+| Floresta | 8 | 7 | 0 | 2 |
+| Pantano | 10 | 3 | 0 | 1 |
+| Montanhas | 4 | 3 | 0 | 5 |
+| Deserto | 2 | 5 | 0 | 5 |
+| Ruínas | 0 | 2 | 4 | 5 |
+| Campo | 6 | 8 | 0 | 2 |
+| Cavernas | 7 | 3 | 0 | 5 |
+| Savana | 3 | 6 | 1 | 4 |
 
 # Como Jogar / Comandos
 1. Ao executar o programa, será pedido ao usuário que ele insira no terminal um número inteiro de 1 a 5, que determinará quantos objetos da classe `Jogador` serão criados. \
@@ -93,7 +107,7 @@ No que tange aos `Bots`, ele poderá escolher se quer nomear cada Bot, ou se pre
 
     > a *nome_do_adversário*
 
-### Como um jogador por morrer:
+### Como um jogador pode morrer:
 - Sendo morto em uma batalha por outro participante com uma arma mais poderosa.
 - À medida que batalha, move de região e busca utensílios, a energia e a hidratação caem e, caso esses campos cheguem a 0 (mesmo que alcance tais níveis após vencer uma batalha), o participante também morrerá.
 
