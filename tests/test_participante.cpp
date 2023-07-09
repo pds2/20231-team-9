@@ -13,10 +13,32 @@ TEST_CASE("Testa se os atributos de Participante foram corretamente inicializado
 }
 
 // TEST_CASE("Testa se o personagem está na região correta") {
-//     Jogador p = Jogador("Maria");
-//     Regiao _floresta(8,7,2,0,regioes::floresta,2,1);
-//     p.muda_regiao("floresta");
-//     CHECK_EQ(p.get_Regiao_Atual().get_nome_enum(), regioes::floresta);
+//     Regiao Centro(2,2,"centro",0,0,9,3);
+//     Jogador p = Jogador("Maria", &Centro);
+
+//     Regiao Floresta(2,1,"floresta",8,7,2,0);
+//     Regiao Pantano(3,1,"pantano",10,3,1,0);
+//     Regiao Montanhas(3,2,"montanhas",4,3,5,0);
+//     Regiao Deserto(3,3,"deserto",2,5,5,0);
+//     Regiao Ruinas(1,2,"ruinas",0,2,5,4);
+//     Regiao Campo(1,1,"campo",6,8,2,0);
+//     Regiao Cavernas(1,3,"cavernas",7,3,5,0);
+//     Regiao Savana(2,3,"savana",3,6,4,1);
+//     Sistema jogo;
+
+//     // Inserindo as Regioes no jogo:
+//     jogo.insere_regiao(&Centro);
+//     jogo.insere_regiao(&Floresta);
+//     jogo.insere_regiao(&Pantano);
+//     jogo.insere_regiao(&Montanhas);
+//     jogo.insere_regiao(&Deserto);
+//     jogo.insere_regiao(&Ruinas);
+//     jogo.insere_regiao(&Campo);
+//     jogo.insere_regiao(&Cavernas);
+//     jogo.insere_regiao(&Savana);
+
+//     p.muda_regiao("floresta", &(jogo.get_map_regioes()));
+//     CHECK_EQ(p.get_Regiao_Atual()->get_nome_string(), "floresta");
 // }
 
 TEST_CASE("Testa se a mudança de arma está ocorrendo corretamente") {
@@ -73,34 +95,35 @@ TEST_CASE("Testa a função 'consumir_utensilio()'") {
 
 }
 
-// TEST_CASE("Testa a função muda_regiao()") {
-//     Jogador p = Jogador("Maria");
+TEST_CASE("Testa a função muda_regiao()") {
+    Regiao Centro(2,2,"centro",0,0,9,3);
+    Jogador p = Jogador("Maria", &Centro);
 
-//     map<string,Regiao*> map_regioes;
-//     Regiao Centro(2,2,"centro",0,0,9,3);
-//     Regiao Floresta(2,1,"floresta",8,7,2,0);
-//     Regiao Deserto(3,3,"deserto",2,5,5,0);
-//     map_regioes[Centro.get_nome_string()] =  &Centro;
-//     map_regioes[Floresta.get_nome_string()] = &Floresta;
-//     map_regioes[Deserto.get_nome_string()] = &Deserto;
+    map<string,Regiao*> map_regioes;
+    Regiao Floresta(2,1,"floresta",8,7,2,0);
+    Regiao Deserto(3,3,"deserto",2,5,5,0);
+    map_regioes[Centro.get_nome_string()] =  &Centro;
+    map_regioes[Floresta.get_nome_string()] = &Floresta;
+    map_regioes[Deserto.get_nome_string()] = &Deserto;
 
-//     p.muda_regiao("centro",&map_regioes);
-//     CHECK(p.get_Regiao_Atual()->get_nome_string() == "centro");
+    CHECK(p.get_Regiao_Atual()->get_nome_string() == "centro");
 
-//     p.muda_regiao("floresta",&map_regioes);
-//     CHECK(p.get_Regiao_Atual()->get_nome_string() == "floresta");
-//     CHECK(p.get_Regiao_Atual()->get_chance_agua() == 8);
-//     CHECK(p.get_Regiao_Atual()->get_chance_comida() == 7);
-//     CHECK(p.get_Regiao_Atual()->get_chance_arma() == 2);
-//     CHECK(p.get_Regiao_Atual()->get_chance_remedio() == 0);
-//     CHECK(p.get_Regiao_Atual()->get_x() == 2);
-//     CHECK(p.get_Regiao_Atual()->get_y() == 1);
+    p.muda_regiao("floresta",&map_regioes);
+    CHECK(p.get_Regiao_Atual()->get_nome_string() == "floresta");
+    CHECK(p.get_Regiao_Atual()->get_chance_agua() == 8);
+    CHECK(p.get_Regiao_Atual()->get_chance_comida() == 7);
+    CHECK(p.get_Regiao_Atual()->get_chance_arma() == 2);
+    CHECK(p.get_Regiao_Atual()->get_chance_remedio() == 0);
+    CHECK(p.get_Regiao_Atual()->get_x() == 2);
+    CHECK(p.get_Regiao_Atual()->get_y() == 1);
 
-//     CHECK_THROWS(p.muda_regiao("deserto",&map_regioes));
-// }
+    CHECK_THROWS_AS(p.muda_regiao("deserto",&map_regioes), nao_da_para_mudar_para_essa_regiao_e);
+}
 
 // TEST_CASE("Testa a função buscar_na_regiao()") {
-//     Jogador p = Jogador("Maria");
+//     Regiao Centro(2,2,"centro",0,0,9,3);
+//     Jogador p = Jogador("Maria", &Centro);
+
 //     Regiao Teste1(2,2,"teste1",10,10,0,0);
 //     map<string,Regiao*> map_regioes;
 //     map_regioes[Teste1.get_nome_string()] =  &Teste1;
