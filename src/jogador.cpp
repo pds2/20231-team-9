@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Jogador::Jogador(string nome) : Participante(nome) { }
+Jogador::Jogador(string nome, Regiao* ponto_partida) : Participante(nome, ponto_partida) { }
 
 void Jogador::definir_acao(set<Participante*> Msm_Regiao_Q_Eu, map<string,Regiao*>* map_regioes) {
     if (get_energia() <= 0){

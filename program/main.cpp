@@ -62,8 +62,8 @@ int main() {
             cout << "Qual é o nome do jogador " << i + 1 << "?" << endl;
             cin >> nome;
             cout << endl;
-            jogo.criar_jogador(nome);
-            participantes.push_back(Jogador(nome));
+            jogo.criar_jogador(nome, &Centro);
+            participantes.push_back(Jogador(nome, &Centro));
         }
         /*
         * @brief Setta a quantidade de bots baseado em uma quantidade total de players em 12
@@ -89,8 +89,8 @@ int main() {
             string nome;
             cout << "Qual é o nome do Bot " << i + quantidade + 1 << "?" << endl;
             cin >> nome;
-            jogo.criar_bot(nome);
-            participantes.push_back(Jogador(nome));
+            jogo.criar_bot(nome, &Centro);
+            participantes.push_back(Jogador(nome, &Centro));
         }}
         /*
         * @brief Cria nomes aleatorios e alteraveis para os bots
@@ -99,18 +99,18 @@ int main() {
         */
         if(desc == 2){
             cout << endl;
-            jogo.criar_bot("Carla_Maluca");
-            jogo.criar_bot("Ana");
-            jogo.criar_bot("Carlos");
-            jogo.criar_bot("Marisa");
-            jogo.criar_bot("João_Matador");
-            jogo.criar_bot("Júnior_Espertinho");
-            jogo.criar_bot("Eliane");
+            jogo.criar_bot("Carla_Maluca", &Centro);
+            jogo.criar_bot("Ana", &Centro);
+            jogo.criar_bot("Carlos", &Centro);
+            jogo.criar_bot("Marisa", &Centro);
+            jogo.criar_bot("João_Matador", &Centro);
+            jogo.criar_bot("Júnior_Espertinho", &Centro);
+            jogo.criar_bot("Eliane", &Centro);
             int j = quantidade + 7;
             int i = 2;
             while(j < 12){
                 string nome_desc = "Jorge" + std::to_string(i);
-                jogo.criar_bot(nome_desc);
+                jogo.criar_bot(nome_desc, &Centro);
                 i++;
                 j++;
         }

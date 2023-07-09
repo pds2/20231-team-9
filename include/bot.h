@@ -13,7 +13,7 @@ class Bot : public Jogador {
         /*
         * @brief Construtor
         */
-        Bot(string nome);
+        Bot(string nome, Regiao* ponto_partida);
         /*
         * @brief Define a ação do bot a partir de parâmetros pré-definidos
         */

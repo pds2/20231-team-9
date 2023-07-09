@@ -2,7 +2,7 @@
 #include <cstdlib>
 //#include <random>
 
-Bot::Bot(string nome) : Jogador(nome) {}
+Bot::Bot(string nome, Regiao* ponto_partida) : Jogador(nome, ponto_partida) {}
 
 void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu, map<string,Regiao*>* map_regioes){
     if (get_energia() <= 0){

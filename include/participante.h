@@ -39,7 +39,7 @@ class Participante {
         /*
          * @brief um participante, inicializando os dados
          */
-        Participante(string nome);
+        Participante(string nome, Regiao* ponto_partida);
         /*
          * @brief Retorna a quantidade de comida.
          */
