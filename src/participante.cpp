@@ -1,7 +1,7 @@
 #include "../include/participante.h"
 #define stringify( name ) # name
 
-Participante::Participante(string nome) : _arma(armas::desarmado) {
+Participante::Participante(string nome, Regiao* ponto_partida) : _arma(armas::desarmado) {
     _nome = nome;
     _vivo = true;
     _energia = 100;
@@ -9,7 +9,7 @@ Participante::Participante(string nome) : _arma(armas::desarmado) {
     qntd_agua = 0;
     qntd_comida = 0;
     qntd_remedio = 0;
-    _regiao_atual = nullptr;
+    _regiao_atual = ponto_partida;
 }
 
 int Participante::get_agua(){
@@ -89,9 +89,10 @@ void Participante::muda_regiao(std::string destino_str, map<string,Regiao*>* map
         throw regiao_invalida_e();
     }
 
-    if(_regiao_atual == nullptr) {
-        _regiao_atual = destino;
-    } else if(_regiao_atual->pode_mudar_de_regiao(destino->get_x(),destino->get_y())) {
+    // if(_regiao_atual == nullptr) {
+    //     _regiao_atual = destino;
+    // } else 
+    if(_regiao_atual->pode_mudar_de_regiao(destino->get_x(),destino->get_y())) {
         _regiao_atual = destino;
     } else if(_regiao_atual->pode_mudar_de_regiao(destino->get_x(),destino->get_y()) == false) {throw nao_da_para_mudar_para_essa_regiao_e();}
     _hidratacao -= 20;

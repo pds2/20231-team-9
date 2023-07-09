@@ -14,7 +14,7 @@ class Jogador : public Participante {
         /*
         * @brief Construtor
         */
-        Jogador(string nome);
+        Jogador(string nome, Regiao* ponto_partida);
         /*
         * @brief Lê do usuário um comando para definir a ação do respectivo participante
         */

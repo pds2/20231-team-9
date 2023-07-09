@@ -14,7 +14,7 @@ void Sistema::insere_regiao(Regiao* lugar) {
     map_regioes_[lugar->get_nome_string()] = lugar;
 }
 
-void Sistema::criar_jogador(string nome) {
+void Sistema::criar_jogador(string nome, Regiao* ponto_partida) {
     //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
     // for(Participante& this_one : _vivos) {
     //     if(nome == this_one.get_nome()) {
@@ -29,9 +29,9 @@ void Sistema::criar_jogador(string nome) {
         pair = next(pair);
     }
 
-    Jogador *novo_jogador = new Jogador(nome);
+    Jogador *novo_jogador = new Jogador(nome, ponto_partida);
     participantes_[nome] = novo_jogador;
-    novo_jogador->muda_regiao("centro", &map_regioes_);
+    // novo_jogador->muda_regiao("centro", &map_regioes_);
     contador_vivos_++;
     // _vivos[nome] = Participante(nome,distrito);
     // _vivos.push_back(Participante(nome, distrito));
@@ -46,7 +46,7 @@ void Sistema::criar_jogador(string nome) {
 //         participantes_[nome_bot] = novo_bot;
 //     }
 // }
-void Sistema::criar_bot(string nome) {
+void Sistema::criar_bot(string nome, Regiao* ponto_partida) {
     auto pair = participantes_.begin();
     while(pair != participantes_.end()) {
         if(nome == pair->first) {
@@ -55,9 +55,9 @@ void Sistema::criar_bot(string nome) {
         pair = next(pair);
     }
 
-    Bot *novo_bot = new Bot(nome);
+    Bot *novo_bot = new Bot(nome, ponto_partida);
     participantes_[nome] = novo_bot;
-    novo_bot->muda_regiao("centro", &map_regioes_);
+    // novo_bot->muda_regiao("centro", &map_regioes_);
     contador_vivos_++;
 }
 
@@ -99,6 +99,10 @@ void Sistema::inicio() {
 
 map<string, Participante*> Sistema::get_participantes() {
     return participantes_;
+}
+
+map<string,Regiao*> Sistema::get_map_regioes() {
+    return map_regioes_;
 }
 
 vector<Participante*> Sistema::EmbaralhaParticipantesVivos() {

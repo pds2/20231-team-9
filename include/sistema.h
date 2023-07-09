@@ -24,17 +24,19 @@ class Sistema{
    /**
     * @brief Insere a Regiao no map de regioes
    */
-  void insere_regiao(Regiao* lugar);
+    void insere_regiao(Regiao* lugar);
+
+    map<string,Regiao*> get_map_regioes();
     /*
      * @brief Cria um jogador recebendo nome, idade e destrito
      * @throws Lança uma excessão se destrito > 12
      * @throws Lança uma excessão se o participante ja existe
      */
-    void criar_jogador(string nome);
+    void criar_jogador(string nome, Regiao* ponto_partida);
     /*
      * @brief Cria um bot
      */
-    void criar_bot(string nome);
+    void criar_bot(string nome, Regiao* ponto_partida);
     /**
      * @brief Inicia o jogo, colocanto todos no centro 
     */
