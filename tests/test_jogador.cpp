@@ -51,4 +51,6 @@ TEST_CASE("Testa a saída quando a ação de um jogador é chamada"){
     p.imprime_status(Msm_Regiao_Q_Eu);
 
     cout << "------------------------------------------------------------------" << endl;
+
+    p.imprime_mapa();
 }

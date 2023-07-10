@@ -20,6 +20,7 @@ class Jogador : public Participante {
         */
         void definir_acao(set<Participante*> Msm_Regiao_Q_Eu, map<string,Regiao*>* map_regioes) override;
         void imprime_status(set<Participante*> Msm_Regiao_Q_Eu);
+        void imprime_mapa();
 };
 
 #endif

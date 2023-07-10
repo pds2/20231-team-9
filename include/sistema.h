@@ -4,6 +4,7 @@
 #include "participante.h"
 #include "jogador.h"
 #include "bot.h"
+#include "../third_party/termcolor.h"
 
 class participante_ja_existe_e {};
 

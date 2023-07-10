@@ -1,7 +1,7 @@
-#include "../third_party/doctest.h"
-#include "../include/impressora.h"
+// #include "../third_party/doctest.h"
+// #include "../include/impressora.h"
 
-TEST_CASE("Imprimindo o mapa"){
-    Impressora printer;
-    printer.imprime_mapa();
-}
+// TEST_CASE("Imprimindo o mapa"){
+//     Impressora printer;
+//     printer.imprime_mapa();
+// }
