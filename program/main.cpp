@@ -35,10 +35,17 @@ int main() {
     * @brief O jogo inteiro roda em um grande while com um break no final
     * Tentar tratar a maior quantidade de casos para o jogo não quebrar e sair do while
     */
+
+    jogo.imprime_titulo();
     
     while(true){
-        cout << "Seja bem-vindo ao Simulador de Jogos Vorazes!" << endl << "Inicialmente, quantos players gostariam de jogar?" \
-        << endl << "Digite um número de 1 a 5:" << endl;
+        cout << termcolor::color<221,139,38> << endl << termcolor::reset;
+        cout << termcolor::color<221,139,38> << "-----------------------------------------------------------------" << endl << termcolor::reset;
+        cout << termcolor::color<221,139,38> << "Configuração da Partida:" << endl << termcolor::reset; 
+        cout << termcolor::color<221,139,38> << "-----------------------------------------------------------------" << termcolor::reset << endl;
+
+        cout << "Inicialmente, quantos players gostariam de jogar?" << endl;
+        cout << "Digite um número de 1 a 5:" << endl;
         int quantidade = 0;
         /*
         * @brief da um check para ver se está valida a quantidade de pessoas.

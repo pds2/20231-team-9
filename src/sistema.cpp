@@ -62,7 +62,11 @@ void Sistema::criar_bot(string nome, Regiao* ponto_partida) {
 }
 
 void Sistema::inicio() {
-    cout << "O jogo começou! Jogadores estão no centro!" << endl;
+    cout << termcolor::blue << endl << termcolor::reset;
+    cout << termcolor::blue << "-----------------------------------------------------------------" << endl << termcolor::reset;
+    cout << termcolor::blue << "Início da partida:" << endl << termcolor::reset; 
+    cout << termcolor::blue << "-----------------------------------------------------------------" << termcolor::reset << endl;
+    cout << "Jogadores estão no centro!" << endl;
     cout << "Nossos jogadores são: " << endl;
     // set<Jogador *> jogadores = _mapa.get_participantes_centro();
     auto it = participantes_.begin();
@@ -143,8 +147,6 @@ set<Participante*> Sistema::ParticipanteNaMesmaRegiao(Participante* fulano) {
 
 void Sistema::Rodada() {
     // Pegando vetor com os jogadores embaralhados:
-    cout << "Iniciando uma rodada!" << endl << endl;
-
     vector<Participante*> participantes = EmbaralhaParticipantesVivos();
 
     // Percorrendo:
@@ -176,13 +178,13 @@ void Sistema::Rodada() {
         }
     contador_vivos_ = aux;
 
-    cout << termcolor::on_grey << endl << termcolor::reset;
-    cout << termcolor::on_grey << "-----------------------------------------------------------------" << endl << termcolor::reset;
-    cout << termcolor::on_grey << "Personagens que morreram nessa rodada:" << endl;
+    cout << termcolor::red << endl << termcolor::reset;
+    cout << termcolor::red << "-----------------------------------------------------------------" << endl << termcolor::reset;
+    cout << termcolor::red << "Personagens que morreram nessa rodada:" << endl;
     for(Participante *p : _mortos) {
-        cout << termcolor::on_grey << p->get_nome() << endl << termcolor::reset;
+        cout << termcolor::red << p->get_nome() << endl << termcolor::reset;
     }
-    cout << termcolor::on_grey << "-----------------------------------------------------------------" << termcolor::reset << endl;
+    cout << termcolor::red << "-----------------------------------------------------------------" << termcolor::reset << endl;
     _mortos.clear();
 }
 
@@ -190,20 +192,20 @@ void Sistema::Jogo() {
     //Chama Rodadas até ter apenas um participante vivo:
     while (contador_vivos_ > 1) {
         //Informa o Dia em que a rodada acontece
-        cout << termcolor::on_yellow << endl << termcolor::reset;
-        cout << termcolor::on_yellow << "-----------------------------------------------------------------" << endl << termcolor::reset;
-        cout << termcolor::on_yellow << "Dia " << contador_dias_noites_ << ":" << endl << termcolor::reset;
-        cout << termcolor::on_yellow << "-----------------------------------------------------------------" << termcolor::reset << endl;
+        cout << termcolor::yellow << endl << termcolor::reset;
+        cout << termcolor::yellow << "-----------------------------------------------------------------" << endl << termcolor::reset;
+        cout << termcolor::yellow << "Dia " << contador_dias_noites_ << ":" << endl << termcolor::reset;
+        cout << termcolor::yellow << "-----------------------------------------------------------------" << termcolor::reset << endl;
        
         Rodada();
 
         // Roda uma rodada "Noite" a não ser q sobre apenas um participante
         // do "Dia" anterior
         if(contador_vivos_ > 1) {
-            cout << termcolor::on_blue << endl << termcolor::reset;
-            cout << termcolor::on_blue << "-----------------------------------------------------------------" << endl << termcolor::reset;
-            cout << termcolor::on_blue << "Noite " << contador_dias_noites_ << ":" << endl << termcolor::reset; 
-            cout << termcolor::on_blue << "-----------------------------------------------------------------" << termcolor::reset << endl;
+            cout << termcolor::blue << endl << termcolor::reset;
+            cout << termcolor::blue << "-----------------------------------------------------------------" << endl << termcolor::reset;
+            cout << termcolor::blue << "Noite " << contador_dias_noites_ << ":" << endl << termcolor::reset; 
+            cout << termcolor::blue << "-----------------------------------------------------------------" << termcolor::reset << endl;
             Rodada();
             contador_dias_noites_++;
             //faz um resumo dos personagens que morreram no dia
@@ -220,4 +222,35 @@ void Sistema::Jogo() {
         }
         cout << "PARABÉNS!" << endl << endl << endl;
     }
+}
+
+void Sistema::imprime_titulo(){
+    cout << "Seja bem vindo ao:" << endl;
+
+    cout << " _____  _              _         _           " << endl;
+    cout << "|   __||_| _____  _ _ | | ___  _| | ___  ___ " << endl;
+    cout << "|__   || ||     || | || || .'|| . || . ||  _|" << endl;
+    cout << "|_____||_||_|_|_||___||_||__,||___||___||_|  " << endl;
+
+    cout << termcolor::color<221,139,38>;
+    cout << "    __                     " << endl;
+    cout << " __|  | ___  ___  ___  ___ " << endl;
+    cout << "|  |  || . || . || . ||_ -|" << endl;
+    cout << "|_____||___||_  ||___||___|" << endl;
+    cout << "            |___|          " << endl;
+
+    cout << " _____                               " << endl;
+    cout << "|  |  | ___  ___  ___  ___  ___  ___ " << endl;
+    cout << "|  |  || . ||  _|| .'||- _|| -_||_ -|" << endl;
+    cout << " \\___/ |___||_|  |__,||___||___||___|" << endl;
+    cout << termcolor::reset << endl;
+    
+    cout << "Um projeto de PDS2 realizado por:" << endl;
+    cout << termcolor::blue << "Arthur Buzellin" << endl;
+    cout << termcolor::magenta << "Cecília Junqueira" << endl;
+    cout << termcolor::green << "Felipe Gomide" << endl;
+    cout << termcolor::red << "Lucas Junqueira" << termcolor::reset << endl << endl;
+
+    cout << "Consulte nosso README no GitHub!" << endl;
+
 }

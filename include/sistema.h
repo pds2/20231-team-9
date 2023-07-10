@@ -18,13 +18,13 @@ class Sistema{
     unsigned int contador_vivos_;
 
     public:
-    /**
+    /*
      * @brief Construtor
-    */
-   Sistema();
-   /**
-    * @brief Insere a Regiao no map de regioes
-   */
+     */
+    Sistema();
+    /*
+     * @brief Insere a Regiao no map de regioes
+     */
     void insere_regiao(Regiao* lugar);
 
     map<string,Regiao*> get_map_regioes();
@@ -38,13 +38,13 @@ class Sistema{
      * @brief Cria um bot
      */
     void criar_bot(string nome, Regiao* ponto_partida);
-    /**
+    /*
      * @brief Inicia o jogo, colocanto todos no centro 
-    */
-   void inicio();
+     */
+    void inicio();
     /*
      * @brief Remove o participante do map de vivos e insere ele
-             no vetor com os nomes dos mortos
+     *        no vetor com os nomes dos mortos
      */
     //void morrer(Participante &fulano);
 
@@ -52,26 +52,31 @@ class Sistema{
      * @brief retorna o mapa com os participantes vivos
      */
     map<string,Participante*> get_participantes();
-    /**
+    /*
      * @brief Realiza uma rodada com os jogadores vivos
-    */
-   void Rodada();
-   /**
-    * @brief Realiza um Jogo com um Conjunto de Rodadas
-   */
-  void Jogo();
-   /**
-    * @brief Retorna um vetor embaralhado com os nomes dos participantes 
-    *        que estão vivos
-   */
-   vector<Participante*> EmbaralhaParticipantesVivos();
-   /**
-    * @brief Retorna um set com os participantes na mesma Região que o
-    *        Participante escolhido
-    * 
-    * @param Participante
-   */
-  set<Participante*> ParticipanteNaMesmaRegiao(Participante* fulano);
+     */
+    void Rodada();
+    /*
+     * @brief Realiza um Jogo com um Conjunto de Rodadas
+     */
+    void Jogo();
+    /*
+     * @brief Retorna um vetor embaralhado com os nomes dos participantes 
+     *        que estão vivos
+     */
+    vector<Participante*> EmbaralhaParticipantesVivos();
+    /*
+     * @brief Retorna um set com os participantes na mesma Região que o
+     *        Participante escolhido
+     * 
+     * @param Participante
+     */
+    set<Participante*> ParticipanteNaMesmaRegiao(Participante* fulano);
+
+    /*
+     *  @brief Imprime o logo e as informações do título
+     */
+    void imprime_titulo();
 };
 
 #endif

@@ -1,15 +1,15 @@
-#ifndef PDS2_IMPRESSORA_H
-#define PDS2_IMPRESSORA_H
+// #ifndef PDS2_IMPRESSORA_H
+// #define PDS2_IMPRESSORA_H
 
-#include "../third_party/tabulate.hpp"
+// #include "../third_party/tabulate.hpp"
 
-class Impressora{
-    private:
-        tabulate::Table mapa;
-    public:
-        Impressora();
-        void imprime_mapa();
-        void imprime_titulo();
-};
+// class Impressora{
+//     private:
+//         tabulate::Table mapa;
+//     public:
+//         Impressora();
+//         void imprime_mapa();
+//         void imprime_titulo();
+// };
 
-#endif
+// #endif
