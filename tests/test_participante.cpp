@@ -120,29 +120,26 @@ TEST_CASE("Testa a função muda_regiao()") {
     CHECK_THROWS_AS(p.muda_regiao("deserto",&map_regioes), nao_da_para_mudar_para_essa_regiao_e);
 }
 
-// TEST_CASE("Testa a função buscar_na_regiao()") {
-//     Regiao Centro(2,2,"centro",0,0,9,3);
-//     Jogador p = Jogador("Maria", &Centro);
+TEST_CASE("Testa a função buscar_na_regiao()") {
+    Regiao Centro(2,2,"centro",0,0,9,3);
+    Jogador p = Jogador("Maria", &Centro);
 
-//     Regiao Teste1(2,2,"teste1",10,10,0,0);
-//     map<string,Regiao*> map_regioes;
-//     map_regioes[Teste1.get_nome_string()] =  &Teste1;
-//     p.muda_regiao("teste1",&map_regioes);
-//     p.buscar_na_regiao();
-//     CHECK_EQ(p.get_agua(), 1);
-//     CHECK_EQ(p.get_comida(), 1);
-//     CHECK_EQ(p.get_arma(), 0);
-//     CHECK_EQ(p.get_remedio(), 0);
+    Regiao Teste1(2,1,"teste1",10,11,0,0);
+    map<string,Regiao*> map_regioes;
+    map_regioes[Teste1.get_nome_string()] =  &Teste1;
 
-//     Regiao Teste2(2,2,"teste2",0,0,10,10);
-//     map_regioes[Teste2.get_nome_string()] =  &Teste2;
-//     p.muda_regiao("teste2",&map_regioes);
-//     p.buscar_na_regiao();
-//     CHECK_EQ(p.get_agua(), 1);
-//     CHECK_EQ(p.get_comida(), 1);
-//     CHECK_EQ(p.get_arma(), 1);
-//     CHECK_EQ(p.get_remedio(), 1);
+    p.muda_regiao("teste1",&map_regioes);
+    p.buscar_na_regiao();
+    CHECK_EQ(p.get_agua(), 1);
+    CHECK_EQ(p.get_comida(), 1);
+    CHECK_EQ(p.get_remedio(), 0);
 
-//     //p.muda_regiao(regioes::floresta);
-//     //p.buscar_na_regiao();
-// }
+    Regiao Teste2(1,1,"teste2",0,0,10,10);
+    map_regioes[Teste2.get_nome_string()] =  &Teste2;
+    p.muda_regiao("teste2",&map_regioes);
+    p.buscar_na_regiao();
+    CHECK_EQ(p.get_agua(), 1);
+    CHECK_EQ(p.get_comida(), 1);
+    CHECK_EQ(p.get_remedio(), 1);
+
+}
