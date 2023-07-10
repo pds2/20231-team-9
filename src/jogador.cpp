@@ -103,7 +103,7 @@ void Jogador::imprime_status(set<Participante*> Msm_Regiao_Q_Eu) {
     cout << termcolor::blue << "Hidratação: " << termcolor::reset << get_hidratacao() << "/100" << endl << endl;
     cout << "Seu inventário:" << endl;
     imprime_qntd_utensilios();
-    cout << termcolor::magenta << "Arma: " << termcolor::reset << get_arma().get_tipo() << endl << endl;
+    cout << termcolor::magenta << "Arma: " << termcolor::reset << get_arma().get_nome() << endl << endl;
 
 
     cout << "Você está na região " << termcolor::cyan << get_Regiao_Atual()->get_nome_string() << termcolor::reset << "." << endl << endl;
