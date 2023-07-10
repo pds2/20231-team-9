@@ -1,4 +1,6 @@
 #include "../include/bot.h"
+#include "../third_party/termcolor.h"
+
 #include <cstdlib>
 
 Bot::Bot(string nome, Regiao* ponto_partida) : Jogador(nome, ponto_partida) {}
@@ -6,12 +8,12 @@ Bot::Bot(string nome, Regiao* ponto_partida) : Jogador(nome, ponto_partida) {}
 void Bot::definir_acao(set<Participante*> Msm_Regiao_Q_Eu, map<string,Regiao*>* map_regioes){
     if (get_energia() <= 0){
         morrer();
-        std::cout << get_nome() << " morreu de fome." << endl;
+        std::cout << termcolor::red << get_nome() << termcolor::reset << " morreu de fome." << endl;
         return;
     }
     if (get_hidratacao() <= 0){
         morrer();
-        std::cout << get_nome() << " morreu de sede." << endl;
+        std::cout << termcolor::red << get_nome() << termcolor::reset << " morreu de sede." << endl;
         return;
     }
 

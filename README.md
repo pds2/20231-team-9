@@ -14,6 +14,8 @@ O projeto foi inspirado na saga "Jogo Vorazes". O jogador será capaz de tomar d
 - C++ Versão 17 ou superior
 - Compilador de C++
 
+Recomendamos que o usuário rode o programa em um terminal em tela cheia, de fundo escuro, e que tenha suporte a cores.
+
 ## Como executar:
 1. Faça download dos arquivos ou use `git clone` no repositório
 2. Abra a pasta raiz do projeto no seu terminal
@@ -122,6 +124,17 @@ Caso o participante encontre uma arma, o tipo de arma encontrada é definido pel
 | Arma       | Faca | Arco | Espada | Machado |
 |------------|:----:|:----:|:------:|:-------:|
 | **Chance** | 40%  | 30%  | 20%    | 10%     |
+
+## Mensagens e Cores
+
+Logo após um jogador ou um bot realizarem uma ação, é impressa uma mensagem que narra essa ação, e esta pode ter diferentes palavras coloridas, conforme o seguinte padrão:
+- Azul: Nome de Participantes
+- Vermelho: Nome de Participante que acabaram de morrer
+- Verde: Nome de Regiões
+- Magenta: Nome de Armas
+- Ciano: Nome de items utilizados ou adquiridos
+
+Obs: Esse padrão não é seguido na impressão dos separadores, e também nos Status de um jogador, antes de sua jogada.
 
 # User Stories
 - Como Participante da Edição do Jogo, quero ser capaz de me locomover pelo mapa, a fim de fugir dos adversários.
