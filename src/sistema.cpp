@@ -15,12 +15,6 @@ void Sistema::insere_regiao(Regiao* lugar) {
 }
 
 void Sistema::criar_jogador(string nome, Regiao* ponto_partida) {
-    //IDEIA DE CÓDIGO SE _vivos FOR VECTOR
-    // for(Participante& this_one : _vivos) {
-    //     if(nome == this_one.get_nome()) {
-    //         throw participante_ja_existe_e();
-    //     }
-    // }
     auto pair = participantes_.begin();
     while(pair != participantes_.end()) {
         if(nome == pair->first) {
@@ -31,21 +25,9 @@ void Sistema::criar_jogador(string nome, Regiao* ponto_partida) {
 
     Jogador *novo_jogador = new Jogador(nome, ponto_partida);
     participantes_[nome] = novo_jogador;
-    // novo_jogador->muda_regiao("centro", &map_regioes_);
     contador_vivos_++;
-    // _vivos[nome] = Participante(nome,distrito);
-    // _vivos.push_back(Participante(nome, distrito));
 }
 
-// !!! IDEIA DE NOVA FUNÇÃO CRIAR_BOT
-// void Sistema::criar_bot(int n) {
-//     std::string nome_bot = "Bot ";
-//     for(int i = 0; i < n; i++) {
-//         nome_bot += to_string(i+1);
-//         Bot *novo_bot = new Bot(novo_bot);
-//         participantes_[nome_bot] = novo_bot;
-//     }
-// }
 void Sistema::criar_bot(string nome, Regiao* ponto_partida) {
     auto pair = participantes_.begin();
     while(pair != participantes_.end()) {
@@ -57,7 +39,6 @@ void Sistema::criar_bot(string nome, Regiao* ponto_partida) {
 
     Bot *novo_bot = new Bot(nome, ponto_partida);
     participantes_[nome] = novo_bot;
-    // novo_bot->muda_regiao("centro", &map_regioes_);
     contador_vivos_++;
 }
 
@@ -68,7 +49,6 @@ void Sistema::inicio() {
     cout << termcolor::blue << "-----------------------------------------------------------------" << termcolor::reset << endl;
     cout << "Jogadores estão no centro!" << endl;
     cout << "Nossos jogadores são: " << endl;
-    // set<Jogador *> jogadores = _mapa.get_participantes_centro();
     auto it = participantes_.begin();
     while(it != participantes_.end()) {
         cout << termcolor::blue << it->second->get_nome() << endl;
@@ -76,30 +56,6 @@ void Sistema::inicio() {
     }
     cout << termcolor::reset << endl;
 }
-
-// void Sistema::inicio() {
-//     _mapa.inicio(_vivos);
-//     cout << "O jogo começou! Jogadores estão no centro!" << endl;
-//     cout << "Nossos jogadores sao: ";
-//     vector<string> jogadores = _mapa.get_participantes_centro();
-//     int i = 0;
-//     while(i <= jogadores.size() - 2) {
-//         cout << jogadores[i] << ", ";
-//         i++;
-//     }
-//     cout << jogadores[i + 1] << "." << endl; 
-// }
-
-// void Sistema::morrer(Participante &fulano) {
-//     _mapa.morrer(&fulano);
-//     _mortos.push_back(fulano.get_nome());
-//     auto pair = _vivos.begin();
-//     while(pair != _vivos.end()) {
-//         if(pair->first == fulano.get_nome()) {
-//             _vivos.erase(pair);
-//         }
-//     }
-// }
 
 map<string, Participante*> Sistema::get_participantes() {
     return participantes_;
@@ -171,11 +127,8 @@ void Sistema::Rodada() {
         else {
             _mortos.push_back(*participante);
             participante = participantes.erase(participante);
-            // if (participante != participantes.end()){
-            //     participante++;
-            //     }
-            }
         }
+    }
     contador_vivos_ = aux;
 
     cout << termcolor::red << endl << termcolor::reset;
@@ -208,7 +161,6 @@ void Sistema::Jogo() {
             cout << termcolor::blue << "-----------------------------------------------------------------" << termcolor::reset << endl;
             Rodada();
             contador_dias_noites_++;
-            //faz um resumo dos personagens que morreram no dia
         }
     }
     cout << endl << "FIM DE JOGO!" << endl;
@@ -220,7 +172,7 @@ void Sistema::Jogo() {
                 cout << termcolor::blue << pair->second->get_nome() << termcolor::yellow << " foi coroado o grande campeão!" << endl;
             }
         }
-        cout << "PARABÉNS!" << endl << endl << endl;
+        cout << "PARABÉNS!" << termcolor::reset << endl << endl << endl;
     }
 }
 
@@ -246,7 +198,7 @@ void Sistema::imprime_titulo(){
     cout << termcolor::reset << endl;
     
     cout << "Um projeto de PDS2 realizado por:" << endl;
-    cout << termcolor::blue << "Arthur Buzellin" << endl;
+    cout << termcolor::blue << "Arthur Buzelin" << endl;
     cout << termcolor::magenta << "Cecília Junqueira" << endl;
     cout << termcolor::green << "Felipe Gomide" << endl;
     cout << termcolor::red << "Lucas Junqueira" << termcolor::reset << endl << endl;

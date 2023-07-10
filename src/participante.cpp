@@ -49,7 +49,6 @@ void Participante::morrer(){
 }
 
 void Participante::imprime_qntd_utensilios() {
-    //std::cout << "O jogador " << get_nome() << " possui:" << std::endl;
     std::cout << termcolor::blue << "Água: " << termcolor::reset << to_string(qntd_agua) << std::endl;
     std::cout << termcolor::red << "Comida: " << termcolor::reset << to_string(qntd_comida) << std::endl;
     std::cout << termcolor::green << "Remédio: " << termcolor::reset << to_string(qntd_remedio) << std::endl;
@@ -62,7 +61,7 @@ void Participante::adicionar_arma(Arma arma) {
     }
 }
 
-void Participante::adicionar_utensilio(std::string utensilio, int qntd) { //Vamos alterar isso
+void Participante::adicionar_utensilio(std::string utensilio, int qntd) {
     if(utensilio == "agua") {
         qntd_agua++;
     } else if( utensilio == "comida") {
@@ -90,9 +89,6 @@ void Participante::muda_regiao(std::string destino_str, map<string,Regiao*>* map
         throw regiao_invalida_e();
     }
 
-    // if(_regiao_atual == nullptr) {
-    //     _regiao_atual = destino;
-    // } else 
     if(_regiao_atual->pode_mudar_de_regiao(destino->get_x(),destino->get_y())) {
         _regiao_atual = destino;
     } else if(_regiao_atual->pode_mudar_de_regiao(destino->get_x(),destino->get_y()) == false) {throw nao_da_para_mudar_para_essa_regiao_e();}

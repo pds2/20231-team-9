@@ -60,18 +60,7 @@ int main() {
                 break;
             }
         }
-        /*
-        * @brief Cria string e int discartaveis e constroi o participante dentro de um vetor de jogadores
-        */
-        cout << endl << "Está na hora de nomear os jogadores!" << endl;
-        for(int i = 0; i < quantidade; i++){
-            string nome;
-            cout << "Qual é o nome do jogador " << i + 1 << "?" << endl;
-            cin >> nome;
-            cout << endl;
-            jogo.criar_jogador(nome, &Centro);
-            participantes.push_back(Jogador(nome, &Centro));
-        }
+
         /*
         * @brief Setta a quantidade de bots baseado em uma quantidade total de players em 12
         * Essa quantidade total de players pode ser alterada
@@ -89,16 +78,7 @@ int main() {
             }
             
         }
-        
-        if(desc == 1){
-            cout << endl;
-            for(int i = 0; i < (12 - quantidade); i++){
-            string nome;
-            cout << "Qual é o nome do Bot " << i + quantidade + 1 << "?" << endl;
-            cin >> nome;
-            jogo.criar_bot(nome, &Centro);
-            participantes.push_back(Jogador(nome, &Centro));
-        }}
+
         /*
         * @brief Cria nomes aleatorios e alteraveis para os bots
         * Novamente baseado em 12 pessoas sendo isso alteravél
@@ -120,8 +100,50 @@ int main() {
                 jogo.criar_bot(nome_desc, &Centro);
                 i++;
                 j++;
+            }
         }
+
+        /*
+        * @brief Cria string e int discartaveis e constroi o participante dentro de um vetor de jogadores
+        */
+        cout << endl << "Está na hora de nomear os jogadores!" << endl;
+        for(int i = 0; i < quantidade; i++){
+            string nome;
+            cout << "Qual é o nome do jogador " << i + 1 << "?" << endl;
+            while(1) {
+                cin >> nome;
+                try {
+                    cout << endl;
+                    jogo.criar_jogador(nome, &Centro);
+                    participantes.push_back(Jogador(nome, &Centro));
+                    break;
+
+                } catch(participante_ja_existe_e) {
+                    cout << "Já existe um participante com esse nome. Insira outro nome." << endl;
+                }
+            }
         }
+        
+        if(desc == 1){
+            
+            cout << endl << "Está na hora de nomear os bots!" << endl;;
+            for(int i = 0; i < (12 - quantidade); i++){
+            string nome;
+            cout << "Qual é o nome do Bot " << i + quantidade + 1 << "?" << endl;
+            while(1) {
+                cin >> nome;
+                try {
+                    cout << endl;
+                    jogo.criar_bot(nome, &Centro);
+                    participantes.push_back(Jogador(nome, &Centro));
+                    break;
+
+                } catch(participante_ja_existe_e) {
+                    cout << "Já existe um participante com esse nome. Insira outro nome." << endl;
+                }
+            }
+        }}
+
         jogo.inicio();
         jogo.Jogo();
         

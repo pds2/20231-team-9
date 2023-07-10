@@ -37,8 +37,6 @@ TEST_CASE("Testa a saída quando a ação de um jogador é chamada"){
     CHECK(p.get_Regiao_Atual()->get_chance_arma() == 2);
     CHECK(p.get_Regiao_Atual()->get_chance_remedio() == 0);
 
-    // p.muda_regiao(regioes::floresta);
-
     Arma _nova_arma = Arma(armas::espada);
     p.adicionar_arma(_nova_arma);
 

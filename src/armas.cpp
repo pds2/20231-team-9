@@ -22,7 +22,6 @@ Arma::Arma(armas tipo) {
         _poder = 5;
         _nome = "Machado";
     }
-    // _poder = poder;
 }
 
 armas Arma::get_tipo() const {

@@ -1,6 +1,5 @@
 #include "../include/bot.h"
 #include <cstdlib>
-//#include <random>
 
 Bot::Bot(string nome, Regiao* ponto_partida) : Jogador(nome, ponto_partida) {}
 
